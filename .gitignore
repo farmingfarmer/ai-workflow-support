@@ -1,0 +1,20 @@
+# NEVER commit real transcripts, learner/resident data, evaluations, or any
+# institutional documents. Those stay in the USC tenant (SharePoint) or in the
+# ignored local_data/ directories below. This repo carries templates, prompts,
+# process docs, and code only.
+local_data/
+**/local_data/
+*_Transcript*
+*transcript*.docx
+*transcript*.vtt
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+~$*
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
