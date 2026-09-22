@@ -1,0 +1,99 @@
+SYNTHETIC TEST DATA — entirely fictional coaching session, generated for software testing.
+No real persons, learners, or USC data. Safe to upload to Copilot for license testing.
+
+Session 1 Coaching - Test Recording
+September 20, 2026, 2:00 PM
+28m 40s
+
+Raman, Priya  0:12
+Hi Sam! Great to finally sit down with you. Can you hear me okay?
+
+Okafor, Sam  0:15
+Yes, loud and clear. Thanks for setting this up.
+
+Raman, Priya  0:21
+Of course. So before we dive in, I want to explain what these sessions are. I'm your coach, not your evaluator — nothing we discuss goes into your performance evaluations. These are quarterly, and they're your space. What we talk about stays between us, except the summary document we'll both agree on. Does that make sense?
+
+Okafor, Sam  0:52
+Yeah, that makes sense. Honestly that's a relief.
+
+Raman, Priya  1:05
+Good. So let's start easy — tell me about something that went well for you recently. Doesn't have to be clinical.
+
+Okafor, Sam  1:18
+Um, okay. Last week I had a patient on the floor, an older gentleman with heart failure, and his family was really overwhelmed. I ended up sitting with them for like twenty minutes after rounds just explaining everything in plain language. The daughter actually teared up and thanked me. That felt really good.
+
+Raman, Priya  1:52
+That's wonderful. What made that meaningful for you?
+
+Okafor, Sam  2:03
+I think... my grandmother was hospitalized a lot when I was in high school, and nobody ever explained anything to us. So being the person who takes the time — that's kind of why I went into medicine.
+
+Raman, Priya  2:24
+That's a powerful connection. Okay, so you did the VIA strengths survey before this meeting. Looking at your top results — you had kindness, perseverance, curiosity, teamwork, and honesty. Which of those resonates most with you?
+
+Okafor, Sam  2:48
+Perseverance, definitely. I failed my first anatomy exam in med school and came back to finish top quartile. When things get hard I just kind of lock in.
+
+Raman, Priya  3:10
+I love that. Were any of the results surprising to you?
+
+Okafor, Sam  3:16
+Honestly, curiosity surprised me. I never thought of myself as the curious type, but thinking about it, I do go down rabbit holes reading about my patients' conditions at night. So maybe it fits.
+
+Raman, Priya  3:39
+That's a great insight. Okay, let's do a little visioning exercise. Imagine it's June, the end of this academic year, and you've had the best PGY-1 year possible. What happened?
+
+Okafor, Sam  4:02
+Wow, okay. I think... I'm running my patient list efficiently, I'm not staying two hours after everyone else to finish notes. My presentations on rounds are tight. And the nurses trust me — like they page me and know I'll actually respond and help.
+
+Raman, Priya  4:33
+What are you proudest of in that picture?
+
+Okafor, Sam  4:40
+The nurses trusting me part. That means I'm actually reliable, not just book smart.
+
+Raman, Priya  4:51
+And what excites you most about getting there?
+
+Okafor, Sam  4:58
+Feeling like a real doctor instead of someone pretending to be one, honestly. The impostor feeling going away.
+
+Raman, Priya  5:12
+That feeling is so common in the first year, and it does fade. Okay, so bringing this down to earth — what's one concrete thing you'd like to work on before we meet again?
+
+Okafor, Sam  5:31
+Definitely my note efficiency. I'm the last one out of the workroom almost every day.
+
+Raman, Priya  5:40
+Okay. Let's make that specific. What would success look like?
+
+Okafor, Sam  5:47
+I want to finish all my progress notes before sign-out, at least four days out of five, instead of staying late.
+
+Raman, Priya  6:02
+Great — that's measurable. How will you get there?
+
+Okafor, Sam  6:08
+I'm going to start writing skeleton notes right after I see each patient in the morning instead of batching them all in the afternoon. My senior suggested that and I keep not doing it.
+
+Raman, Priya  6:24
+That's a solid plan. So our goal: finish progress notes before sign-out four of five days, using morning skeleton notes. You'll track it yourself and we'll check in on it next time. I'll also send you that note template one of the PGY-3s made — it helped a lot of interns last year.
+
+Okafor, Sam  6:48
+That would be great, thank you.
+
+Raman, Priya  6:53
+Anything else on your mind before we wrap up? How's everything outside the hospital?
+
+Okafor, Sam  7:01
+Mostly good. My partner just moved out here to join me, so that's been a big change, still unpacking boxes. And I'm trying to find a gym near the hospital.
+
+Raman, Priya  7:15
+That's a big life change on top of intern year — glad you have support nearby. Okay, we're about at time. This was a great first conversation, Sam. I'll write up our summary and send it to you to look over — check that the goal is written the way you meant it.
+
+Okafor, Sam  7:38
+Sounds good. Thanks, Dr. Raman.
+
+Raman, Priya  7:42
+Talk soon. Good luck with the boxes!
