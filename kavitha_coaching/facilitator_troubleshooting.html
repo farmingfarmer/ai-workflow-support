@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Teams Facilitator — Troubleshooting Guide</title>
+<style>
+  :root { --ink:#1a2332; --muted:#5a6675; --accent:#7a1e1e; --rule:#d8dce2; --panel:#f5f6f8; }
+  * { box-sizing:border-box; }
+  body { font-family:Georgia,'Times New Roman',serif; color:var(--ink); line-height:1.55;
+         max-width:52rem; margin:0 auto; padding:2.5rem 2rem; background:#fff; }
+  h1 { font-size:1.6rem; line-height:1.25; margin:0 0 .25rem; }
+  h2 { font-size:1.15rem; margin:2rem 0 .6rem; border-bottom:2px solid var(--accent); padding-bottom:.25rem; }
+  .meta { color:var(--muted); font-size:.95rem; margin-bottom:1.5rem; }
+  .meta b { color:var(--ink); }
+  table { border-collapse:collapse; width:100%; margin:.6rem 0 1rem; font-size:.95rem; }
+  th,td { border:1px solid var(--rule); padding:.5rem .65rem; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font-family:Helvetica,Arial,sans-serif; font-size:.82rem; }
+  ol,ul { padding-left:1.4rem; } li { margin:.4rem 0; }
+  .pastebox { background:var(--panel); border:1px solid var(--rule); border-left:5px solid var(--accent);
+              padding:1rem 1.3rem; margin:.8rem 0; font-size:.95rem; }
+  .copy-hint { font-family:Helvetica,Arial,sans-serif; font-size:.78rem; letter-spacing:.08em;
+               text-transform:uppercase; color:var(--accent); font-weight:bold; margin-bottom:.35rem; }
+  .tree { font-family:Menlo,Consolas,monospace; font-size:.82rem; line-height:1.5; background:var(--panel);
+          border:1px solid var(--rule); padding:1rem 1.2rem; overflow-x:auto; white-space:pre; }
+  .good { color:#1e6b34; font-weight:bold; } .bad { color:var(--accent); font-weight:bold; }
+  footer { margin-top:2.5rem; padding-top:.75rem; border-top:1px solid var(--rule);
+           color:var(--muted); font-size:.85rem; }
+  @media print { body{padding:0;max-width:none;} table,.pastebox,.tree{break-inside:avoid;} h2{break-after:avoid;}
+    th { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+</style>
+</head>
+<body>
+
+<h1>Teams Facilitator — Troubleshooting Guide</h1>
+<div class="meta"><b>For Dr.&nbsp;Bagavathy and coaching faculty, IM Residency</b><br>
+Why this exists: in our September 22 session, Facilitator worked in one meeting and was completely unavailable in
+another. This guide explains the difference and gives rules of thumb so coaching meetings always get Facilitator.</div>
+
+<h2>What we observed</h2>
+<table>
+  <tr><th style="width:12rem;">Meeting</th><th>How it was created</th><th>Facilitator</th></tr>
+  <tr><td>Working meeting <span class="good">(worked)</span></td>
+      <td>Created from a <b>chat group / calendar invite</b>; Teams offered Facilitator at creation and it was turned on</td>
+      <td>Ran automatically, paced the agenda, posted over-time reminders, produced an end-of-meeting summary</td></tr>
+  <tr><td>Recurring admin meeting <span class="bad">(didn't work)</span></td>
+      <td>Scheduled inside a <b>Teams channel</b></td>
+      <td>No Facilitator toggle anywhere; Meeting options showed Copilot <b>"locked by admin"</b>; Copilot reported the
+          Microsoft&nbsp;365 administrator has disabled Copilot for these meetings</td></tr>
+</table>
+
+<h2>Why this happens</h2>
+<ol>
+  <li><b>Channel meetings play by different rules.</b> Meetings scheduled inside a Teams channel inherit the
+      team/channel's policies and support fewer Copilot features than private (calendar/chat) meetings. Facilitator is
+      built for private scheduled meetings; channel meetings are where we saw it locked.</li>
+  <li><b>Admin policy can disable Copilot per meeting type.</b> The "locked by admin" message means a tenant policy
+      (or a sensitivity label / meeting template applied to that team) has Copilot turned off for that context. Being
+      the owner of the team does not override tenant policy.</li>
+  <li><b>Old recurring meetings keep old settings.</b> A series created before your Copilot entitlement may never offer
+      the toggle. Editing <b>the series</b> (not a single occurrence) sometimes surfaces it; recreating the meeting
+      always does.</li>
+  <li><b>The chat fail-safe is not a backdoor.</b> Typing "Facilitator, please track this agenda…" in the meeting chat
+      only works when Facilitator is <i>available</i> for that meeting. If it's admin-locked, "facilitator" is just a
+      word in the chat — there's nothing listening.</li>
+</ol>
+
+<h2>Rules of thumb for coaching meetings</h2>
+<ol>
+  <li><b>Schedule coaching sessions as private calendar meetings</b> (from Outlook or Teams calendar, or from a chat) —
+      <b>never inside a Teams channel.</b></li>
+  <li><b>Turn on Facilitator at creation</b> when Teams offers it (the prompt above the invite body), and paste the
+      session agenda into the invite body at the same time.</li>
+  <li><b>For recurring series, always edit the series</b>, not a single occurrence — per-occurrence changes don't stick
+      and can hide options.</li>
+  <li><b>Turn on transcription at the start</b> of every session (transcript, not recording — per learner consent).</li>
+  <li>If an existing meeting won't show the toggle, <b>don't fight it — reschedule it fresh</b> from the calendar or
+      chat with Facilitator on. One-time cost, permanent fix.</li>
+</ol>
+
+<h2>If it's still locked — send this to IT</h2>
+<div class="pastebox">
+  <div class="copy-hint">Copy for your IT / Copilot admin contact</div>
+  Facilitator and Copilot meeting options are unavailable ("locked by admin") for meetings scheduled in our residency
+  Teams channel, while the same account can use Facilitator in private calendar meetings. Can you confirm which Teams
+  meeting policy or sensitivity label applies to team <b>[team name]</b>, and whether Copilot/Facilitator can be
+  enabled for its meetings — or confirm that private calendar meetings are the supported path?
+</div>
+<p>You can also ask Copilot directly in Teams chat ("Why is Facilitator unavailable in [meeting]? What Copilot
+permissions do I have?") — it can sometimes see your policy state, though the definitive answer comes from IT.</p>
+
+<h2>Decision tree</h2>
+<div class="tree">Scheduling a coaching session?
+├─ Schedule as a PRIVATE calendar meeting (never in a channel)
+├─ Facilitator prompt offered at creation? → turn it ON, paste agenda in body
+├─ No prompt? → after creating: open meeting → Meeting options → Facilitator ON
+├─ Option missing / greyed "locked by admin"?
+│    ├─ Recurring? → Edit the SERIES and retry Meeting options
+│    ├─ Still locked? → recreate the meeting fresh from calendar/chat
+│    └─ Locked even on fresh private meetings? → contact IT (text above)
+└─ Day of meeting: confirm Facilitator active + transcription ON</div>
+
+<footer>IM Residency Coaching Program · Facilitator Troubleshooting Guide · Prepared September 2026</footer>
+
+</body>
+</html>
