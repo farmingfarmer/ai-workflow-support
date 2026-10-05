@@ -4,6 +4,26 @@
 
 ---
 
+## ✅ RESULT — license test passed (early October 2026)
+
+Jason Tjia (intern, **no** M365 Copilot premium license) accessed the shared
+`License Test - Session 1 Summarizer` agent, fed it the synthetic Session 1
+transcript, and worked the agent end to end with no problems — access,
+execution, and the transcript workload all succeeded for an unlicensed user.
+
+**Conclusion (best-case row of the §2 matrix):** a Copilot agent built and
+shared by a premium-licensed user (Dr. Bagavathy) is usable by non-premium
+users (her APDs/coaches) in our tenant. Unlicensed users should use the
+**M365 Copilot app or m365.cloud.microsoft** (Copilot Chat is not available
+inside Word/Office apps for unlicensed users in large tenants as of April
+2026 — point coaches there in the rollout guidance).
+
+**Unblocked next steps:** §4 items 3–5 — await Kavitha's template markup,
+then build `Session 1 Summarizer v1`, validate on her two sample
+transcripts, and hand off under her account shared to the APDs.
+
+---
+
 ## 1. Licensing: can non-premium users use an agent built by a premium user?
 
 **Short answer: yes, most likely — but it's a tenant-admin decision, not a license question, so the intern test is still the definitive check.**
