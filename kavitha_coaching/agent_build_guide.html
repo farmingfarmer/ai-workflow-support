@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Build Your Session 1 Summarizer Agent — Step-by-Step Guide</title>
+<style>
+  :root { --ink:#1a2332; --muted:#5a6675; --accent:#7a1e1e; --rule:#d8dce2; --panel:#f5f6f8; }
+  * { box-sizing:border-box; }
+  body { font-family:Georgia,'Times New Roman',serif; color:var(--ink); line-height:1.55;
+         max-width:52rem; margin:0 auto; padding:2.5rem 2rem; background:#fff; }
+  h1 { font-size:1.6rem; line-height:1.25; margin:0 0 .25rem; }
+  h2 { font-size:1.15rem; margin:2rem 0 .6rem; border-bottom:2px solid var(--accent); padding-bottom:.25rem; }
+  .meta { color:var(--muted); font-size:.95rem; margin-bottom:1.25rem; }
+  .meta b { color:var(--ink); }
+  ol,ul { padding-left:1.4rem; } li { margin:.45rem 0; }
+  .goodnews { border:1px solid var(--rule); border-left:5px solid #1e6b34; background:#f6faf7;
+              padding:.9rem 1.2rem; margin:.9rem 0; }
+  .callout { border:1px solid var(--rule); border-left:5px solid var(--accent); background:var(--panel);
+             padding:.9rem 1.2rem; margin:.9rem 0; }
+  code { font-family:Menlo,Consolas,monospace; font-size:.88em; background:var(--panel);
+         padding:.1em .35em; border-radius:3px; }
+  .check { color:#1e6b34; font-weight:bold; }
+  footer { margin-top:2.5rem; padding-top:.75rem; border-top:1px solid var(--rule);
+           color:var(--muted); font-size:.85rem; }
+  @media print { body{padding:0;max-width:none;} .goodnews,.callout{break-inside:avoid;} h2{break-after:avoid;} }
+</style>
+</head>
+<body>
+
+<h1>Build Your Session 1 Summarizer Agent</h1>
+<div class="meta"><b>Step-by-step guide for Dr.&nbsp;Bagavathy, IM Residency</b><br>
+What you're building: a Copilot agent that takes a Session&nbsp;1 coaching transcript and returns two documents in one
+pass — the full coach summary (with checklist and notes) and the concise learner summary. Build it once under your
+account, share it with your APDs, and nobody retypes or re-pastes templates again.</div>
+
+<div class="goodnews"><b>Good news first:</b> we tested this with a team member who has <b>no premium Copilot
+license</b> — he could open a shared agent, upload a transcript, and generate both documents with no issues. So your
+APDs and coaches do <b>not</b> need premium licenses to use it. One note: non-premium users access it through the
+<b>Microsoft&nbsp;365 Copilot app</b> or <b>m365.cloud.microsoft</b> in a browser — the agent won't appear for them
+inside Word.</div>
+
+<p>You'll need two companion files we've provided: <code>agent_instructions_v1.txt</code> (the agent's brain — you'll
+paste this) and <code>synthetic_session1_sample.txt</code> (a completely fictional test transcript — safe to
+experiment with).</p>
+
+<h2>Part 1 — Build it (about 10 minutes)</h2>
+<ol>
+  <li>Go to <b>m365.cloud.microsoft</b> in your browser (or open the Microsoft 365 Copilot app) and sign in with your
+      USC account.</li>
+  <li>Open <b>Copilot Chat</b>. In the right-hand pane, find <b>Agents → Create agent</b> (sometimes under
+      "All agents" → "+ Create").</li>
+  <li>The agent builder opens with two tabs: <b>Describe</b> and <b>Configure</b>. Skip the conversational Describe tab
+      and click <b>Configure</b> — we're pasting exact instructions, not describing them.</li>
+  <li>Fill in:
+    <ul>
+      <li><b>Name:</b> <code>Session 1 Summarizer v1</code></li>
+      <li><b>Description:</b> <code>Turns an uploaded Session 1 coaching transcript into a coach summary and a learner summary.</code></li>
+      <li><b>Instructions:</b> open <code>agent_instructions_v1.txt</code>, copy <b>everything below the line that says
+          "paste everything below,"</b> and paste it into the Instructions box.</li>
+      <li><b>Knowledge sources: leave EMPTY.</b> This is deliberate — adding SharePoint files here would require extra
+          licensing for your non-premium coaches. The template lives inside the instructions instead.</li>
+      <li><b>Capabilities</b> (code interpreter, image generator): leave off.</li>
+      <li><b>Conversation starters:</b> add two — <code>Summarize this Session 1 transcript</code> and
+          <code>What do you need from me?</code></li>
+    </ul>
+  </li>
+  <li>Click <b>Create</b>. The agent now appears in your Agents list.</li>
+</ol>
+
+<h2>Part 2 — Test it (about 5 minutes)</h2>
+<ol>
+  <li>Open your new agent and <b>upload <code>synthetic_session1_sample.txt</code></b> (paperclip/+ button), then click
+      the starter <b>"Summarize this Session 1 transcript."</b></li>
+  <li>Check the output against these four marks — the test file was designed with deliberate traps:
+    <ul>
+      <li><span class="check">✓</span> You get <b>two documents</b>: a detailed coach summary and a short learner summary.</li>
+      <li><span class="check">✓</span> In the coach summary's checklist, <b>"Session 2 scheduled" is marked
+          <i>Not covered</i></b> (the fictional coach never scheduled it). If the agent claims it was covered, it's
+          inventing — tell us.</li>
+      <li><span class="check">✓</span> The personal details (the learner's partner moving, looking for a gym) appear
+          <b>only in the coach summary's Notes</b> — not in the learner version.</li>
+      <li><span class="check">✓</span> The <b>goal wording is identical</b> in both documents, word for word.</li>
+    </ul>
+  </li>
+  <li>If all four check out, try it on one of your <b>real</b> session transcripts and judge the quality yourself.
+      (Real transcripts: download from the meeting recap, upload to the agent directly — they stay inside the USC
+      tenant.)</li>
+</ol>
+
+<h2>Part 3 — Share it with your APDs (2 minutes)</h2>
+<ol>
+  <li>Open the agent → <b>Share</b> (or the "…" menu → Share).</li>
+  <li>Choose <b>specific people</b> and add your four APDs by name — avoid "anyone in the organization."</li>
+  <li>Send them the link, plus one instruction: <b>use it at m365.cloud.microsoft or in the Microsoft 365 Copilot
+      app</b> (it won't show up inside Word without a premium license), upload the session transcript, click the
+      starter, review the coach summary for accuracy, then share the learner summary with the learner for
+      confirmation.</li>
+</ol>
+
+<h2>Part 4 — Making it better (the version loop)</h2>
+<p>The agent does <b>not</b> learn from corrections made mid-conversation — those vanish when the chat ends.
+Improvements happen by updating its written instructions:</p>
+<ol>
+  <li>Keep a running note (or Teams thread) where you and the APDs drop feedback: wrong section, missing nuance,
+      wording you'd change, things that should or shouldn't be learner-visible.</li>
+  <li>Send that to us. We fold it into an updated instructions file (<code>v2</code>); you paste it over the old
+      instructions (edit agent → Configure → Instructions) and rename the agent <code>…v2</code>.</li>
+  <li>Repeat until the output is steady-state. Then we clone the pattern for Sessions 2–4 — same build steps,
+      different template — for four agents total.</li>
+</ol>
+
+<h2>If something doesn't work</h2>
+<div class="callout">
+  <ul style="margin:.3rem 0;">
+    <li><b>Can't find "Create agent":</b> tell us — a tenant setting may hide the builder; we'll chase it with IT.</li>
+    <li><b>An APD can't see or use the shared agent:</b> confirm they're in the M365 Copilot app or
+        m365.cloud.microsoft (not Word), then tell us the exact error text — we've mapped what each message means.</li>
+    <li><b>Output quality dips or it starts inventing content:</b> stop using that output, note what happened, and send
+        us the example. The instructions forbid inference, and a violation is exactly the feedback the next version
+        needs.</li>
+  </ul>
+</div>
+
+<footer>IM Residency Coaching Program · Agent Build Guide · Prepared October 2026</footer>
+
+</body>
+</html>
