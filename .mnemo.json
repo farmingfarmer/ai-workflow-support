@@ -1,0 +1,10 @@
+{
+  "domain": "work",
+  "project": "ai_workflow_support",
+  "display_name": "AI workflow support (IM Residency coaching program)",
+  "aliases": ["workflow support", "coaching", "coaching program", "kavitha", "residency coaching", "facilitator agenda", "session summary"],
+  "files": [
+    {"path": "kavitha_coaching/copilot_agent_plan.md", "tag": "copilot_agent_plan"},
+    {"path": "kavitha_coaching/session1_facilitator_agenda.md", "tag": "session1_agenda"}
+  ]
+}

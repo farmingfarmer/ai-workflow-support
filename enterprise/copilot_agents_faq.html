@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Copilot Agents — FAQ</title>
+<style>
+  :root { --ink:#1a2332; --muted:#5a6675; --accent:#1e4e79; --rule:#d8dce2; --panel:#f5f6f8; }
+  * { box-sizing:border-box; }
+  body { font-family:'Segoe UI',Helvetica,Arial,sans-serif; color:var(--ink); line-height:1.55;
+         max-width:52rem; margin:0 auto; padding:2.5rem 2rem; background:#fff; }
+  h1 { font-size:1.7rem; line-height:1.25; margin:0 0 .25rem; }
+  .meta { color:var(--muted); font-size:.95rem; margin-bottom:1.8rem; }
+  .q { font-size:1.08rem; font-weight:600; color:var(--accent); margin:1.8rem 0 .4rem;
+       border-bottom:1px solid var(--rule); padding-bottom:.25rem; }
+  p { margin:.6rem 0; }
+  ol,ul { padding-left:1.4rem; } li { margin:.35rem 0; }
+  b.key { color:var(--accent); }
+  .tested { display:inline-block; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+            background:#e8f0e9; color:#1e6b34; border:1px solid #bcd8c2; padding:.1rem .5rem;
+            border-radius:3px; vertical-align:middle; margin-left:.4rem; }
+  footer { margin-top:2.5rem; padding-top:.75rem; border-top:1px solid var(--rule);
+           color:var(--muted); font-size:.85rem; }
+  @media print { body{padding:0;max-width:none;} .q{break-after:avoid;}
+    .tested{ -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+</style>
+</head>
+<body>
+
+<h1>Copilot Agents — Frequently Asked Questions</h1>
+<div class="meta">For anyone in the organization curious about building or using a Copilot agent.<br>
+Maintained by the Data Science &amp; AI Team. These answers reflect testing in <b>our</b> tenant, not just Microsoft
+documentation.</div>
+
+<div class="q">What is a Copilot agent?</div>
+<p>A reusable Copilot "specialist" someone builds once — with written instructions, a defined output format, and
+optional knowledge — that others can then use without any prompt-writing. You open the agent, give it your input
+(a file or text), and it produces output in the agreed format every time. Think of it as a prompt that's been
+productized.</p>
+
+<div class="q">If I build an agent, who can use it? <span class="tested">tested in our tenant</span></div>
+<p><b class="key">Anyone you share it with — they do not need a premium Copilot license.</b> We validated this in our
+tenant: a user with no Microsoft 365 Copilot license opened a shared agent, uploaded a file, and received full output
+with no errors. Build it under your account, share it with specific people, and they use it from their own
+accounts.</p>
+
+<div class="q">Where do people without a premium license use my agent?</div>
+<p>In the <b>Microsoft 365 Copilot app</b> or at <b>m365.cloud.microsoft</b> in a browser. As of April 2026, users
+without premium licenses in large tenants like ours no longer see Copilot inside Word, Excel, or PowerPoint — so don't
+tell your colleagues "it's in Word." Premium-licensed users can also reach agents from Teams and Office surfaces.</p>
+
+<div class="q">Does it cost anything when unlicensed colleagues use my agent?</div>
+<p>Usage by unlicensed users is covered by the organization's Copilot billing arrangement (Copilot Credits /
+pay-as-you-go metering), not by anything you or they pay individually. You don't need to do anything — but see the
+next question, because one design choice keeps agents in the cheapest, most-compatible tier.</p>
+
+<div class="q">What are "knowledge sources," and should I add them?</div>
+<p>Knowledge sources attach SharePoint sites or files to your agent as reference material. <b class="key">Default to
+not using them.</b> Agents grounded in premium knowledge sources have extra licensing requirements for unlicensed
+users, and most agents don't need them: if your agent works from a template or a set of rules, paste those directly
+into the agent's <i>instructions</i>; if it works on a per-task document (a transcript, a report), have the user
+<i>upload it</i> in the conversation. Both approaches avoid the knowledge-source licensing question entirely.</p>
+
+<div class="q">Does my agent learn from feedback over time?</div>
+<p><b class="key">No.</b> Corrections made mid-conversation vanish when the chat ends. Agents improve when someone
+edits their written instructions. The working pattern: collect feedback from users in one place (a Teams thread or
+running doc), fold it into a revised instruction set, update the agent, and bump the version in its name ("…v2").
+Repeat until the output is steady. Put the version in the agent's name so users know what they're on.</p>
+
+<div class="q">How should I test an agent before I trust it?</div>
+<p>With <b>synthetic test data containing deliberate traps</b> — never with real data first. Write a fake input
+that:</p>
+<ul>
+  <li><b>omits</b> something your output format expects — and check the agent reports it as missing rather than
+      inventing it;</li>
+  <li>contains content that belongs in <b>one output section and not another</b> — and check it lands correctly;</li>
+  <li>has wording that must be carried through <b>verbatim</b> — and check it isn't paraphrased.</li>
+</ul>
+<p>An agent that passes planted traps has earned a trial on real material; an agent that fills in gaps confidently is
+worse than no agent.</p>
+
+<div class="q">What data am I allowed to give an agent?</div>
+<p>Work data stays inside the organization's M365 tenant, which is where Copilot agents run — so ordinary business
+documents are generally fine. <b class="key">Patient data, student/learner records, and other regulated data follow
+the same rules they always do</b>: only in approved environments, only with the access you already legitimately have.
+An agent never expands what data you're allowed to touch. When in doubt, ask us — and always use synthetic data for
+testing and demos.</p>
+
+<div class="q">Should my agent's output go straight to its audience?</div>
+<p>Almost never. The pattern that works: the agent produces a <b>draft</b>, a human reviews it for accuracy, and only
+then does it go to its audience or into a system of record. Write that into your process (and consider writing it
+into the agent's output — ours end with a one-line reminder of who reviews what).</p>
+
+<div class="q">How do I actually build one?</div>
+<p>The agent builder lives in Copilot Chat → Agents → Create agent. Use the <b>Configure</b> tab (paste exact
+instructions; skip the conversational "Describe" tab), leave knowledge sources and capabilities off unless you have a
+reason, and add one or two conversation starters. The whole thing takes about 15 minutes with instructions in hand —
+see the companion <b>Agent Playbook</b> for the process, or use our <b>Agent Architect</b> agent, which interviews you
+about your process and writes the instruction block for you.</p>
+
+<div class="q">I want one. Where do I start?</div>
+<ol>
+  <li>If you can write down your process and what good output looks like: use the <b>Agent Architect</b> agent or
+      follow the <b>Agent Playbook</b>.</li>
+  <li>If you're not sure the problem fits an agent: contact the Data Science &amp; AI Team — a 30-minute conversation
+      usually settles it, and simpler tools (Facilitator for meetings, a saved prompt) sometimes beat an agent.</li>
+</ol>
+
+<footer>Data Science &amp; AI Team · Copilot Agents FAQ · October 2026</footer>
+
+</body>
+</html>

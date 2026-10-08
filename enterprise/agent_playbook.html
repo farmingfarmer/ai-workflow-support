@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Agent Playbook</title>
+<style>
+  :root { --ink:#1a2332; --muted:#5a6675; --accent:#1e4e79; --rule:#d8dce2; --panel:#f5f6f8; }
+  * { box-sizing:border-box; }
+  body { font-family:'Segoe UI',Helvetica,Arial,sans-serif; color:var(--ink); line-height:1.55;
+         max-width:52rem; margin:0 auto; padding:2.5rem 2rem; background:#fff; }
+  h1 { font-size:1.7rem; line-height:1.25; margin:0 0 .25rem; }
+  h2 { font-size:1.12rem; margin:1.9rem 0 .5rem; color:var(--accent); }
+  h2 .n { display:inline-block; background:var(--accent); color:#fff; border-radius:50%;
+          width:1.5em; height:1.5em; line-height:1.5em; text-align:center; font-size:.85em; margin-right:.45rem; }
+  .meta { color:var(--muted); font-size:.95rem; margin-bottom:1rem; }
+  .premise { border-left:4px solid var(--accent); background:var(--panel); padding:.8rem 1.2rem; margin:1rem 0 1.6rem;
+             font-size:1.02rem; }
+  p { margin:.6rem 0; }
+  ol,ul { padding-left:1.4rem; } li { margin:.35rem 0; }
+  .avoid { border:1px solid var(--rule); border-left:5px solid #7a1e1e; background:#fbfbfc;
+           padding:.9rem 1.2rem; margin:1.4rem 0; }
+  code { font-family:Menlo,Consolas,monospace; font-size:.88em; background:var(--panel);
+         padding:.1em .35em; border-radius:3px; }
+  footer { margin-top:2.5rem; padding-top:.75rem; border-top:1px solid var(--rule);
+           color:var(--muted); font-size:.85rem; }
+  @media print { body{padding:0;max-width:none;} h2{break-after:avoid;} .premise,.avoid{break-inside:avoid;}
+    h2 .n{ -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+</style>
+</head>
+<body>
+
+<h1>The Agent Playbook</h1>
+<div class="meta">A repeatable process for building trustworthy Copilot agents · Data Science &amp; AI Team<br>
+Distilled from the IM Residency coaching engagement — a template-driven summarization agent now in production use —
+and validated licensing and testing work.</div>
+
+<div class="premise"><b>The premise: the agent is the last 15 minutes of the work.</b> Everything that makes it
+trustworthy happens before the builder is opened and after the first version ships.</div>
+
+<h2><span class="n">1</span>Capture the human process first</h2>
+<p>Before any AI: what do the humans do today, and what artifacts already exist? Meeting structures, templates,
+checklists, report formats, review steps. If the process isn't written down, write it down now — an agent built on a
+vague process automates the vagueness. (In the coaching engagement, the session framework, key questions, and
+checklist existed on paper first; the agent inherited them.)</p>
+
+<h2><span class="n">2</span>Design the output before the agent</h2>
+<p>Produce the exact template of what good output looks like — headings, tables, tone, what's included and what's
+deliberately excluded — and get the owner to approve <i>that document</i> before writing any instructions. Two outputs
+for two audiences (e.g., a detailed internal version and a concise recipient-facing version)? Decide now, and decide
+which fields must match <b>verbatim</b> between them so they can't drift.</p>
+
+<h2><span class="n">3</span>Write the instructions</h2>
+<p>Structure every instruction block the same way:</p>
+<ol>
+  <li><b>Role and input</b> — what the agent is, what the user will give it, and what to do if the input is missing
+      ("ask for it and do nothing else").</li>
+  <li><b>Evidence rules</b> — use ONLY what's in the input; never infer or embellish; unclear → leave it out;
+      unanswered → "Not discussed"; never fill gaps from context. These rules do more for trustworthiness than
+      anything else in the block.</li>
+  <li><b>Attribution and tone rules</b> — whose words are whose; descriptive, not evaluative.</li>
+  <li><b>The output template, embedded in full</b> — section by section, including any closed sets (checklist items,
+      status values) listed explicitly. The template lives <i>in the instructions</i>, not in a knowledge source
+      (Step&nbsp;4).</li>
+  <li><b>Boundary rules</b> — what goes in which output; content that fits nowhere goes to a "Notes" section rather
+      than being dropped or shoehorned.</li>
+  <li><b>A closing line</b> the agent appends, reminding the user who reviews what.</li>
+</ol>
+<p>Keep the whole block under the builder's instruction limit (~8,000 characters); closed sets and terse section
+specs beat prose.</p>
+
+<h2><span class="n">4</span>Default to NO knowledge sources</h2>
+<p>Templates and rules go in the instructions; per-task documents get uploaded by the user in the conversation. This
+keeps the agent usable by unlicensed colleagues without premium-knowledge licensing complications, keeps behavior
+deterministic (nothing changes because a SharePoint file moved), and keeps the agent portable. Add knowledge sources
+only when the agent genuinely must consult a living document corpus — and treat that as a licensing conversation, not
+just a checkbox.</p>
+
+<h2><span class="n">5</span>Build in the Configure tab</h2>
+<p>Copilot Chat → Agents → Create agent → <b>Configure</b> (skip "Describe" — we paste exact instructions, we don't
+negotiate them with a wizard). Name with a version suffix (<code>… v1</code>), short description, paste instructions,
+knowledge off, capabilities off, two conversation starters (one that does the work, one that explains what the agent
+needs).</p>
+
+<h2><span class="n">6</span>Test with synthetic traps before real data</h2>
+<p>Author a synthetic input with <b>deliberate traps</b>, then check the output against them:</p>
+<ul>
+  <li><b>An omission trap:</b> something the template expects that the input deliberately lacks → must be reported
+      "Not covered"/"Not discussed," never invented.</li>
+  <li><b>A boundary trap:</b> content that belongs in one output and not another (e.g., personal context → internal
+      notes only) → must land on the right side of the line.</li>
+  <li><b>A verbatim trap:</b> wording that must survive word-for-word across outputs → must not be paraphrased.</li>
+</ul>
+<p>An agent that passes planted traps earns a trial on real data; one that confidently fills gaps fails the build.
+Keep the synthetic file — it's the regression test for every future version. Never use real data for testing, demos,
+or licensing checks.</p>
+
+<h2><span class="n">7</span>Share deliberately, and tell users where it works</h2>
+<p>Share to <b>specific people</b>, not the whole org, until steady state. Tell non-premium users explicitly: the
+agent lives in the <b>M365 Copilot app / m365.cloud.microsoft</b>, not inside Word. (Validated in our tenant:
+unlicensed users can run shared agents end to end, including file upload.)</p>
+
+<h2><span class="n">8</span>Version loop, because agents don't learn</h2>
+<p>Mid-conversation corrections vanish. The loop that actually improves an agent: one collection point for user
+feedback (Teams thread or doc) → fold into revised instructions → update agent, bump name to vN+1 → rerun the
+synthetic trap test → repeat until steady. The owner of the process owns the feedback; we own folding it in (or teach
+them to).</p>
+
+<h2><span class="n">9</span>Keep a human gate</h2>
+<p>Agent output is a draft until a named human reviews it. Where the output faces a third party (a learner, a
+patient-adjacent record, a committee), add a second gate: the affected person confirms accuracy before the document
+is finalized. This isn't overhead — in our experience it's what makes process owners comfortable deploying at
+all.</p>
+
+<div class="avoid"><b>What this playbook deliberately avoids:</b> no custom UIs, no hosted services, no databases,
+nothing the AI team must operate long-term. Everything above is documents, instructions, and M365-native configuration
+owned by the process owner after handoff. If a request genuinely can't fit that shape, it's not an agent request —
+it's a project, and it gets scoped as one.</div>
+
+<footer>Data Science &amp; AI Team · The Agent Playbook · October 2026</footer>
+
+</body>
+</html>
