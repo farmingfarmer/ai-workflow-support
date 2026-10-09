@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Coaching Session 1 — Instructions for Coaches</title>
+<style>
+  :root { --ink:#1a2332; --muted:#5a6675; --accent:#7a1e1e; --rule:#d8dce2; --panel:#f5f6f8; }
+  * { box-sizing:border-box; }
+  body { font-family:'Segoe UI',Calibri,Helvetica,Arial,sans-serif; color:var(--ink); line-height:1.5;
+         max-width:52rem; margin:0 auto; padding:2.2rem 2rem; background:#fff; font-size:.96rem; }
+  h1 { font-size:1.45rem; line-height:1.25; margin:0 0 .2rem; }
+  h2 { font-size:1.08rem; color:var(--accent); margin:1.6rem 0 .5rem; border-bottom:1px solid var(--rule);
+       padding-bottom:.25rem; }
+  .meta { color:var(--muted); font-size:.9rem; margin-bottom:1.2rem; }
+  ol,ul { padding-left:1.5rem; } li { margin:.45rem 0; }
+  code { font-family:Menlo,Consolas,monospace; font-size:.88em; background:var(--panel);
+         padding:.1em .35em; border-radius:3px; }
+  .confid { border:1px solid var(--rule); border-left:5px solid var(--accent); background:#fbfbfc;
+            padding:.8rem 1.1rem; margin:.9rem 0; }
+  .lic { border:1px solid var(--rule); background:var(--panel); padding:.8rem 1.1rem; margin:.9rem 0;
+         font-size:.92rem; }
+  footer { margin-top:2rem; padding-top:.6rem; border-top:1px solid var(--rule);
+           color:var(--muted); font-size:.85rem; }
+  @media print { body{padding:0;max-width:none;} .confid,.lic{break-inside:avoid;} h2{break-after:avoid;} }
+</style>
+</head>
+<body>
+
+<h1>Coaching Session 1: Instructions for Coaches</h1>
+<div class="meta">IM Residency Coaching Program · Using the Session 1 Summarizer agent · October 2026</div>
+
+<h2>Before and during the meeting</h2>
+<ol>
+  <li>Schedule the coaching session as a <b>private calendar meeting</b> (from Outlook or the Teams calendar), never
+      inside a Teams channel.</li>
+  <li>If you have a premium Copilot license, turn on <b>Facilitator</b> when you create the meeting and paste the
+      Session 1 agenda into the invite body. Facilitator paces the meeting and flags missed items. If you don't have
+      a premium license, skip this step; the rest of the workflow still works.</li>
+  <li><b>Turn on transcription</b> at the start of the meeting (transcript only, not recording). This step is
+      required: the transcript is what the agent works from.</li>
+</ol>
+
+<h2>After the meeting</h2>
+<ol>
+  <li>Download the transcript from the meeting recap (Meeting chat, then Recap, then Transcript).</li>
+  <li>Access the coaching agent using this link: <b>[Insert link]</b>. Open it in the <b>Microsoft 365 Copilot app</b>
+      or at <b>m365.cloud.microsoft</b> in a browser. You do <b>not</b> need a premium license for this step, but the
+      agent will not appear inside Word.</li>
+  <li><b>Upload the transcript</b> from your coaching session and choose "Summarize this Session 1 transcript."
+      The agent returns two documents: a detailed <b>coach summary</b> (with the session checklist and notes) and a
+      concise <b>learner summary</b>.</li>
+  <li><b>Review the coach summary first</b> for accuracy. If the agent marked any checklist item "Not covered," plan
+      to pick it up at the next session or by follow-up.</li>
+  <li><b>Share the learner summary with your learner.</b> They confirm it is a fair reflection of the conversation,
+      or request corrections or removals. Make any requested changes before going further.</li>
+  <li>Once the learner has confirmed, save the learner summary as a <b>Word document</b>. The agent suggests the
+      filename; the pattern is <code>LearnerLastname_Firstname_date</code> (example:
+      <code>Smith_John_07.01.2026</code>).</li>
+  <li>Upload the confirmed learner summary to the shared OneDrive folder: <b>Keck IM residency</b> folder,
+      <b>KSOM Coaching program</b>, then <b>under your name</b>, then <b>2026-2027</b>, then <b>Session 1s</b>.</li>
+</ol>
+
+<h2>Confidentiality</h2>
+<div class="confid">
+  <ul style="margin:.2rem 0;">
+    <li>Only the <b>confirmed learner-facing summary</b> goes to the shared folder.</li>
+    <li>The <b>transcript, the coach summary, and any other coaching notes</b> stay in your own OneDrive. The program
+        does not have access to those files.</li>
+    <li>If something important needs to reach the program but is not in the learner summary, <b>contact the program
+        director directly</b>.</li>
+  </ul>
+</div>
+
+<h2>Licenses, in one breath</h2>
+<div class="lic">
+  <b>Using the agent:</b> no premium license needed (tested and confirmed). Any coach can run it from the Microsoft
+  365 Copilot app or m365.cloud.microsoft.<br>
+  <b>Using Facilitator:</b> the person who <i>organizes</i> the meeting needs a premium Copilot license. Without one,
+  simply turn on transcription and skip Facilitator; everything downstream works the same.
+</div>
+
+<h2>Feedback</h2>
+<p>The agent improves through versions, not through corrections in the chat (those vanish when the conversation
+ends). If the output misses something, words things poorly, or puts content in the wrong place, drop a note in the
+program's feedback thread. Fixes get folded into the next version for everyone.</p>
+
+<footer>IM Residency Coaching Program · Session 1 coach instructions · Questions: contact the program director or the
+Data Science &amp; AI team</footer>
+
+</body>
+</html>

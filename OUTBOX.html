@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>OUTBOX — reply to Dr. Bagavathy (new agent builder UI)</title>
+<title>OUTBOX — reply to Dr. Bagavathy (Word format, APD instructions, Session 2)</title>
 <style>
   body { font-family:'Segoe UI',Calibri,Helvetica,Arial,sans-serif; color:#1a2332; line-height:1.5;
          max-width:52rem; margin:0 auto; padding:2rem; background:#fff; }
   h1 { font-size:1.3rem; margin:0 0 .3rem; }
-  .meta { font-size:.9rem; color:#5a6675; margin-bottom:1rem; }
+  .meta { font-size:.9rem; color:#5a6675; margin-bottom:.6rem; }
+  .attach { font-size:.9rem; border-left:4px solid #7a1e1e; background:#fbfbfc; padding:.6rem 1rem; margin:.6rem 0 1rem; }
   .toolbar { position:sticky; top:0; background:#fff; padding:.6rem 0; border-bottom:1px solid #d8dce2;
              margin-bottom:1rem; }
   #copyBtn { font-family:inherit; font-size:1rem; font-weight:600; color:#fff; background:#1e4e79;
@@ -21,30 +22,35 @@
 </head>
 <body>
 
-<h1>Reply to Dr. Bagavathy — Teams message</h1>
-<div class="meta">Re: her question about the agent builder looking different. Attach the updated
-<b>agent_build_guide.pdf</b> to the same Teams message. Draft prepared Oct 9, 2026.</div>
+<h1>Reply to Dr. Bagavathy</h1>
+<div class="meta"><b>Subject:</b> Re: Potential AI Use Cases for Clinical and GME Workflow Support ·
+<b>To:</b> Kavitha Bagavathy · <b>Cc:</b> Yesha Patel, Devesh Bhatla · Draft prepared Oct 9, 2026</div>
+<div class="attach"><b>Attach before sending:</b> agent_instructions_v2.txt · apd_instructions.html
+(she can open it in Word to fill in the agent link placeholder; a PDF copy is in the repo if she prefers print)</div>
 
 <div class="toolbar">
   <button id="copyBtn" onclick="copyMsg()">📋 Copy message to clipboard</button>
 </div>
 
-<div class="msg" id="message">Hi Dr. Bagavathy! Good eye, but it's not your license. Microsoft has been rolling out a redesigned agent builder in waves, and your account got the new look (I tested on the older layout). It's the same builder underneath, and everything in the guide still applies. Here's the map:
+<div class="msg" id="message">Hi Dr. Bagavathy,
 
-1. On the "Build your own specialist agent" screen, don't type into the "Message Agent Builder" box. That's the conversational wizard, and we're pasting exact instructions instead. Click "Skip" in the top right.
+This is wonderful to hear, and running real transcripts through it already puts you ahead of schedule. Answers to your two questions, then next steps.
 
-2. That lands you on the "New Agent" editor. The big "Instructions" box is where you paste everything from agent_instructions_v1.txt (everything below the "paste everything below" line).
+1. Word format: yes. I've attached version 2 of the agent instructions (agent_instructions_v2.txt) with three changes. The output is now formatted to paste cleanly into Word, the agent will produce actual Word files where Microsoft's rollout supports it (this varies by account right now, same as the builder layout difference you spotted), and either way every response ends with a suggested filename in your naming convention (Smith_John_07.01.2026 style, built from the learner's name and the session date in the transcript). If a file doesn't generate automatically, the Export to Word button on the response always works. To update: open your agent, select everything in the Instructions box, paste the new block over it, and rename the agent to end in "v2". It takes about two minutes.
 
-3. Leave "Skills" empty and leave "Knowledge" empty. If you see "Work content" toggles (Cloud files, Outlook, etc.), switch those off. Those are the knowledge sources from the guide under a new name, and keeping them off is what keeps the agent simple and usable by your APDs without premium licenses.
+2. Your APD instructions: the structure is exactly right, and your confidentiality split is sound. Confirmed learner summary to the shared folder, transcript and coach notes in the coach's own OneDrive, and a direct line to you for anything that needs to reach the program but isn't in the summary. I turned your draft into a one-page instruction sheet (attached) with a few additions: where APDs without premium licenses open the agent (the Microsoft 365 Copilot app or m365.cloud.microsoft, since it won't appear in Word for them), a reminder that turning on transcription is the one required meeting step, the learner confirmation step placed before the upload step, and the filename convention matched to what the agent now prints. Drop your agent link into the [Insert link] placeholder and it's ready to send.
 
-4. Name it "Session 1 Summarizer v1", add the two conversation starters if you see a spot for them, and create.
+On the license question, two different answers, which is why I want to be precise. For the agent itself, your APDs do not need premium licenses. We tested this with a colleague who has no premium license and it worked end to end, including the file upload. For Facilitator, you're correct: the meeting organizer needs a premium license, so an APD organizing their own coaching meetings would need one to get Facilitator's live pacing. An APD without a premium license can still do everything else; they just turn on transcription and skip Facilitator.
 
-Then test exactly as in the guide with the practice transcript. The four checks are unchanged. I've attached an updated version of the guide with a mapping table for the new layout, so your APDs who get the new screen won't be confused either.
+For Session 2, happy to start now. Please send the Session 2 template and the motivation pyramid framework document the coaches use, and we'll build the instructions the same way, along with a fictional practice transcript so it can be tested safely before touching real data. Your rollout plan is exactly right: once it's built, run your APD's real transcript through it, send us your feedback, and we release it to the other APDs when you're comfortable.
 
-One tip while you play around: if you do chat with the "Message Agent Builder" wizard, it will write its own instructions into the agent, which would quietly replace our rules. If a test output ever looks off (single document, missing checklist, invented content), just select everything in the Instructions box and re-paste our block from the file. Let me know how the test run goes!</div>
+And noted on Session 3: we'll hold that build until you've adjusted the competency committee portion of the script, which fits the Jan-Feb timeline fine.
 
-<p class="note">Tip: the button copies the plain-text message, ready to paste into Teams. If the button fails in your
-browser, select the box above and copy manually.</p>
+Best,
+Alex</div>
+
+<p class="note">Tip: the button copies the plain-text message, ready to paste into Outlook. If the button fails,
+select the box above and copy manually.</p>
 
 <script>
 function copyMsg() {
@@ -60,7 +66,7 @@ function copyMsg() {
     r.selectNodeContents(document.getElementById('message'));
     const sel = window.getSelection();
     sel.removeAllRanges(); sel.addRange(r);
-    try { document.execCommand('copy'); ok(); } catch(e) { alert('Copy failed — please select and copy manually.'); }
+    try { document.execCommand('copy'); ok(); } catch(e) { alert('Copy failed, please select and copy manually.'); }
     sel.removeAllRanges();
   }
 }
