@@ -2,87 +2,69 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>OUTBOX — draft email to Dr. Bagavathy</title>
+<title>OUTBOX — reply to Dr. Bagavathy (new agent builder UI)</title>
 <style>
-  body { font-family:Calibri,Helvetica,Arial,sans-serif; color:#1a2332; line-height:1.5;
+  body { font-family:'Segoe UI',Calibri,Helvetica,Arial,sans-serif; color:#1a2332; line-height:1.5;
          max-width:52rem; margin:0 auto; padding:2rem; background:#fff; }
-  .envelope { font-size:.9rem; color:#5a6675; border:1px solid #d8dce2; background:#f5f6f8;
-              padding:.8rem 1.1rem; margin-bottom:1.2rem; }
-  .envelope b { color:#1a2332; }
-  .attach { font-size:.9rem; border-left:4px solid #7a1e1e; background:#fbfbfc; padding:.6rem 1rem; margin:.8rem 0; }
-  .body { border:1px solid #d8dce2; padding:1.5rem 1.8rem; }
-  .body p { margin:.8rem 0; }
-  .body ol, .body ul { margin:.5rem 0; padding-left:1.5rem; }
-  .body li { margin:.35rem 0; }
-  .note { font-size:.85rem; color:#5a6675; font-style:italic; margin-top:1.2rem; }
+  h1 { font-size:1.3rem; margin:0 0 .3rem; }
+  .meta { font-size:.9rem; color:#5a6675; margin-bottom:1rem; }
+  .toolbar { position:sticky; top:0; background:#fff; padding:.6rem 0; border-bottom:1px solid #d8dce2;
+             margin-bottom:1rem; }
+  #copyBtn { font-family:inherit; font-size:1rem; font-weight:600; color:#fff; background:#1e4e79;
+             border:none; border-radius:6px; padding:.6rem 1.4rem; cursor:pointer; }
+  #copyBtn:hover { background:#163a5c; }
+  #copyBtn.done { background:#1e6b34; }
+  .msg { border:1px solid #d8dce2; background:#fbfbfc; padding:1.3rem 1.6rem; white-space:pre-wrap;
+         font-size:.97rem; }
+  .note { font-size:.85rem; color:#5a6675; font-style:italic; margin-top:1rem; }
 </style>
 </head>
 <body>
 
-<div class="envelope">
-  <b>To:</b> Bagavathy, Kavitha &lt;Kavitha.Bagavathy@med.usc.edu&gt;<br>
-  <b>Cc:</b> Patel, Yesha M &lt;Yesha.Patel@med.usc.edu&gt;; Bhatla, Devesh &lt;Devesh.Bhatla@med.usc.edu&gt;<br>
-  <b>Subject:</b> Re: Potential AI Use Cases for Clinical and GME Workflow Support — your Session 1 agent is ready to build (license question answered)
+<h1>Reply to Dr. Bagavathy — Teams message</h1>
+<div class="meta">Re: her question about the agent builder looking different. Attach the updated
+<b>agent_build_guide.pdf</b> to the same Teams message. Draft prepared Oct 9, 2026.</div>
+
+<div class="toolbar">
+  <button id="copyBtn" onclick="copyMsg()">📋 Copy message to clipboard</button>
 </div>
 
-<div class="attach">
-  <b>Attach before sending:</b><br>
-  1. agent_build_guide.pdf &nbsp;·&nbsp; 2. agent_instructions_v1.txt &nbsp;·&nbsp; 3. synthetic_session1_sample.txt<br>
-  4. session1_summary_template.pdf &nbsp;·&nbsp; 5. session1_learner_summary_template.pdf &nbsp;·&nbsp; 6. facilitator_troubleshooting.pdf
-</div>
+<div class="msg" id="message">Hi Dr. Bagavathy! Good eye — but it's not your license. Microsoft has been rolling out a redesigned agent builder in waves, and your account got the new look (I tested on the older layout). It's the same builder underneath, and everything in the guide still applies — here's the map:
 
-<div class="body">
+1. On the "Build your own specialist agent" screen, don't type into the "Message Agent Builder" box — that's the conversational wizard, and we're pasting exact instructions instead. Click "Skip" in the top right.
 
-<p>Hi Dr. Bagavathy,</p>
+2. That lands you on the "New Agent" editor. The big "Instructions" box is where you paste everything from agent_instructions_v1.txt (everything below the "paste everything below" line).
 
-<p>Three updates for you, including the answer to your licensing question — it's the answer we were hoping for.</p>
+3. Leave "Skills" empty, leave "Knowledge" empty, and if you see "Work content" toggles (Cloud files, Outlook, etc.), switch those off — those are the knowledge sources from the guide under a new name, and keeping them off is what keeps the agent simple and usable by your APDs without premium licenses.
 
-<p><b>1. Your APDs do not need premium licenses to use your agent.</b> We ran the test we promised: a member of our
-team <i>without</i> a premium Copilot license opened an agent shared with him by a premium-license user, uploaded a
-transcript, and generated both summary documents with no issues. So the plan works exactly as you envisioned — you
-build and own the agent, share it with your four APDs, and they use it from their own accounts. The one thing to know
-is that non-premium users access it through the <b>Microsoft 365 Copilot app</b> (or m365.cloud.microsoft in a
-browser) rather than inside Word; that note is included in the instructions for your coaches.</p>
+4. Name it "Session 1 Summarizer v1", add the two conversation starters if you see a spot for them, and create.
 
-<p><b>2. You can have a working Session 1 agent in about 15 minutes.</b> I've attached everything you need:</p>
-<ol>
-  <li><b>Agent Build Guide</b> (PDF) — step-by-step: build it, test it, share it with your APDs, and how we'll refine
-      it over versions. Written so you can do the whole thing yourself, which I know is how you like to work.</li>
-  <li><b>agent_instructions_v1.txt</b> — the agent's instructions. The guide shows you exactly where to paste this.</li>
-  <li><b>synthetic_session1_sample.txt</b> — a completely fictional practice transcript, safe to experiment with. The
-      guide includes four specific things to check in its output (we built little traps into the test file — for
-      example, the fictional coach never schedules Session 2, so an honest agent must flag that as "Not covered"
-      rather than assume it happened).</li>
-</ol>
-<p>Once it passes those checks, try it on one of your real session transcripts and judge the output for yourself.</p>
+Then test exactly as in the guide with the practice transcript — the four checks are unchanged. I've attached an updated version of the guide with a mapping table for the new layout, so your APDs who get the new screen won't be confused either.
 
-<p><b>3. The Facilitator mystery from our last call is explained.</b> The attached troubleshooting guide covers why
-Facilitator was locked in your channel-based recurring meeting but worked in your other meetings: meetings scheduled
-<i>inside a Teams channel</i> inherit different admin policies than private calendar meetings. The practical rule for
-coaching sessions is simply to schedule them as private calendar meetings — never in a channel — with Facilitator
-turned on at creation. The guide includes a copy-paste request for IT if you want the channel restriction looked at,
-plus a one-page decision tree.</p>
+One tip while you play around: if you do chat with the "Message Agent Builder" wizard, it will write its own instructions into the agent — which would quietly replace our rules. If a test output ever looks off (single document, missing checklist, invented content), just select everything in the Instructions box and re-paste our block from the file. Let me know how the test run goes!</div>
 
-<p>I've also attached the two summary templates for your review — the coach version you saw in our demo, and a first
-draft of the <b>learner-facing version</b> built from your feedback: concise, organic tone, no visible checklist, and
-the goal wording copied verbatim from the coach version so both documents always say exactly the same thing. Whenever
-you have a chance to mark up the coach summary with your "visible to learner / not visible to learner" notes, we'll
-fold that and any other feedback into version 2 of the agent — that's the one piece we're waiting on to refine it
-further, but you don't need to wait for that to build and start testing v1 now.</p>
+<p class="note">Tip: the button copies the plain-text message, ready to paste into Teams. If the button fails in your
+browser, select the box above and copy manually.</p>
 
-<p>Happy to jump on a quick call if anything in the build guide doesn't match what you see on screen — and once
-Session 1 is humming, cloning it for Sessions 2–4 is quick.</p>
-
-<p>Best,<br>
-Alex<br>
-Alexander Marunycz<br>
-Data Science &amp; AI Team</p>
-
-</div>
-
-<p class="note">Draft prepared Oct 6, 2026 — review before sending. Remember to attach the six files listed at the
-top (all in kavitha_coaching/; synthetic_session1_sample.txt is in kavitha_coaching/testdata/). Do not attach
-copilot_agent_plan.md (internal).</p>
+<script>
+function copyMsg() {
+  const text = document.getElementById('message').innerText;
+  const btn = document.getElementById('copyBtn');
+  function ok() { btn.textContent = '✅ Copied!'; btn.classList.add('done');
+                  setTimeout(() => { btn.textContent = '📋 Copy message to clipboard'; btn.classList.remove('done'); }, 2500); }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(ok).catch(() => fallback());
+  } else { fallback(); }
+  function fallback() {
+    const r = document.createRange();
+    r.selectNodeContents(document.getElementById('message'));
+    const sel = window.getSelection();
+    sel.removeAllRanges(); sel.addRange(r);
+    try { document.execCommand('copy'); ok(); } catch(e) { alert('Copy failed — please select and copy manually.'); }
+    sel.removeAllRanges();
+  }
+}
+</script>
 
 </body>
 </html>
