@@ -47,6 +47,20 @@ The agent does **not** learn from corrections made mid-conversation — those va
 2. Send that to us. We fold it into an updated instructions file (`v2`), you paste it over the old instructions (edit agent → Configure → Instructions) and rename the agent `…v2`.
 3. Repeat until the output is steady-state. Then we clone the pattern for Sessions 2–4 — same build steps, different template — for four agents total.
 
+## If your builder looks different (new Microsoft layout)
+
+Microsoft is rolling out a refreshed agent builder in waves, so your screen may not show the "Describe / Configure" tabs — you might instead see **"Build your own specialist agent"** with a chat box that says *"Message Agent Builder,"* Templates and My agents tabs, and (after skipping) a **"New Agent"** editor. It's the same builder with a new layout, and the steps map one-to-one:
+
+| In this guide | In the new layout |
+|---|---|
+| Skip the "Describe" tab | Click **Skip** (top right) past the "Message Agent Builder" chat — don't describe, we paste |
+| Configure tab → Instructions box | The big **Instructions** box on the New Agent screen — paste `agent_instructions_v1.txt` there |
+| Knowledge sources: leave empty | **Knowledge: leave empty**, and turn **OFF** any "Work content" toggles (Cloud files, Outlook, etc.) — those are knowledge sources by another name |
+| Capabilities: leave off | **Skills: leave empty** |
+| Name / description / starters | Same fields, same screen (starters may sit lower on the page) |
+
+Everything else — the test with the practice transcript, sharing, the version loop — is unchanged.
+
 ## If something doesn't work
 
 - **Can't find "Create agent":** tell us — a tenant setting may hide the builder; we'll chase it with IT.
