@@ -23,7 +23,7 @@ Usage by unlicensed users is covered by the organization's Copilot billing arran
 
 ### What are "knowledge sources," and should I add them?
 
-Knowledge sources attach SharePoint sites or files to your agent as reference material. **Default to not using them.** Agents grounded in premium knowledge sources have extra licensing requirements for unlicensed users, and most agents don't need them: if your agent works from a template or a set of rules, paste those directly into the agent's *instructions*; if it works on a per-task document (a transcript, a report), have the user *upload it* in the conversation. Both approaches avoid the knowledge-source licensing question entirely.
+Knowledge sources attach SharePoint sites or files to your agent as reference material. **Default to not using them.** Separately, be aware that in the current builder an agent retains Copilot's baseline access to your work data (your files, mail, and meetings) even with no knowledge sources added; if your agent should never consult work data, say so explicitly in its instructions. Agents grounded in premium knowledge sources have extra licensing requirements for unlicensed users, and most agents don't need them: if your agent works from a template or a set of rules, paste those directly into the agent's *instructions*; if it works on a per-task document (a transcript, a report), have the user *upload it* in the conversation. Both approaches avoid the knowledge-source licensing question entirely.
 
 ### Does my agent learn from feedback over time?
 
