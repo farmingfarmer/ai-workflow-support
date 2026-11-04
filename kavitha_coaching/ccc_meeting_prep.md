@@ -1,52 +1,57 @@
-# Meeting Prep: Kavitha's Two-Project Vision (Coaching + CCC)
+# Meeting Brief: "AI agents and dashboard for KSOM IM" (3 PM, Nov 4, 2026)
 
-**For:** Alexander, ahead of the Wednesday (Nov 4, 2026) meeting with Dr. Bagavathy
-**Basis:** her Nov 2 emails, the project history, and partial reads of the open CCC deck. Full attachment review was interrupted; claims below are marked confirmed vs. inferred.
+**For:** Alexander. All three attachments have now been reviewed in full (handbook docx, CCC contents docx, 20-slide deck). Everything below is confirmed from her documents unless marked otherwise.
 
-## What she sent (Nov 2)
+## Her vision in one paragraph
 
-1. **KSOM Internal Medicine Residency Coaching Program.docx** (not yet reviewed)
-2. **"Dashboard contents for CCC"** (a link in the email body, likely SharePoint; not yet reviewed)
-3. **CCC dashboard development.pptx** (20 slides, marked "Draft for discussion") on the follow-up email that says "Sorry meant to attach this sample from Penn medicine as well (for CCC)" — so this deck either IS the Penn Medicine sample or is her draft modeled on it. **Confirm in the meeting which it is**, and if the Penn sample is still missing, ask her to resend.
+Two linked projects. **Project A (CCC dashboard):** drop raw evaluation data in, get a per-resident and cohort dashboard for Clinical Competency Committee review, record committee decisions, and generate an individualized learning plan summary per resident, with data entered once and flowing through every step. **Project B (coaching program):** the four-session coaching arc, where Session 1 is done ("Thank you for the agent," in her own slide), Session 2 is running now, and Sessions 3 and 4 explicitly consume CCC output. The two merge in a single year-long "Learning plan and coaching document" per resident.
 
-Her framing: these documents share her vision for the two projects, **Coaching meetings and CCC (Clinical Competency Committee)**, "and how they align."
+## Her stated goal for TODAY'S meeting (slide 13)
 
-## What the deck fragments reveal (partial, from on-screen reads)
+"Agree on the scope and the first questions for the IT team." Her proposed sequence: **Refine** (views with the CCC) → **Assess** (IT reviews data sources, access, platform options) → **Prototype** (sample, de-identified data) → **Pilot** (run in a live CCC meeting). Hard date: **CCC meetings mid-December.**
 
-- Title concept: **"From raw data to a CCC dashboard."**
-- A slide titled **"Data we would like the dashboard to consolidate."**
-- An **"Illustrative Resident snapshot"** organized by the **six ACGME core competencies** (Patient Care, Medical Knowledge, Professionalism, Interpersonal & Communication Skills, Systems-Based Practice visible; Practice-Based Learning presumably the sixth).
-- A workflow phrase: **"committee review and generating individualized learning plan summaries"** and **"Discuss, decide, generate learning plan."**
+## The data sources (from "Dashboard contents for CCC")
 
-Inference (consistent with everything since May): the CCC project is the **biannual summative evaluation track finally activating**. Pipeline shape: multi-source raw data (faculty/nurse/peer/patient evaluations, scores, possibly coaching outputs) → consolidated per-resident snapshot across the six competencies → CCC meets, discusses, decides → individualized learning plan summary generated per resident → reported to ACGME. First real cycle: **December 2026**, so this is time-sensitive.
+| Source | Lives in | Dashboard output |
+|---|---|---|
+| 360 evaluations | Excel from MS Forms | Narrative comments by competency; flag below-standard (vs. Milestones guidebook) |
+| Didactics attendance | New Innovations | % attendance, 75% expected |
+| Faculty evaluations | New Innovations summary report | Narratives + milestone ratings by rotation (vs. KSOM IM master workbook) |
+| In-training exam | Individual ITE reports | Percentile by PGY year |
+| MKSAP completion | Completion reports | % by assignment |
+| Procedure logs | New Innovations | Counts per procedure |
+| Scholarship logs | New Innovations | Category A/B progress vs. graduation requirement (1A+1B or 2A) |
+| Goals and career interests | **Coach meeting documents** + fellowship planning Excel | Goals, interests, mentorship |
+| Praise or Concern | Cards, PDF | Narratives, highlighted |
+| Prior CCC data | (future iterations) | Decision history |
 
-## How the two projects align (her stated question)
+Two reference "knowledge sources" for mapping narratives to levels: the **Milestones guidebook** and the **KSOM IM master workbook**. Her slide notes: committee confirms which sources; **IT confirms format and owner of each**.
 
-The alignment is already in her own prior words: **Session 3 of coaching (Jan–Feb) includes "discussion of learner evaluations and decisions from the competency committee."** So:
+Dashboard views seen in the deck: an illustrative **resident snapshot** across the six ACGME competencies with change-since-last-period deltas; a **resident roster** view (Milestones / ITE / Evaluations / Flags → On track / Watch / Discuss, with CCC priority) to triage who needs discussion time.
 
-- The coaching track **produces** structured, learner-confirmed goals each session.
-- The CCC track **consumes** multi-source evaluations and produces decisions and learning plans.
-- CCC outputs become **inputs to coaching Session 3**, where the coach walks the learner through the committee's findings; and coaching goals plausibly feed the CCC's picture of each resident.
-- Both tracks share the same architecture we've already proven: multi-source data → structured per-resident document → human committee/coach review → learner-facing version. The coaching agents are the small-scale rehearsal of the CCC machine.
+## Session 3 redesign (slide 17) — the alignment made concrete
 
-This is the story to tell in the meeting: one pipeline, two products, and the work done since September de-risks the bigger one.
+After each CCC (mid-Dec and mid-June): CCC input goes to the learner → **learner reads it and records their own feedback before the coaching meeting** (what resonates, what surprises, what they'd add) → coach and learner discuss it (one goal of the meeting, alongside goals/strengths) → **minutes + CCC input + learner feedback combine into one document.** "The learner sees what the CCC saw, has a voice in it, and leaves with one written record." Note how precisely this mirrors the Session 1 summary pattern we built: evidence in, learner voice, one confirmed record.
 
-## Strategic tensions to navigate carefully
+## Our positions to bring (aligned with Yesha's constraints)
 
-1. **"Dashboard" vs. the no-maintenance rule.** Yesha's standing constraint: no UI the AI team must own long-term. A true dashboard implies one. Steer toward: (a) the **per-resident snapshot document** as the core deliverable (an agent can draft it; the CCC reviews it; this is 80% of the value), and (b) if visual dashboards are genuinely needed, M365-native surfaces owned by the program (SharePoint lists, Excel, or Power BI if Keck provisions it) rather than anything custom-built. Frame it as "snapshot first, dashboard later if the snapshot isn't enough."
-2. **Compliance and legal are actively in play.** Yesha is this week fielding Compliance/Legal concerns about sharing proprietary Keck knowledge with vendors. Resident evaluation data is far more sensitive than coaching transcripts: it is quasi-personnel data feeding accreditation decisions. Whatever is proposed must stay inside the tenant, follow the baseline-access discovery (agents can see the owner's work data by default), and probably deserves an explicit check with whoever owns education-data governance **before** a pilot. Do not promise tooling before that clears.
-3. **Data intake is the hard part, again.** Same as the coaching transcripts: where do the evaluations live, in what format, and who routes them? Her September plan was that source data accrues weekly with a November check on completion. Ask for the current state and an export sample (synthetic or redacted first, per our standard practice).
+1. **Say yes to the shape, place the pieces carefully.** Three components hide inside "dashboard": (a) **data consolidation** per resident, (b) **visual dashboard views**, (c) **learning plan generation**. Component (c) is squarely our proven agent pattern (CCC decisions + consolidated data → drafted plan → committee review → learner-facing version); component (a) is structured extraction we also know how to do; component (b) is where the no-maintained-UI rule bites — steer to Excel or Power BI owned by the program, fed by the consolidated data, not a custom app. Script: "snapshot document first, visual layer on top of it, owned where your data already lives."
+2. **De-identified prototype is already her plan** (slide 13) — endorse loudly; it matches our synthetic-data standard and the compliance climate. Related: Yesha is fielding Compliance/Legal questions this week about Keck data and vendors; before evaluation data touches any tool, confirm the approved path. Evaluation data is quasi-personnel data; say the governance check protects her.
+3. **December scope proposal:** for the mid-December CCC, a realistic target is the **per-resident snapshot document** drafted by agent from whatever exports she can produce this month, reviewed by the committee, plus a **learning-plan summary agent** fed by the committee's recorded decisions. Interactive dashboards and automated New Innovations feeds are the spring iteration. This gives her December value without promising integration work nobody has scoped.
+4. **First questions for the IT team** (her ask; we can hand her the list):
+   - Per source: who owns the export, what format, how often refreshed, can a de-identified sample be produced this month?
+   - New Innovations: are scheduled report exports available, or manual download only?
+   - Where will the consolidated per-resident files live (the KSOM SharePoint, like the coaching folders)?
+   - Who may see what: committee vs. coaches vs. learners vs. program staff (access model matters more here than anywhere so far).
+   - Does Keck provision Power BI, and who would own a workspace if so?
 
-## Suggested meeting agenda / questions
+## Coaching-track items for the same meeting
 
-1. Let her walk the deck (it is her vision; she enjoys presenting it).
-2. Confirm: is the pptx the Penn Medicine sample or her draft? Get the missing sample resent if real.
-3. The alignment story above: validate that CCC outputs feed Session 3.
-4. Scope the snapshot: which data sources, which competencies map to which sources, what does one resident's page look like (she has a "mental map" from her LA General fellowship; get it on paper, per playbook step 2: design the output before anything else).
-5. December reality check: what must exist for the December CCC cycle vs. what is the nice-to-have dashboard later? Propose: December = manually assisted pilot with agent-drafted snapshots for a few residents; spring = scaled version.
-6. Raise data governance gently: "before we feed evaluation data to any tool, we will confirm the approved path with compliance; this protects you." (Aligns with Yesha, protects everyone.)
-7. Status items on the coaching track: how is the Session 1 agent performing with APDs; does she have the Session 2 template + motivation pyramid docs ready for us (still outstanding).
+- **Session 2 agent: we come bearing a draft.** The handbook contains the full Session 2 framework (check-in + SMART progress review, Motivation Pyramid exercise with the coach-first/advise-if-stuck guidance, career exploration, themes: Assets, Joy, Pride, Purpose, Career Alignment, Intrinsic Motivation, and the six-item checklist). v1 instructions and a synthetic trap transcript are drafted (see repo). Her pilot plan stands: one APD already runs Session 2 meetings; run a real transcript, she reviews, then release.
+- **Session 3 agent** becomes a bigger, well-defined build thanks to slide 17: it merges three inputs (CCC input, learner pre-feedback, meeting transcript) into the combined record. Needs the CCC input format first, which depends on Project A. Sequence honestly: Session 2 now, Session 3 after the December CCC format exists.
+- The **combined year-end document** (slide 18: one learning plan and coaching document for the year, sessions 1 through 4 stacked with CCC inputs) is the eventual deliverable both projects feed. Worth naming in the meeting as the north star, and it is precisely the "running coaching journey" she described in September.
 
-## Status honesty for the meeting
+## Honesty notes
 
-Full review of the three attachments was not completed before this brief was written (ThinkPad session paused). If the meeting happens before a full read, say so plainly: "we've been through your emails and the deck's direction, and we'll do a line-by-line pass on the documents right after this conversation." Do not claim detailed knowledge of the docx or the dashboard-contents link.
+- Slides 19 to 20 (closing/asks) were not fully read; let her present them.
+- The "Penn Medicine sample for CCC" referenced in her follow-up email: the pptx arrived attached to that email, but it reads as her own draft ("Data we would like..."). Ask whether a separate Penn sample exists and should be resent.

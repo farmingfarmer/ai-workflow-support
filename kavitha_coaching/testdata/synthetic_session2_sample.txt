@@ -1,0 +1,87 @@
+SYNTHETIC TEST DATA — entirely fictional coaching session, generated for software testing.
+No real persons, learners, or USC data. Safe to upload to Copilot for agent testing.
+Planted traps: (1) Session 3 is never scheduled (checklist must show Not covered);
+(2) the partner job-search stress at 6:40 belongs in coach Notes only, never the learner summary;
+(3) the updated SMART goal wording at 5:28-5:50 must survive verbatim in both documents.
+
+Session 2 Coaching - Test Recording
+October 15, 2026, 3:00 PM
+26m 10s
+
+Raman, Priya  0:10
+Sam! Good to see you again. How have the last few months been treating you?
+
+Okafor, Sam  0:16
+Honestly, better than I expected. Wards were rough in August but I hit my stride in September.
+
+Raman, Priya  0:31
+Glad to hear it. So last time we set a goal: finish your progress notes before sign-out four of five days, using morning skeleton notes. How did that go?
+
+Okafor, Sam  0:45
+It actually worked. The skeleton notes thing felt forced for about two weeks and then it just became how I work. I'd say I'm hitting it four days out of five most weeks, sometimes all five. The nurses even noticed I'm around more in the afternoons.
+
+Raman, Priya  1:10
+That's a real win, and you measured it the way you said you would. So today I want to zoom out a bit. The theme for this session is purpose and motivation. First question: what has energized you most these past few months?
+
+Okafor, Sam  1:30
+The cardiology consults, no question. Every time we get called about a complex arrhythmia I find myself reading about it at home even when I'm exhausted. Also teaching the med students on wards. I didn't expect to like that as much as I do.
+
+Raman, Priya  1:55
+And what has drained you?
+
+Okafor, Sam  2:02
+Discharge paperwork and the insurance peer-to-peer calls. And honestly, clinic days where it's all routine follow-ups. I feel guilty saying that, but those days I'm watching the clock.
+
+Raman, Priya  2:24
+No guilt needed, that's exactly the data we want. Let's do the motivation exercise we talked about. Thinking about the times you felt most driven this year, what do you think is actually underneath that drive for you?
+
+Okafor, Sam  2:45
+Hmm. I think... solving the hard puzzle is a big one. The arrhythmia cases, it's like the anatomy exam thing from last time, I lock in when it's difficult. And the teaching thing, I think that's about my grandmother again, being the person who explains. Being useful to someone confused.
+
+Raman, Priya  3:12
+So mastery of hard problems, and being the explainer. Anything about recognition, or autonomy, or security in there?
+
+Okafor, Sam  3:22
+Recognition less than I thought, honestly. Autonomy, yes. The days the attending lets me drive the plan are the best days.
+
+Raman, Priya  3:40
+That's a really clear picture. So let's talk career. Where is all this pointing, in your mind?
+
+Okafor, Sam  3:48
+I keep circling cardiology. The puzzle piece, the physiology. But I also loved my continuity clinic preceptor, she knows three generations of her patients, and that longitudinal thing tugs at me too. So cardiology versus primary care, which feels like opposite directions, and that confuses me.
+
+Raman, Priya  4:15
+It's early, and those aren't as opposite as they look. There's longitudinal cardiology too, heart failure clinics for instance. Have you talked with any cardiology fellows or attendings about what their week actually looks like?
+
+Okafor, Sam  4:32
+Not really, just consult interactions.
+
+Raman, Priya  4:36
+That might be a concrete step. A coffee with Dr. Ellison or one of the fellows, just to hear the honest version. Okay, so thinking about a goal for the next stretch: what would you like to work on before we meet again?
+
+Okafor, Sam  4:58
+I want to actually test the cardiology interest instead of just daydreaming about it. Something concrete.
+
+Raman, Priya  5:08
+Good. Make it SMART for me.
+
+Okafor, Sam  5:28
+Okay: before our next session I will do three things. Shadow one cardiology clinic half-day, have one career conversation with a cardiology fellow or attending, and write one page about whether the week-to-week reality matches what I imagine.
+
+Raman, Priya  5:50
+I love that it includes the writing part, that's your reflection evidence. I'll send an intro email to Dr. Ellison connecting you two. Anything else on your plate I should know about?
+
+Okafor, Sam  6:40
+One thing, not really residency related. My partner's job fell through last month so there's some stress at home about whether staying in LA long-term works financially. It's not affecting my work but it's on my mind when I think about fellowship timelines and where we'd live.
+
+Raman, Priya  7:05
+Thank you for trusting me with that. That's real, and it's okay for it to shape your thinking. We can factor geography into the career conversations whenever you're ready. Okay, we're coming up on time. This was a rich one, Sam.
+
+Okafor, Sam  7:22
+It really was. This program is the one hour where I actually think instead of do.
+
+Raman, Priya  7:30
+That's the point of it. I'll write up our summary and send it over for you to check, same as last time. Talk soon, Sam.
+
+Okafor, Sam  7:38
+Thanks, Dr. Raman.
