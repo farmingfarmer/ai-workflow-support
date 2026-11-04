@@ -133,6 +133,12 @@ with a new layout, and the steps map one-to-one:</p>
 <h2>If something doesn't work</h2>
 <div class="callout">
   <ul style="margin:.3rem 0;">
+    <li><b>A colleague opens the agent and sees "To use this app, you'll need a Microsoft 365 Copilot license"
+        (License: Required):</b> the agent has premium skills attached. The new builder turns on <b>Web search,
+        OneDrive and SharePoint, and Code interpreter by default</b>, and any of these flips the agent to
+        license-required for users. Fix: edit the agent, remove all three skills (and any Work content toggles),
+        save, and have them retry. Trade-off: without Code interpreter the agent can't create Word files directly;
+        users click <b>Export to Word</b> on the response instead, which works on every license.</li>
     <li><b>Can't find "Create agent":</b> tell us — a tenant setting may hide the builder; we'll chase it with IT.</li>
     <li><b>An APD can't see or use the shared agent:</b> confirm they're in the M365 Copilot app or
         m365.cloud.microsoft (not Word), then tell us the exact error text — we've mapped what each message means.</li>
