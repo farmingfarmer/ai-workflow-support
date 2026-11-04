@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KSOM IM Residency: AI Workflow Roadmap</title>
+<style>
+  :root { --ink:#1a2332; --muted:#5a6675; --accent:#7a1e1e; --rule:#d8dce2; --panel:#f5f6f8; }
+  * { box-sizing:border-box; }
+  body { font-family:Georgia,'Times New Roman',serif; color:var(--ink); line-height:1.5;
+         max-width:54rem; margin:0 auto; padding:2.3rem 2rem; background:#fff; font-size:.95rem; }
+  h1 { font-size:1.55rem; line-height:1.25; margin:0 0 .2rem; }
+  h2 { font-size:1.12rem; margin:1.8rem 0 .5rem; border-bottom:2px solid var(--accent); padding-bottom:.25rem; }
+  .meta { color:var(--muted); font-size:.92rem; margin-bottom:1.2rem; }
+  table { border-collapse:collapse; width:100%; margin:.5rem 0 1rem; font-size:.9rem; }
+  th,td { border:1px solid var(--rule); padding:.45rem .6rem; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font-family:Helvetica,Arial,sans-serif; font-size:.78rem; }
+  ol,ul { padding-left:1.4rem; } li { margin:.35rem 0; }
+  .timeline { font-family:Menlo,Consolas,monospace; font-size:.8rem; line-height:1.6; background:var(--panel);
+              border:1px solid var(--rule); padding:.9rem 1.1rem; overflow-x:auto; white-space:pre; }
+  .when { white-space:nowrap; font-family:Helvetica,Arial,sans-serif; font-size:.82rem; }
+  b.hot { color:var(--accent); }
+  footer { margin-top:2.2rem; padding-top:.7rem; border-top:1px solid var(--rule);
+           color:var(--muted); font-size:.85rem; }
+  @media print { body{padding:0;max-width:none;} table,.timeline{break-inside:avoid;} h2{break-after:avoid;}
+    th{ -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+</style>
+</head>
+<body>
+
+<h1>KSOM IM Residency: AI Workflow Roadmap</h1>
+<div class="meta"><b>Coaching Program + Clinical Competency Committee (CCC) · November 2026 through June 2027</b><br>
+Prepared by the Data Science &amp; AI team · Companion to the Nov 4 scoping discussion</div>
+
+<h2>Where things stand</h2>
+<table>
+  <tr><th>Done</th><th>In flight</th><th>Not started</th></tr>
+  <tr>
+    <td>Session 1 Summarizer agent live; in use by the program<br><br>Facilitator meeting workflow + troubleshooting guidance<br><br>Licensing validated (coaches need no premium license for agents)</td>
+    <td>Session 2 agent (instructions and test data drafted)<br><br>CCC data-source scoping (roadmap received)<br><br>Compliance review of data handling</td>
+    <td>Session 3 and 4 agents<br><br>Snapshot generator, learning plan agent<br><br>Dashboard visual layer, year-end combined document</td>
+  </tr>
+</table>
+
+<h2>Guiding principles</h2>
+<ol>
+  <li><b>Design the output first.</b> Every build starts from an approved blank template.</li>
+  <li><b>Synthetic data before real data.</b> Every agent passes planted-trap tests before touching program data;
+      CCC prototyping uses de-identified samples, matching Dr.&nbsp;Bagavathy's own proposal.</li>
+  <li><b>Humans decide.</b> Agents draft; coaches, the committee, and learners review and confirm. Nothing is auto-filed.</li>
+  <li><b>Program-owned tooling.</b> Deliverables are templates, agents, and M365-native surfaces (SharePoint, Excel,
+      Power BI) that the residency program owns and operates after handoff. No custom-built interfaces requiring
+      long-term maintenance by the AI team.</li>
+  <li><b>Governance before real data.</b> No resident evaluation data enters any AI tool until the approved data path
+      is confirmed.</li>
+</ol>
+
+<h2>Workstream 1: Coaching agents (Sessions 2 to 4 and the year-end document)</h2>
+<table>
+  <tr><th>Item</th><th>Detail</th><th class="when">When</th></tr>
+  <tr><td><b>1.1</b> Session 2 Summarizer v1</td><td>Built from the handbook framework (check-in and goal progress, Motivation Pyramid, career exploration, six-theme table, checklist). Validate on the synthetic trap transcript, pilot on one APD's real transcript, Dr.&nbsp;Bagavathy reviews, release to all APDs.</td><td class="when"><b class="hot">November</b> (Session 2 meetings running now)</td></tr>
+  <tr><td><b>1.2</b> Learner pre-feedback mechanism</td><td>Decide how learners record reactions to their CCC input before Session 3 (short template or MS Form). Small decision, needed before 1.3.</td><td class="when">Early December</td></tr>
+  <tr><td><b>1.3</b> Session 3 Summarizer</td><td>Merges three inputs into one record: CCC input, learner pre-feedback, meeting transcript. Blocked until the CCC input format exists (Workstream 2).</td><td class="when">Late December, live for Dec-Jan sessions</td></tr>
+  <tr><td><b>1.4</b> Session 4 Summarizer</td><td>PERMA reflection, year-in-review, themes, next-year goals; also reviews June CCC input.</td><td class="when">April, live for May-June</td></tr>
+  <tr><td><b>1.5</b> Year-end combined document</td><td>Assembly agent: four confirmed session summaries + CCC records per learner, producing the single "Learning plan and coaching document" for the year.</td><td class="when">May-June</td></tr>
+  <tr><td><b>1.6</b> Coach instruction sheets</td><td>Session 2-4 one-pagers mirroring the Session 1 sheet; versioning loop per agent (feedback thread, revised instructions, vN+1, rerun trap test).</td><td class="when">Rolling</td></tr>
+</table>
+
+<h2>Workstream 2: CCC data consolidation</h2>
+<table>
+  <tr><th>Item</th><th>Detail</th><th class="when">When</th></tr>
+  <tr><td><b>2.1</b> Data access groundwork</td><td>Per source (360 evals, New Innovations faculty evals / attendance / procedures / scholarship, ITE, MKSAP, Praise/Concern cards, coaching documents): confirm owner, export format, refresh cadence; obtain a de-identified sample. <b class="hot">New Innovations export capability is the schedule's long pole; chase first.</b></td><td class="when"><b class="hot">Immediately</b></td></tr>
+  <tr><td><b>2.2</b> Resident snapshot template</td><td>One page per resident: six ACGME competencies with narrative rollups and milestone comparisons, numeric panels (ITE percentile, attendance %, MKSAP %, procedure counts, scholarship A/B progress), flags, goals and career interests from coaching. Committee approves the blank template before any build.</td><td class="when">November</td></tr>
+  <tr><td><b>2.3</b> Snapshot generator</td><td>Per-source extraction (narratives matched to competencies against the Milestones guidebook; below-standard flagging; milestone comparison via the KSOM master workbook) feeding template fill. Tested on a synthetic cohort with planted traps. Agent-assisted for the first cycle, not fully automated.</td><td class="when">Prototype by early December</td></tr>
+  <tr><td><b>2.4</b> Roster triage table</td><td>On track / Watch / Discuss per resident with CCC priority, derived from the snapshots. A generated summary table for December; a visual view later.</td><td class="when">Mid-December</td></tr>
+</table>
+
+<h2>Workstream 3: CCC meeting workflow and learning plans</h2>
+<table>
+  <tr><th>Item</th><th>Detail</th><th class="when">When</th></tr>
+  <tr><td><b>3.1</b> Decision capture format</td><td>Structured per-resident record of committee decisions, concerns, and recommended actions (template, or Facilitator-supported meeting plus structured recap). Agreed before the December meetings; without it, nothing downstream works. Keep it minimal.</td><td class="when">Early December</td></tr>
+  <tr><td><b>3.2</b> Learning plan summary agent</td><td>Inputs: snapshot + recorded decisions. Output: individualized plan, committee-reviewed, with a learner-facing version aligned to the Session 3 conversation. Reuses the proven two-document pattern.</td><td class="when">Late December / January</td></tr>
+  <tr><td><b>3.3</b> CCC input package for learners</td><td>The subset of committee output shared with each learner ahead of Session 3, per the program's Session 3 design. Format decided with 3.1.</td><td class="when">December</td></tr>
+</table>
+
+<h2>Workstream 4: Dashboard visual layer</h2>
+<table>
+  <tr><th>Item</th><th>Detail</th><th class="when">When</th></tr>
+  <tr><td><b>4.1</b> Consolidated data table</td><td>The pipeline's structured per-resident data, maintained in the program's SharePoint/Excel.</td><td class="when">January</td></tr>
+  <tr><td><b>4.2</b> Cohort and individual views</td><td>Excel or Power BI (if provisioned) report owned by the program: competency snapshot with change-since-last-period, roster triage, trend views. One-time build, program-operated. Built after the December cycle proves the snapshot documents.</td><td class="when">February-April</td></tr>
+</table>
+
+<h2>Workstream 5: Governance and access</h2>
+<table>
+  <tr><th>Item</th><th>Detail</th><th class="when">When</th></tr>
+  <tr><td><b>5.1</b> Data-handling sign-off</td><td>One-page note (what data, which tools, where it lives, who sees it) confirmed with education-data governance / compliance. Already in motion.</td><td class="when"><b class="hot">November, before real evaluation data is processed</b></td></tr>
+  <tr><td><b>5.2</b> Access model</td><td>Committee vs. coaches vs. learners vs. staff see different slices; implemented as SharePoint structure, sharing rules, and explicit filing instructions in every agent.</td><td class="when">November-December</td></tr>
+  <tr><td><b>5.3</b> Agent data-scope statements</td><td>Every agent's instructions state what work data it may not consult (agents retain baseline access to the owner's work data by default).</td><td class="when">Rolling</td></tr>
+</table>
+
+<h2>Timeline at a glance</h2>
+<div class="timeline">NOV        Session 2 agent live · data samples + governance answer · snapshot template approved
+EARLY DEC  Snapshot generator prototyped (de-identified) · decision-capture format agreed
+MID-DEC    CCC meetings run with agent-drafted snapshots · decisions recorded
+DEC-JAN    Learning plan agent + Session 3 agent live for Session 3 meetings
+FEB-APR    Visual dashboard layer · intake automation · v2 iterations
+APR-MAY    Session 4 agent · year-end combined document
+JUNE       Second CCC cycle runs the full loop end to end  →  all goals demonstrated</div>
+
+<h2>Top risks</h2>
+<ol>
+  <li><b>New Innovations export access</b> decides whether consolidation is smooth or manual. Identify the report owner this week.</li>
+  <li><b>Compliance sign-off timing:</b> if it slips past November, the December cycle falls back to de-identified or manually handled data.</li>
+  <li><b>December compression:</b> template approval, samples, and prototype all land in a five-week window; mitigated by the agent-assisted (not fully automated) first cycle.</li>
+  <li><b>Decision capture adoption:</b> if the committee does not record decisions in the agreed structure during December, learning plan generation has no input.</li>
+</ol>
+
+<footer>Data Science &amp; AI Team · KSOM IM Residency AI Workflow Roadmap · November 2026</footer>
+
+</body>
+</html>
