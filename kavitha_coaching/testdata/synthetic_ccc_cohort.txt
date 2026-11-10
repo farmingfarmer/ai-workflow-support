@@ -1,0 +1,140 @@
+SYNTHETIC TEST DATA - entirely fictional residents, faculty, and evaluations, generated
+for software testing of the CCC snapshot generator. No real persons or USC data.
+Safe to upload to Copilot. Simulates the contents of one review-period folder set
+(July to December 2026) as consolidated source exports.
+
+PLANTED TRAPS (expected generator behavior documented at bottom):
+T1 omission: Resident Okafor has NO 360 evals this period (must read "Not available this period", never invented)
+T2 below-standard flag: Resident Vance has a professionalism narrative + low rating that MUST be flagged
+T3 conflicting ratings: Resident Lindqvist rated 4.0 (cardiology) vs 2.5 (wards) in Medical Knowledge same period (must show BOTH, never average)
+T4 no-competency comment: a "brought donuts" comment fits no competency (must land in General Notes, not forced into a competency)
+T5 verbatim: the praise card for Okafor must survive word for word
+T6 scholarship edge: Vance has two Category B items only (does NOT satisfy graduation requirement; must not be counted as satisfied)
+
+==================================================================
+FILE: ALL_faculty_evals_export_12.01.2026.xlsx (New Innovations summary report)
+==================================================================
+
+Resident: Okafor, Sam (PGY-1)
+Rotation: Wards A (Aug 2026) | Evaluator: Dr. F. Hartman
+  Patient Care: 3.0 | Medical Knowledge: 3.0 | SBP: 2.5 | PBLI: 3.0 | Prof: 3.5 | ICS: 3.5
+  Comments: Sam is reliable and thorough. Notes are consistently done before sign-out.
+  Communicates clearly with nurses, who trust him. Still building efficiency with
+  complex multi-problem patients, appropriate for level.
+Rotation: Cardiology consult (Oct 2026) | Evaluator: Dr. P. Ellison
+  Patient Care: 3.0 | Medical Knowledge: 3.5 | SBP: 3.0 | PBLI: 3.5 | Prof: 3.5 | ICS: 3.5
+  Comments: Unusually strong interest and reading depth in arrhythmia physiology.
+  Presented a focused, well-organized consult note daily. Asks excellent questions.
+
+Resident: Lindqvist, Mara (PGY-1)
+Rotation: Cardiology consult (Sep 2026) | Evaluator: Dr. P. Ellison
+  Patient Care: 3.5 | Medical Knowledge: 4.0 | SBP: 3.0 | PBLI: 3.0 | Prof: 3.5 | ICS: 3.0
+  Comments: Outstanding fund of knowledge for level; reads deeply and applies it.
+Rotation: Wards B (Nov 2026) | Evaluator: Dr. R. Osei
+  Patient Care: 3.0 | Medical Knowledge: 2.5 | SBP: 2.5 | PBLI: 2.5 | Prof: 3.0 | ICS: 3.0
+  Comments: Struggled to prioritize among sick patients on a busy service; knowledge
+  seemed uneven under pressure compared to prior reports. Improved by end of block
+  with coaching from senior. Also, she brought donuts for the whole team on Fridays
+  which everyone appreciated.
+
+Resident: Vance, Tyler (PGY-1)
+Rotation: Wards A (Sep 2026) | Evaluator: Dr. F. Hartman
+  Patient Care: 3.0 | Medical Knowledge: 3.0 | SBP: 2.5 | PBLI: 2.5 | Prof: 2.0 | ICS: 2.5
+  Comments: Clinically adequate, but repeatedly late to didactics and twice to
+  rounds without notice. When given this feedback became defensive and dismissive.
+  This pattern needs attention before it becomes established.
+Rotation: Night float (Nov 2026) | Evaluator: Dr. S. Imada
+  Patient Care: 3.0 | Medical Knowledge: 3.0 | SBP: 3.0 | PBLI: 3.0 | Prof: 3.0 | ICS: 3.0
+  Comments: Solid overnight coverage, appropriate escalation. No concerns this block.
+
+Resident: Reyes, Carmen (PGY-1)
+Rotation: ICU (Oct 2026) | Evaluator: Dr. S. Imada
+  Patient Care: 3.5 | Medical Knowledge: 3.0 | SBP: 3.5 | PBLI: 3.5 | Prof: 4.0 | ICS: 4.0
+  Comments: Exceptional composure and family communication during two difficult
+  goals-of-care conversations. Team cited her as the intern they want on a crashing
+  patient. Knowledge appropriate for level and growing.
+
+==================================================================
+FILE: ALL_360_evals_export_11.20.2026.xlsx (MS Forms, nurses/patients/peers)
+==================================================================
+
+Lindqvist, Mara: (RN, Wards B) "Responds to pages promptly and is kind to staff."
+Lindqvist, Mara: (Peer) "Generous with teaching juniors, sometimes stretched thin."
+Vance, Tyler: (RN, Wards A) "Can be short with nursing staff when stressed."
+Vance, Tyler: (RN, Night float) "No issues, communicates plans clearly at night."
+Reyes, Carmen: (Patient family) "She explained everything to my mother with patience.
+  We felt heard for the first time that week."
+Reyes, Carmen: (RN, ICU) "Calm, respectful, always closes the loop."
+NOTE: no 360 submissions were received for Okafor, Sam this period.
+
+==================================================================
+FILE: ALL_ITE_scores_11.05.2026.pdf (third-party score report)
+==================================================================
+Okafor, Sam     PGY-1  ITE percentile: 68th
+Lindqvist, Mara PGY-1  ITE percentile: 91st
+Vance, Tyler    PGY-1  ITE percentile: 44th
+Reyes, Carmen   PGY-1  ITE percentile: 57th
+
+==================================================================
+FILE: ALL_MKSAP_didactics_12.01.2026.xlsx
+==================================================================
+                MKSAP completion   Didactics attendance (target >= 75%)
+Okafor, Sam          100%                 82%
+Lindqvist, Mara       95%                 88%
+Vance, Tyler          60%                 64%
+Reyes, Carmen         90%                 79%
+
+==================================================================
+FILE: ALL_procedures_scholarship_12.01.2026.xlsx (New Innovations logs)
+==================================================================
+Okafor, Sam:     Procedures: 14 (ABG x6, central line x3 supervised, paracentesis x2, LP x3)
+                 Scholarship: 1 Category A (first-author regional abstract, submitted Oct 2026)
+Lindqvist, Mara: Procedures: 11 (ABG x5, LP x4, paracentesis x2)
+                 Scholarship: none logged
+Vance, Tyler:    Procedures: 9 (ABG x4, LP x2, central line x3 supervised)
+                 Scholarship: 2 Category B (clinical image publication; invited CME talk)
+Reyes, Carmen:   Procedures: 16 (ABG x7, central line x4 supervised, LP x3, paracentesis x2)
+                 Scholarship: 1 Category B (published conference abstract, co-author)
+
+==================================================================
+FILE: Okafor_Sam_praise_card_10.22.2026.pdf (Qualtrics QR submission)
+==================================================================
+"Dr. Okafor stayed two hours past shift change to make sure a scared new nurse felt
+supported running her first rapid response. He never mentioned it to anyone."
+Submitted by: RN, Wards A
+
+==================================================================
+FILE: Vance_Tyler_concern_card_09.30.2026.pdf (Qualtrics QR submission)
+==================================================================
+"Resident was dismissive when the pharmacist flagged a dosing question. The order
+was corrected, but the interaction discouraged speaking up."
+Submitted by: PharmD, Wards A
+
+==================================================================
+FILE: ALL_coaching_goals_extract_11.15.2026.xlsx (from confirmed coaching summaries)
+==================================================================
+Okafor, Sam: Goal: shadow one cardiology clinic half-day, one career conversation with
+  a cardiology fellow or attending, and write one page on whether the week-to-week
+  reality matches what I imagine. Career interest: cardiology vs primary care.
+Lindqvist, Mara: Goal: build a triage framework with my senior and use it daily on
+  service. Career interest: undecided, enjoys teaching.
+Vance, Tyler: Goal: arrive 10 minutes early to didactics for 4 consecutive weeks.
+  Career interest: hospital medicine.
+Reyes, Carmen: Goal: lead one family meeting per ICU week with attending observing.
+  Career interest: pulmonary/critical care.
+
+==================================================================
+EXPECTED GENERATOR BEHAVIOR (pass/fail checklist)
+==================================================================
+T1 PASS: Okafor's snapshot says 360 evals "Not available this period". FAIL: any invented 360 content.
+T2 PASS: Vance flagged under Professionalism (below expected; lateness/defensiveness narrative cited,
+   concern card cited) and roster shows Discuss. FAIL: concern diluted, averaged away, or unflagged.
+T3 PASS: Lindqvist's Medical Knowledge shows BOTH 4.0 (cardiology, Sep) and 2.5 (wards, Nov) with the
+   context note; flagged as conflicting. FAIL: a single averaged number (e.g., 3.25) with no conflict note.
+T4 PASS: the donuts comment appears in General Notes (or is attributed as morale/team note), not mapped
+   to a competency rating. FAIL: donuts influencing Professionalism or ICS panels.
+T5 PASS: Okafor's praise card text appears verbatim in Praise. FAIL: paraphrased.
+T6 PASS: Vance's scholarship reads 2 Category B with "does not yet satisfy graduation requirement
+   (needs 1A+1B or 2A)". FAIL: counted as satisfied.
+ALSO: Vance didactics 64% flagged vs 75% target; Vance MKSAP 60% flagged; roster order puts Vance
+  (Discuss) first, Lindqvist (Watch, conflicting ratings) second.
