@@ -2,21 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>OUTBOX — reply to Dr. Bagavathy (Word format, APD instructions, Session 2)</title>
+<title>OUTBOX — reply to Dr. Bagavathy (Session 2 ready, timeline, name)</title>
 <style>
   body { font-family:'Segoe UI',Calibri,Helvetica,Arial,sans-serif; color:#1a2332; line-height:1.5;
          max-width:52rem; margin:0 auto; padding:2rem; background:#fff; }
   h1 { font-size:1.3rem; margin:0 0 .3rem; }
   .meta { font-size:.9rem; color:#5a6675; margin-bottom:.6rem; }
   .attach { font-size:.9rem; border-left:4px solid #7a1e1e; background:#fbfbfc; padding:.6rem 1rem; margin:.6rem 0 1rem; }
-  .toolbar { position:sticky; top:0; background:#fff; padding:.6rem 0; border-bottom:1px solid #d8dce2;
-             margin-bottom:1rem; }
+  .toolbar { position:sticky; top:0; background:#fff; padding:.6rem 0; border-bottom:1px solid #d8dce2; margin-bottom:1rem; }
   #copyBtn { font-family:inherit; font-size:1rem; font-weight:600; color:#fff; background:#1e4e79;
              border:none; border-radius:6px; padding:.6rem 1.4rem; cursor:pointer; }
-  #copyBtn:hover { background:#163a5c; }
-  #copyBtn.done { background:#1e6b34; }
-  .msg { border:1px solid #d8dce2; background:#fbfbfc; padding:1.3rem 1.6rem; white-space:pre-wrap;
-         font-size:.97rem; }
+  #copyBtn:hover { background:#163a5c; } #copyBtn.done { background:#1e6b34; }
+  .msg { border:1px solid #d8dce2; background:#fbfbfc; padding:1.3rem 1.6rem; white-space:pre-wrap; font-size:.97rem; }
   .note { font-size:.85rem; color:#5a6675; font-style:italic; margin-top:1rem; }
 </style>
 </head>
@@ -24,51 +21,47 @@
 
 <h1>Reply to Dr. Bagavathy</h1>
 <div class="meta"><b>Subject:</b> Re: Potential AI Use Cases for Clinical and GME Workflow Support ·
-<b>To:</b> Kavitha Bagavathy · <b>Cc:</b> Yesha Patel, Devesh Bhatla · Draft prepared Oct 9, 2026</div>
-<div class="attach"><b>Attach before sending:</b> agent_instructions_v2.txt · apd_instructions.html
-(she can open it in Word to fill in the agent link placeholder; a PDF copy is in the repo if she prefers print)</div>
+<b>To:</b> Kavitha Bagavathy · <b>Cc:</b> Yesha Patel · Draft prepared Nov 10, 2026</div>
+<div class="attach"><b>Attach before sending:</b> sharepoint_intake_guide.pdf (for Nancy and Monique) ·
+resident_snapshot_template.pdf (for her and the committee to mark up)</div>
 
-<div class="toolbar">
-  <button id="copyBtn" onclick="copyMsg()">📋 Copy message to clipboard</button>
-</div>
+<div class="toolbar"><button id="copyBtn" onclick="copyMsg()">📋 Copy message to clipboard</button></div>
 
 <div class="msg" id="message">Hi Dr. Bagavathy,
 
-This is wonderful to hear, and running real transcripts through it already puts you ahead of schedule. Answers to your two questions, then next steps.
+Great meeting last week. Updates on everything we discussed, plus the timeline you asked for.
 
-1. Word format: yes. I've attached version 2 of the agent instructions (agent_instructions_v2.txt) with three changes. The output is now formatted to paste cleanly into Word, the agent will produce actual Word files where Microsoft's rollout supports it (this varies by account right now, same as the builder layout difference you spotted), and either way every response ends with a suggested filename in your naming convention (Smith_John_07.01.2026 style, built from the learner's name and the session date in the transcript). If a file doesn't generate automatically, the Export to Word button on the response always works. To update: open your agent, select everything in the Instructions box, paste the new block over it, and rename the agent to end in "v2". It takes about two minutes.
+1. The Session 2 agent is built. Session 2 Summarizer v1 is live under my account and already passed its first test on a fictional transcript: it produced both documents (the detailed coach summary and the concise learner summary) and even generated them as actual Word files saved to OneDrive, which answers your Word format wish more completely than expected. Next step is the real pilot: whenever your APD can share one Session 2 transcript, we run it, you review the output, and then we share the agent with everyone. One note: when it is shared more broadly, we may trim the Word file generation feature depending on how the licensing behaves for each user, in which case the Export to Word button remains the fallback. With the premium licenses Yesha is provisioning for all six of your team members, this should be a non issue.
 
-2. Your APD instructions: the structure is exactly right, and your confidentiality split is sound. Confirmed learner summary to the shared folder, transcript and coach notes in the coach's own OneDrive, and a direct line to you for anything that needs to reach the program but isn't in the summary. I turned your draft into a one-page instruction sheet (attached) with a few additions: where APDs without premium licenses open the agent (the Microsoft 365 Copilot app or m365.cloud.microsoft, since it won't appear in Word for them), a reminder that turning on transcription is the one required meeting step, the learner confirmation step placed before the upload step, and the filename convention matched to what the agent now prints. Drop your agent link into the [Insert link] placeholder and it's ready to send.
+2. Those licenses also unlock something you asked for: once your accounts are premium, we can attach the Milestones guidebook directly to the CCC agent as a knowledge source, exactly as you proposed, so narrative comments get mapped to competencies against the actual guidebook.
 
-On the license question, two different answers, which is why I want to be precise. For the agent itself, your APDs do not need premium licenses. We tested this with a colleague who has no premium license and it worked end to end, including the file upload. For Facilitator, you're correct: the meeting organizer needs a premium license, so an APD organizing their own coaching meetings would need one to get Facilitator's live pacing. An APD without a premium license can still do everything else; they just turn on transcription and skip Facilitator.
+3. For Nancy and Monique: attached is a one page guide for the SharePoint folders, matching what we agreed (folders by review period, subfolders by source, everything batched). The short version: two filename patterns only. Files about one learner start with Lastname_Firstname; batch reports start with ALL. If they start loading files with those names now, nothing will need to be redone later.
 
-For Session 2, happy to start now. Please send the Session 2 template and the motivation pyramid framework document the coaches use, and we'll build the instructions the same way, along with a fictional practice transcript so it can be tested safely before touching real data. Your rollout plan is exactly right: once it's built, run your APD's real transcript through it, send us your feedback, and we release it to the other APDs when you're comfortable.
+4. Also attached: a draft of the per resident snapshot, the one page document the committee would see for each learner in December. This is the single most useful thing you and the committee can mark up right now. Anything you add, remove, or reorder in this template shapes everything we build behind it.
 
-And noted on Session 3: we'll hold that build until you've adjusted the competency committee portion of the script, which fits the Jan-Feb timeline fine.
+5. Timeline to December: this week we finish the Session 2 pilot and you mark up the snapshot template. By our next sync (two weeks), we demo the snapshot generator working on fictional residents and agree on how committee decisions get recorded during the meeting. Early December, we run it on your real data as the folders fill, with a dry run the week of December 8 so the December 11 and 12 meetings have agent drafted snapshots in hand.
+
+6. And the name. My proposal: MILES, for Milestone Insights and Learner Evaluation Summaries. It is short, it is literally built on the Milestones framework, and anyone in GME will catch the pun immediately. Backup option: COMPASS (Competency Overview, Milestones Progress and Summary System), which fits the coaching journey theme. Your call!
+
+When the SharePoint folder and access are ready, send it over and we will plug in. Talk in two weeks if not sooner.
 
 Best,
 Alex</div>
 
-<p class="note">Tip: the button copies the plain-text message, ready to paste into Outlook. If the button fails,
-select the box above and copy manually.</p>
+<p class="note">Tip: the button copies the plain text message, ready to paste into Outlook. If it fails, select the box and copy manually.</p>
 
 <script>
 function copyMsg() {
   const text = document.getElementById('message').innerText;
   const btn = document.getElementById('copyBtn');
-  function ok() { btn.textContent = '✅ Copied!'; btn.classList.add('done');
-                  setTimeout(() => { btn.textContent = '📋 Copy message to clipboard'; btn.classList.remove('done'); }, 2500); }
+  function ok(){ btn.textContent='✅ Copied!'; btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='📋 Copy message to clipboard'; btn.classList.remove('done');},2500); }
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(ok).catch(() => fallback());
+    navigator.clipboard.writeText(text).then(ok).catch(()=>fallback());
   } else { fallback(); }
-  function fallback() {
-    const r = document.createRange();
-    r.selectNodeContents(document.getElementById('message'));
-    const sel = window.getSelection();
-    sel.removeAllRanges(); sel.addRange(r);
-    try { document.execCommand('copy'); ok(); } catch(e) { alert('Copy failed, please select and copy manually.'); }
-    sel.removeAllRanges();
-  }
+  function fallback(){ const r=document.createRange(); r.selectNodeContents(document.getElementById('message'));
+    const s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    try{document.execCommand('copy'); ok();}catch(e){alert('Copy failed, please copy manually.');} s.removeAllRanges(); }
 }
 </script>
 

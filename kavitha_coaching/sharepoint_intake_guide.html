@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>SharePoint Data Folders Guide</title><style>:root{--ink:#1a2332;--accent:#7a1e1e;--rule:#d8dce2;--panel:#f5f6f8}*{box-sizing:border-box}
+body{font-family:'Segoe UI',Calibri,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.5;max-width:52rem;margin:0 auto;padding:2.2rem 2rem;font-size:.95rem}
+h1{font-size:1.45rem;margin:0 0 .3rem}h2{font-size:1.1rem;color:var(--accent);margin:1.5rem 0 .5rem;border-bottom:1px solid var(--rule);padding-bottom:.25rem}
+h3{font-size:1rem;margin:1.2rem 0 .4rem}table{border-collapse:collapse;width:100%;margin:.5rem 0 1rem;font-size:.9rem}
+th,td{border:1px solid var(--rule);padding:.4rem .6rem;text-align:left;vertical-align:top}th{background:var(--panel);font-size:.8rem}
+code,pre{font-family:Menlo,Consolas,monospace;font-size:.85em;background:var(--panel)}pre{padding:.8rem 1rem;border:1px solid var(--rule);overflow-x:auto}
+ul,ol{padding-left:1.4rem}li{margin:.3rem 0}blockquote{border-left:4px solid var(--accent);background:var(--panel);margin:.6rem 0;padding:.6rem 1rem}
+@media print{body{padding:0;max-width:none}table,pre{break-inside:avoid}h2{break-after:avoid}}</style></head><body><h1>SharePoint Data Folders: Setup and File Naming Guide</h1>
+<p><b>For:</b> Nancy, Monique, and the KSOM IM residency team</p>
+<p><b>Purpose:</b> one consistent way to organize and name the files that feed the CCC dashboard, so the AI agent can reliably find every learner in every document. Five minutes to read; saves hours of rework later.</p>
+<h2>Folder structure (as agreed Nov 4)</h2>
+<p>One folder per review period, with a subfolder per data source. All learners&#x27; files go together inside each source folder; no per-learner folders.</p>
+<pre>
+KSOM CCC Data/
+  2026-12 Review (Jul-Dec 2026)/
+    01 Faculty Evals (New Innovations)/
+    02 360 Evals (MS Forms)/
+    03 ITE Score Reports/
+    04 MKSAP Completion/
+    05 Didactics Attendance/
+    06 Procedure Logs/
+    07 Scholarship Logs/
+    08 Praise or Concern Cards/
+    09 Coaching Documents/
+    10 Other/
+  2027-06 Review (Jan-Jun 2027)/
+    (same subfolders)
+</pre>
+<p>Numbered prefixes keep the folders in a predictable order. &quot;10 Other&quot; catches anything that doesn&#x27;t fit; if it fills up with one kind of thing, we&#x27;ll promote that to its own folder.</p>
+<h2>File naming: two patterns only</h2>
+<ol start="1"><li><b>A file about ONE learner</b> starts with their name:</li></ol>
+<p>   <code>Lastname_Firstname_&lt;description&gt;_&lt;MM.DD.YYYY&gt;.pdf</code></p>
+<p>   Examples: <code>Smith_John_ITE_report_10.15.2026.pdf</code> · <code>Smith_John_praise_card_09.02.2026.pdf</code></p>
+<ol start="2"><li><b>A file covering MANY learners</b> (batch reports, rosters) starts with ALL:</li></ol>
+<p>   <code>ALL_&lt;description&gt;_&lt;MM.DD.YYYY&gt;.xlsx</code></p>
+<p>   Examples: <code>ALL_faculty_evals_export_11.08.2026.xlsx</code> · <code>ALL_didactics_attendance_fall_11.01.2026.xlsx</code></p>
+<p>The date is when the report was run or the document was received, in MM.DD.YYYY (same convention as the coaching summaries). Use underscores rather than spaces inside the name parts.</p>
+<h2>Three rules that matter more than the rest</h2>
+<ol start="1"><li><b>Don&#x27;t edit the files themselves.</b> Export or save them exactly as the source system produced them and just name the file correctly. The agent reads the content; the filename only needs to say who and when.</li></ol>
+<ol start="2"><li><b>Batch exports are fine.</b> You do not need to split a New Innovations report into 20 learner files; name it <code>ALL_...</code> and the agent separates the learners from the content.</li></ol>
+<ol start="3"><li><b>When unsure, drop it in &quot;10 Other&quot; with the best name you can.</b> A misfiled document with a good filename is recoverable; a perfectly filed document named <code>scan0042.pdf</code> is not.</li></ol>
+<h2>What happens from here</h2>
+<p>Once the folder and the Teams group access are granted, the agent reads directly from these folders. Nothing you load is moved or changed; the dashboard and per-resident snapshots are generated from what&#x27;s here, every six months ahead of the CCC. If a source arrives in a new format (a different export, a new QR form), just load it with the naming pattern; no need to ask first.</p>
+<p>Questions or weird cases: send one example our way and we&#x27;ll tell you where it should live.</p></body></html>
