@@ -20,6 +20,27 @@
 2. Honest-failure behavior validated twice: with the agreement unfindable (OneDrive copy not yet search-indexed), the agent named exactly what it searched, declined to produce an ungrounded review, requested upload, and emitted the required disclaimer verbatim. No fabrication under pressure.
 3. Full end-to-end on the DSA: pending either search indexing of the uploaded copy (retry later) or a direct file upload in the normal agent chat (the builder Preview pane has no attach control and caps messages at 2,000 chars; the standard chat surface has both).
 
+## One-pager requirements coverage (verified Nov 11 against the full document)
+
+| One-pager requirement | Our agent | Status |
+|---|---|---|
+| Reviews complete contract package (MSA, SOW, order form, exhibits, addenda, incorporated/linked terms) | INPUT section treats all uploads as one package; linked terms flagged | MEETS |
+| Structured, citation-based pre-review | Every claim cites agreement section; every deviation also cites the playbook rule | MEETS |
+| Compare vs playbook rules and USC reference positions; distinguish facts, gaps, assumptions | Evidence rules 2-3; silence treated as gap | MEETS |
+| Business intent and document inventory incl. missing components and hierarchy conflicts | v1.1 output 1 adds explicit package inventory with MISSING markers | MEETS (v1.1) |
+| Key commercial terms incl. fees, renewals, increases, termination, acceptance, data/IP, security, SLAs | v1.1 key-terms table adds IP, security obligations, SLA rows | MEETS (v1.1) |
+| Deviations classified Critical/Important/Advisory with dual citations | Output 3-4, playbook definitions only | MEETS |
+| Preferred position, supported fallback, negotiation question, appropriate escalation owner | v1.1 output 5 adds per-finding escalation owner | MEETS (v1.1) |
+| Concise reusable submission language | Output 6 fills the playbook request-form sections | MEETS |
+| Guardrails: pre-review only, no approval/legal advice/invented standards, respect functional judgment | Role statement + decline rule + fixed disclaimer + "Not addressed by the playbook" | MEETS |
+| POC success: consistent citation output, accurate prioritization, useful language, fewer cycles, time savings | Fixed 7-part format drives consistency; accuracy/time measured in the readout | SUPPORTED |
+
+**Exceeds:** Top Risks banner; healthcare/institutional trigger checklist (BAA, Stark/COI, Open Payments, REPtrax, access-to-records, insurance, no-AI-training data rule); proven honest-failure behavior; native Word output; multi-document conflict flagging as a standing rule.
+
+**Version note:** v1.1 instructions (the three MEETS (v1.1) rows) are committed and staged on the ThinkPad clipboard; the live agent still runs v1.0 pending a 2-minute paste in the builder (blocked at session end by a persistent IT services overlay on screen).
+
+**Also discovered in reference/:** a second vendor contract set (BD: BAA, DSA, NDA) for additional testing, and the one-pager image itself.
+
 ## Remaining for POC (by Nov 20)
 
 1. Complete the DSA end-to-end run; score it against the playbook rules the DSA actually implicates (termination rights, audit, security incident notice, indemnification, LoL, third parties).
