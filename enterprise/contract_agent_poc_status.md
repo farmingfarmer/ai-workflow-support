@@ -20,6 +20,10 @@
 2. Honest-failure behavior validated twice: with the agreement unfindable (OneDrive copy not yet search-indexed), the agent named exactly what it searched, declined to produce an ungrounded review, requested upload, and emitted the required disclaimer verbatim. No fabrication under pressure.
 3. Full end-to-end on the DSA: pending either search indexing of the uploaded copy (retry later) or a direct file upload in the normal agent chat (the builder Preview pane has no attach control and caps messages at 2,000 chars; the standard chat surface has both).
 
+## One-pager v2 ("image (2)", Nov 11) — verified, no new requirements
+
+The second one-pager is the branded slide version (Keck Medicine | Enterprise Data, Analytics & AI; INTERNAL, November 2026; POC target November 20 unchanged). Full text extracted via native Windows OCR. Deltas vs v1: problem statement hardened to "the RIF eliminated THE IT contract team"; guardrails/success panel dropped in the condensed layout; expected output reduced to five bullets - business intent and document inventory; key commercial terms AND MISSING COMPONENTS; Critical/Important/Advisory deviations; preferred position, fallback, question, and ESCALATION OWNER; reusable submission language. All five are covered by instructions v1.1; the two emphasized items (missing components, escalation owner) are precisely the v1.1 closures. No action needed beyond the pending live v1.1 paste.
+
 ## One-pager requirements coverage (verified Nov 11 against the full document)
 
 | One-pager requirement | Our agent | Status |
