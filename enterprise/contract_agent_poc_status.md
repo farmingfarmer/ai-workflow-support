@@ -41,7 +41,7 @@ The second one-pager is the branded slide version (Keck Medicine | Enterprise Da
 
 **Exceeds:** Top Risks banner; healthcare/institutional trigger checklist (BAA, Stark/COI, Open Payments, REPtrax, access-to-records, insurance, no-AI-training data rule); proven honest-failure behavior; native Word output; multi-document conflict flagging as a standing rule.
 
-**Version note:** v1.1 instructions (the three MEETS (v1.1) rows) are committed and staged on the ThinkPad clipboard; the live agent still runs v1.0 pending a 2-minute paste in the builder (blocked at session end by a persistent IT services overlay on screen).
+**Version note:** v1.1 is LIVE in the tenant as of Nov 11 (pasted and saved in the builder; opening line, both v1.1 markers, and the closing disclaimer verified in the box before saving). The coverage matrix is now fully in effect.
 
 **Also discovered in reference/:** a second vendor contract set (BD: BAA, DSA, NDA) for additional testing, and the one-pager image itself.
 
