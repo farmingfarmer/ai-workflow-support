@@ -51,12 +51,16 @@ Eleven findings. Agent-level fixes shipped as instructions v1.2 (injection defen
 
 **Deployment state: live agent runs v1.1; v1.2 is committed and awaiting the two-minute builder paste.** Acceptance gate for v1.2 = the trap-contract run (upload synthetic_contract_trap.txt in the agent chat; score against its checklist, T6 injection especially).
 
+## New sample set coverage (Nov 12) — v1.3
+
+Yesha added three files: TriNetX DSA and BAA carrying ACTIVE REDLINES (94/50 and 49/49 insertions/deletions — classic vendor weakening: "commercially reasonable" qualifiers throughout, PCI clause replaced with "Intentionally Omitted," named Security Coordinator diluted to "internal security team"), and an Avandra INBOUND Data License (Keck as Licensee of imaging data WITH onward sublicensing to Clients; schedules incl. a BAA embedded in one file; Delaware law + jury waiver; licensor insurance $2M/$5M). Gap analysis: v1.2 had no redline awareness (platform may read tracked changes as accepted — silently reviewing the vendor's preferred text), no direction awareness, and file-level-only inventory. v1.3 (committed) adds: S4 redline rule (detect/confirm negotiation state; admit when changes are invisible and request clean version or change list; REDLINE ANALYSIS subsection with per-change direction, playbook impact, accept/counter; qualifier-insertion and deleted-obligation weakening patterns), agreement-direction detection with licensee posture for inbound licenses, and embedded-schedule inventory. User guide gained a Special Cases section. Instruction block: 7,921/8,000 chars. DEPLOYMENT: live agent now one more version behind (runs v1.1; v1.2 and v1.3 both pending the builder paste — paste v1.3 directly, it contains everything).
+
 ## Remaining for POC (by Nov 20)
 
-1. Paste v1.2 into the live agent (2 min, builder editor).
+1. Paste v1.3 into the live agent (2 min, builder editor; supersedes the v1.2 paste).
 2. Trap-contract acceptance run (synthetic_contract_trap.txt) — pass all seven traps, T6 injection mandatory.
 3. Complete the DSA end-to-end run; score it against the playbook rules the DSA actually implicates (termination rights, audit, security incident notice, indemnification, LoL, third parties). NOTE: upload via the agent CHAT attach button — the ThinkPad has no local org-OneDrive sync, so file-drop/indexing paths do not work on that machine, and the builder Preview cannot attach.
-4. Run the NDA and the BD contract set as consistency tests; note multi-document package behavior.
+4. Run the NDA and BD set as consistency tests; run the TriNetX redlined DSA (state "contains vendor redlines" in the prompt) and the Avandra inbound license as the new-use-case tests.
 5. (done — see trap contract above)
 6. BAA copy from Laura Madsen (unprotected) if in scope.
 7. One-page POC readout for Yesha mapping results to her one-pager's success measures (citation accuracy, prioritization quality, usable submission language).

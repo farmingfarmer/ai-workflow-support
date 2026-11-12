@@ -12,6 +12,11 @@
 4. Click **"Review this agreement against the playbook."**
 5. Read the review top-down: the header confirms what was reviewed and whether anything was unreadable; TOP RISKS gives the five things that matter; section 6 is pre-drafted text for the contract request form; section 7 tells you what must be escalated and to whom.
 
+## Special cases
+
+- **Redlined / tracked-changes documents** (mid-negotiation drafts): tell the agent in your first message that the document contains redlines, and upload the prior clean version too if you have it. The agent will produce a redline analysis (what each change does to USC's position, accept or counter per change). If it says it cannot see the tracked changes, believe it — get a change summary from the vendor rather than accepting a review of their preferred text.
+- **Inbound data licenses** (USC receiving data, e.g., as Licensee): the agent adjusts its posture — license scope, permitted uses, sublicensing, provenance warranties, licensor insurance. Expect more "Not addressed by the playbook" notes; those are honest, since the playbook is procurement-oriented.
+
 ## Rules of the road
 
 - **One vendor per conversation.** Reviewing a second contract? Start a new chat. If you upload mixed documents, the agent will stop and ask rather than guess.
