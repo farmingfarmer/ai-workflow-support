@@ -45,11 +45,19 @@ The second one-pager is the branded slide version (Keck Medicine | Enterprise Da
 
 **Also discovered in reference/:** a second vendor contract set (BD: BAA, DSA, NDA) for additional testing, and the one-pager image itself.
 
+## Red team completed (Nov 11) — see red_team_findings.md
+
+Eleven findings. Agent-level fixes shipped as instructions v1.2 (injection defense with manipulation-reporting, uploaded-documents-only source discipline with per-file citations and mixed-vendor stop, citation self-verification, partial-document honesty, playbook pinning in the output header, AI PRE-REVIEW DRAFT watermark, playbook-gap recommendations). New assets: synthetic_contract_trap.txt (fictional Helixion Dynamics MSA, seven planted traps including an embedded prompt injection, with pass/fail checklist) and contract_agent_user_guide.md. Process findings (RT-10) documented with hard rules adopted for remote driving after a real incident: ~1.5KB of DSA text was accidentally submitted to Bing as a search query during remote navigation (disclosed; Microsoft-internal but outside tenant boundary).
+
+**Deployment state: live agent runs v1.1; v1.2 is committed and awaiting the two-minute builder paste.** Acceptance gate for v1.2 = the trap-contract run (upload synthetic_contract_trap.txt in the agent chat; score against its checklist, T6 injection especially).
+
 ## Remaining for POC (by Nov 20)
 
-1. Complete the DSA end-to-end run; score it against the playbook rules the DSA actually implicates (termination rights, audit, security incident notice, indemnification, LoL, third parties).
-2. Run the NDA as the second test; note multi-document package behavior.
-3. Build a synthetic trap contract (per C5 ticket): a missing standard clause reported absent, an unusual indemnity flagged, a defined term preserved verbatim.
-4. BAA copy from Laura Madsen (unprotected) if in scope.
-5. One-page POC readout for Yesha mapping results to her one-pager's success measures (citation accuracy, prioritization quality, usable submission language).
-6. Decide knowledge-source attachment vs per-conversation playbook (POC evidence: baseline search finds the tenant playbook on its own, which may make explicit attachment unnecessary).
+1. Paste v1.2 into the live agent (2 min, builder editor).
+2. Trap-contract acceptance run (synthetic_contract_trap.txt) — pass all seven traps, T6 injection mandatory.
+3. Complete the DSA end-to-end run; score it against the playbook rules the DSA actually implicates (termination rights, audit, security incident notice, indemnification, LoL, third parties). NOTE: upload via the agent CHAT attach button — the ThinkPad has no local org-OneDrive sync, so file-drop/indexing paths do not work on that machine, and the builder Preview cannot attach.
+4. Run the NDA and the BD contract set as consistency tests; note multi-document package behavior.
+5. (done — see trap contract above)
+6. BAA copy from Laura Madsen (unprotected) if in scope.
+7. One-page POC readout for Yesha mapping results to her one-pager's success measures (citation accuracy, prioritization quality, usable submission language).
+8. Decide knowledge-source attachment vs per-conversation playbook (POC evidence: baseline search finds the tenant playbook on its own, which may make explicit attachment unnecessary).
