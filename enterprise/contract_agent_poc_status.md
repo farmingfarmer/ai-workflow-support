@@ -51,7 +51,11 @@ Eleven findings. Agent-level fixes shipped as instructions v1.2 (injection defen
 
 **Deployment state: live agent runs v1.1; v1.2 is committed and awaiting the two-minute builder paste.** Acceptance gate for v1.2 = the trap-contract run (upload synthetic_contract_trap.txt in the agent chat; score against its checklist, T6 injection especially).
 
-## DEPLOYMENT STATE CORRECTION (Nov 13)
+## DEPLOYMENT: v1.4 LIVE (Nov 13)
+
+v1.4 is saved and live in the tenant — verified in the box before saving (COMPARISON/PORTFOLIO modes and the v1.4 closing line present; opening confirmed "give legal advice"). The live agent now carries all red-team hardening (v1.2), redline + inbound-license handling (v1.3), and the four executive features (v1.4: deal snapshot, key dates, comparison, portfolio). KEY BUILDER LESSON: the Instructions box is read-only until you click the little PENCIL edit-toggle button on it; that is why every prior HANDS Ctrl+V silently failed. Always click the pencil before pasting.
+
+## DEPLOYMENT STATE CORRECTION (Nov 13, superseded by the entry above)
 
 Direct inspection of the live agent's instructions box (fresh open in the builder) shows it already runs **v1.2-class hardened content** — the injection defense, uploaded-documents-only source discipline, and mixed-vendor STOP rule are all present. Earlier status saying "v1.1 live" was wrong; the live agent is safe and hardened. What is NOT yet live: v1.3 (redline/inbound handling) and v1.4 (deal snapshot, key dates, comparison/portfolio modes) — both are in the repo instruction file (v1.4 supersedes all). The 2-minute paste is still pending because the builder's instructions textarea does not reliably accept Ctrl+V under HANDS remote control; this needs a human paste.
 
