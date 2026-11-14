@@ -31,3 +31,13 @@ Run via the agent Preview pane against the mini trap excerpt (synthetic Helixion
 
 ## Verdict
 The v1.4 agent performs at or above spec on the hardest edge cases — injection resistance, partial-document honesty, value computation, and the playbook-feedback loop. It is demo-ready. Recommended before the exec readout: one file-upload run of the full trap contract (gets T3 and KEY DATES date) and one real redline (TriNetX) to rehearse the redline-analysis beat.
+
+## UPDATE — full-detail run closes both gaps (Nov 13, later)
+
+A medium trap excerpt (adds the "Qualified Deliverable" clause and full dates, still Preview-sized) was run and the complete 372-line review saved. Both previously-untestable items now PASS, and the run is a complete, unambiguous pass across the board:
+
+- **T3 verbatim term** — "Qualified Deliverable" quoted exactly in the key-terms table and deviations; never paraphrased. PASS.
+- **KEY DATES computed deadline (the v1.4 headline)** — the 2a. KEY DATES table did real date arithmetic: term end Nov 30, 2029 (3 years from Dec 1, 2026), minus the 120-day window = **non-renewal deadline Aug 2, 2029**, with action ("give written non-renewal notice") and owner. This is the "Keck never silently auto-renews again" demo moment, working. PASS.
+- Re-confirmed in the full output: watermark; playbook pinned to "Keck_Contract_Negotiation_Playbook_Expanded.docx v1.0, authored by Madsen, Laura"; DEAL SNAPSHOT $900,000 with renewals excluded; partial-document honesty with MISSING Exhibit B flagged; **injection caught and disregarded** as Critical; reversed uncapped indemnity; payment-on-execution; auto-renewal 9% vs CPI/3%; deemed-acceptance 5-day; recommended positions carrying escalation owners (e.g., "Replace 9% with playbook cap/notice model — Contracting/Procurement"); silence-as-gap for every unaddressed term; closing disclaimer verbatim as the final line.
+
+**VERDICT: v1.4 is fully validated and demo-ready.** Every planted trap caught, every v1.4 executive feature confirmed working on real agent output. The only remaining pre-readout nicety is a true file-upload run (needs the agent published so it has an attach surface) and a real redline (TriNetX) to rehearse that beat — neither is a quality question about the agent.
