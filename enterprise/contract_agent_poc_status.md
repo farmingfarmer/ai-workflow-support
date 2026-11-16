@@ -53,7 +53,7 @@ Eleven findings. Agent-level fixes shipped as instructions v1.2 (injection defen
 
 ## v1.5 shipped to repo (Nov 16) — long-document coverage hardening
 
-Added rule S5 (FULL COVERAGE): review the whole document in order, never rely on retrieving only salient excerpts (absence is a finding), outline structure, confirm the final section was reached and state coverage span, and on over-length documents say so and recommend splitting rather than silently sampling. Fit under the 8,000-char ceiling by trimming verbose phrasings (paste block now 7,987). Rationale and the instruction-vs-orchestration split in contract_agent_long_docs.md. LIVE-PASTE PENDING (same pencil-toggle + Ctrl+V as before; v1.5 supersedes v1.4). Shivam's long-doc orchestration is the complementary layer for contracts beyond a single pass, to evaluate when he reaches out.
+Added rule S5 (FULL COVERAGE): review the whole document in order, never rely on retrieving only salient excerpts (absence is a finding), outline structure, confirm the final section was reached and state coverage span, and on over-length documents say so and recommend splitting rather than silently sampling. Fit under the 8,000-char ceiling by trimming verbose phrasings (paste block now 7,987). Rationale and the instruction-vs-orchestration split in contract_agent_long_docs.md. **v1.5 is LIVE** in the tenant (Nov 16; pasted via pencil-toggle + Ctrl+A/Ctrl+V, saved - "created successfully", S5 FULL COVERAGE confirmed in the box). The live agent now carries all hardening through v1.5. Shivam's long-doc orchestration is the complementary layer for contracts beyond a single pass, to evaluate when he reaches out.
 
 ## DEPLOYMENT: v1.4 LIVE (Nov 13)
 
