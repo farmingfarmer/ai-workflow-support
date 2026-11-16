@@ -51,6 +51,10 @@ Eleven findings. Agent-level fixes shipped as instructions v1.2 (injection defen
 
 **Deployment state: live agent runs v1.1; v1.2 is committed and awaiting the two-minute builder paste.** Acceptance gate for v1.2 = the trap-contract run (upload synthetic_contract_trap.txt in the agent chat; score against its checklist, T6 injection especially).
 
+## v1.5 shipped to repo (Nov 16) — long-document coverage hardening
+
+Added rule S5 (FULL COVERAGE): review the whole document in order, never rely on retrieving only salient excerpts (absence is a finding), outline structure, confirm the final section was reached and state coverage span, and on over-length documents say so and recommend splitting rather than silently sampling. Fit under the 8,000-char ceiling by trimming verbose phrasings (paste block now 7,987). Rationale and the instruction-vs-orchestration split in contract_agent_long_docs.md. LIVE-PASTE PENDING (same pencil-toggle + Ctrl+V as before; v1.5 supersedes v1.4). Shivam's long-doc orchestration is the complementary layer for contracts beyond a single pass, to evaluate when he reaches out.
+
 ## DEPLOYMENT: v1.4 LIVE (Nov 13)
 
 v1.4 is saved and live in the tenant — verified in the box before saving (COMPARISON/PORTFOLIO modes and the v1.4 closing line present; opening confirmed "give legal advice"). The live agent now carries all red-team hardening (v1.2), redline + inbound-license handling (v1.3), and the four executive features (v1.4: deal snapshot, key dates, comparison, portfolio). KEY BUILDER LESSON: the Instructions box is read-only until you click the little PENCIL edit-toggle button on it; that is why every prior HANDS Ctrl+V silently failed. Always click the pencil before pasting.
