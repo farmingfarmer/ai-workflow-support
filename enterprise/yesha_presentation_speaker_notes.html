@@ -28,7 +28,7 @@
 <body>
 
 <h1>Contract Review Agent — Demo Speaker Notes (v2)</h1>
-<div class="sub">Updated for v1.7 (jump-ready citations), the before/after demo, and the linked-review view · ~18 min · green = DO, red = WATCH FOR</div>
+<div class="sub">Updated for v1.8 (redline / proposed-edits mode, now live), jump-ready citations, the before/after demo, and the linked-review view · ~18 min · green = DO, red = WATCH FOR</div>
 
 <h2>Before you start <span class="time">prep</span></h2>
 <div class="prep">
@@ -84,6 +84,15 @@ into click-to-the-sentence. Productionizing it is a small build on the agent's c
 <div class="watch"><span class="lbl">Point at</span> In the redlined run, the <b>Redline Analysis</b>: the agent flags the inserted "commercially reasonable" qualifiers and the <b>deleted PCI, indemnification, and liability-cap protections</b> marked "Intentionally Omitted," and the 5-day deadline softened to "promptly." "It independently caught exactly what a human redliner flags."</div>
 <div class="do"><span class="lbl">Do (backup)</span> Open <b><code>before_after_redline_trinetx.html</code></b> — the same thing on a <b>real</b> TriNetX contract, side by side, if you want the real-document version on screen.</div>
 
+<h2>4b · NEW: the agent proposes its own redline <span class="time">(the headline since we last met)</span></h2>
+<div class="say">
+"Last time you asked whether it could go further than flagging — whether it could <b>propose the edit</b>. As of today
+it does."
+</div>
+<div class="do"><span class="lbl">Do</span> In the <b>same chat</b> as the original-DSA run (Input C1), type: <b>"Now give me the redline / proposed edits for this contract."</b></div>
+<div class="watch"><span class="lbl">Point at</span> The <b>Suggested edits</b> table: for each clause, the original language with its cite, the issue, and a concrete <b>insert / delete / replace</b> — e.g., restoring the PCI, indemnification, and liability-cap protections, tightening "commercially reasonable," putting the 5-day deadline back. Note the header: <b>"draft, not final/binding language"</b>, routed to Contracting/Legal.</div>
+<div class="watch"><span class="lbl">Say the guardrail out loud</span> "It <b>proposes</b> the edit — it never changes the contract and never approves it. Where our playbook has no language, it says so and marks it 'Legal to draft.' That line — propose, don't decide — is deliberate, and it's a governance choice, not a technical limit."</div>
+
 <h2>5 · Meets &amp; exceeds; your reference material <span class="time">11:30–14:30</span></h2>
 <div class="say">
 "Everything in your one-pager is covered — package review, cited Critical/Important/Advisory deviations, positions with
@@ -115,7 +124,7 @@ agent, the same pattern as the residency work and the Architect. Who's the first
 <ul>
   <li><b>Premium license?</b> No — shared agents need none; Copilot app or m365.cloud.microsoft, not Word.</li>
   <li><b>What model?</b> GPT-4-class via Microsoft/OpenAI, unconfirmed and changeable; tracking with Brian.</li>
-  <li><b>Does it edit the document?</b> No — it never changes the contract. The linked view shows notes beside the clause without touching the source.</li>
+  <li><b>Does it edit the document?</b> It <b>proposes</b> edits (the new redline mode — a suggested insert/delete/replace per clause) but never changes the contract itself or approves it; every edit is marked draft and routed to Legal. The linked view shows notes beside the clause without touching the source.</li>
   <li><b>100-page contract?</b> Reviews in full and is honest about coverage; a documented section-by-section workflow for oversized ones, pairing with Shivam's long-doc work.</li>
   <li><b>Accuracy?</b> Every finding cites the clause (with a verbatim anchor) and the playbook rule; it re-checks its own citations; validated on planted-trap documents.</li>
   <li><b>Is the output too long?</b> It's thorough and all cited/searchable; a concise mode is easy to add — best decided with the pilot reviewer.</li>
