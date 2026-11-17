@@ -1,0 +1,10 @@
+Review this redlined agreement against the playbook. SYNTHETIC TEST (fictional vendor) - VENDOR REDLINE (tracked changes shown). The vendor edited the clean version; [INS ...] = inserted by vendor, [DEL ...] = deleted by vendor.
+DATA SECURITY ADDENDUM - Cindermark Data Services (Vendor) and Meridian Crest Health System (Customer), under the MSA dated January 15, 2026.
+1.5 Vendor Security means Vendor's [INS commercially reasonable] technological, physical, administrative and procedural safeguards to protect Customer Data.
+2.2 Vendor shall implement [INS commercially reasonable] technological, physical, administrative, and procedural safeguards consistent with Industry Standards to protect Customer Data.
+2.4 Security Coordinator. Vendor [DEL shall assign an individual to serve as Security Coordinator] [INS has an internal security team ("Security Group")] responsible for the obligations in this Addendum.
+2.5 PCI Compliance. [INS Intentionally Omitted.] [DEL If Vendor has access to or processes payment-card data, Vendor shall comply with PCI-DSS.]
+2.8 Indemnification. [INS Intentionally Omitted.] [DEL Without limiting any indemnity under the Agreement, Vendor shall indemnify Customer for losses arising from a Security Incident caused by Vendor.]
+2.9 Limitation of Liability. [INS Intentionally Omitted.] [DEL Notwithstanding anything to the contrary, Vendor's liability for a Security Incident is not subject to the general liability cap.]
+3.1 Vendor shall [INS promptly] provide Customer a written incident report [DEL within five (5) business days] after initial notification.
+[End of Addendum]

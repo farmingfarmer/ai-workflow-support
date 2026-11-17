@@ -87,6 +87,38 @@ EXHIBIT A. Implementation services $180,000 fixed. All Exhibit A invoices are du
   <div class="watch"><b>Point at in the output:</b> "Qualified Deliverable" quoted exactly, and the 5-day deemed-acceptance flag.</div>
 </div>
 
+<div class="card">
+  <div class="bar"><span class="ttl">Input C1 — Original DSA (before)</span><button class="copyBtn" onclick="copyPre(this,'inC1')">📋 Copy</button></div>
+  <div class="meta"><b>Before/after demo, step 1.</b> A clean security addendum. Run this first so Yesha sees the baseline findings. <b>Fits the Preview box.</b></div>
+  <pre id="inC1">Review this against the playbook. SYNTHETIC TEST (fictional vendor) - ORIGINAL (clean) version.
+DATA SECURITY ADDENDUM - Cindermark Data Services (Vendor) and Meridian Crest Health System (Customer), under the MSA dated January 15, 2026.
+1.5 Vendor Security means Vendor&#x27;s technological, physical, administrative and procedural safeguards to protect Customer Data.
+2.2 Vendor shall implement technological, physical, administrative, and procedural safeguards consistent with Industry Standards to protect Customer Data.
+2.4 Security Coordinator. Vendor shall assign an individual to serve as Security Coordinator responsible for the obligations in this Addendum.
+2.5 PCI Compliance. If Vendor has access to or processes payment-card data, Vendor shall comply with PCI-DSS.
+2.8 Indemnification. Without limiting any indemnity under the Agreement, Vendor shall indemnify Customer for losses arising from a Security Incident caused by Vendor.
+2.9 Limitation of Liability. Notwithstanding anything to the contrary, Vendor&#x27;s liability for a Security Incident is not subject to the general liability cap.
+3.1 Vendor shall provide Customer a written incident report within five (5) business days after initial notification.
+[End of Addendum]</pre>
+  <div class="watch"><b>Point at:</b> the baseline review — firm security standard, named Security Coordinator, PCI/indemnity/liability intact.</div>
+</div>
+
+<div class="card sow">
+  <div class="bar"><span class="ttl">Input C2 — Vendor-redlined DSA (after)</span><button class="copyBtn" onclick="copyPre(this,'inC2')">📋 Copy</button></div>
+  <div class="meta"><b>Before/after demo, step 2.</b> Same addendum after the vendor's tracked changes — the before/after match. <b>Fits the Preview box.</b></div>
+  <pre id="inC2">Review this redlined agreement against the playbook. SYNTHETIC TEST (fictional vendor) - VENDOR REDLINE (tracked changes shown). The vendor edited the clean version; [INS ...] = inserted by vendor, [DEL ...] = deleted by vendor.
+DATA SECURITY ADDENDUM - Cindermark Data Services (Vendor) and Meridian Crest Health System (Customer), under the MSA dated January 15, 2026.
+1.5 Vendor Security means Vendor&#x27;s [INS commercially reasonable] technological, physical, administrative and procedural safeguards to protect Customer Data.
+2.2 Vendor shall implement [INS commercially reasonable] technological, physical, administrative, and procedural safeguards consistent with Industry Standards to protect Customer Data.
+2.4 Security Coordinator. Vendor [DEL shall assign an individual to serve as Security Coordinator] [INS has an internal security team (&quot;Security Group&quot;)] responsible for the obligations in this Addendum.
+2.5 PCI Compliance. [INS Intentionally Omitted.] [DEL If Vendor has access to or processes payment-card data, Vendor shall comply with PCI-DSS.]
+2.8 Indemnification. [INS Intentionally Omitted.] [DEL Without limiting any indemnity under the Agreement, Vendor shall indemnify Customer for losses arising from a Security Incident caused by Vendor.]
+2.9 Limitation of Liability. [INS Intentionally Omitted.] [DEL Notwithstanding anything to the contrary, Vendor&#x27;s liability for a Security Incident is not subject to the general liability cap.]
+3.1 Vendor shall [INS promptly] provide Customer a written incident report [DEL within five (5) business days] after initial notification.
+[End of Addendum]</pre>
+  <div class="watch"><b>Point at:</b> the Redline Analysis — the agent catches the inserted "commercially reasonable" qualifiers and the deleted PCI, indemnification, and liability-cap protections ("Intentionally Omitted"), and the 5-day deadline softened to "promptly" — exactly what a human redliner flags.</div>
+</div>
+
 <div class="how" style="border-left-color:var(--muted);">
 <b>Full-length files (not for pasting):</b> the complete trap contract and a 30-section long SOW live in the repo at
 <code>enterprise/testdata/</code> (<code>synthetic_contract_trap.txt</code>, <code>synthetic_long_sow_trap.txt</code>).

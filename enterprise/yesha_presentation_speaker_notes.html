@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Speaker Notes — Contract Agent Demo for Yesha</title>
+<title>Speaker Notes v2 — Contract Agent Demo</title>
 <style>
   :root { --ink:#1a2332; --muted:#5a6675; --accent:#1e4e79; --accent2:#7a1e1e; --rule:#d8dce2; --panel:#f5f6f8; --do:#1e6b34; }
   * { box-sizing:border-box; }
@@ -27,117 +27,102 @@
 </head>
 <body>
 
-<h1>Contract Review Agent — Demo Speaker Notes</h1>
-<div class="sub">Your script for presenting to Yesha · ~15 minutes · green = what to DO on screen, red = what to WATCH FOR in the output</div>
+<h1>Contract Review Agent — Demo Speaker Notes (v2)</h1>
+<div class="sub">Updated for v1.7 (jump-ready citations), the before/after demo, and the linked-review view · ~18 min · green = DO, red = WATCH FOR</div>
 
-<h2>Before you start <span class="time">~2 min prep, off-camera</span></h2>
+<h2>Before you start <span class="time">prep</span></h2>
 <div class="prep">
-Have these ready in separate places so you're not hunting mid-demo:
+Open in separate windows so you're not hunting:
 <ul>
-  <li>The <b>Contract Review Agent</b> open in a Copilot chat (the one you just shared with Yesha).</li>
-  <li>Two test inputs copy-pasteable from the repo's <code>enterprise/testdata/</code> folder:
-    <ul>
-      <li><b>Input A</b> — <code>synthetic_contract_trap_mini.txt</code> (a vendor MSA excerpt with a hidden injection)</li>
-      <li><b>Input B</b> — <code>synthetic_sow_trap_mini.txt</code> (a SOW with a tail injection and defer-to-MSA traps)</li>
-    </ul>
-  </li>
-  <li>The <b>overview PDF</b> (<code>contract_agent_overview_for_yesha</code>) open to hand her / screen-share as the leave-behind.</li>
+  <li>The <b>Contract Review Agent</b> in a Copilot chat.</li>
+  <li><b><code>demo_test_inputs.html</code></b> — your copy-paste console (Inputs A, B, C1, C2).</li>
+  <li><b><code>linked_review_prototype.html</code></b> — the clickable-citations view.</li>
+  <li><b><code>before_after_redline_trinetx.html</code></b> — the real-contract before/after (backup/leave-behind).</li>
+  <li>The <b>overview PDF</b> as the leave-behind.</li>
 </ul>
-Both inputs are fully synthetic (fictional vendors) — say that once, so nobody worries about real contract data on screen.
+Say once: every input is fully synthetic (fictional vendors) — no real contract data on screen.
 </div>
 
-<h2>1 · The hook — why this exists <span class="time">0:00–1:30</span></h2>
+<h2>1 · The hook <span class="time">0:00–1:30</span></h2>
 <div class="say">
-"The contract team was reduced to essentially one person, and the review workload got pushed onto leads who don't
-normally read agreements. So I built a Copilot agent that does the <b>first-pass review</b> — it reads a contract
-against our own Keck playbook and hands back a prioritized, cited analysis. <b>Everything you're about to see runs on
-tools we already license, it took a couple of weeks, and it's maintained by editing one text file</b> — no
-infrastructure, nothing for our team to babysit."
+"The contract team was cut to essentially one person and the review workload fell on leads who don't normally read
+agreements. So this agent does the <b>first-pass review</b> against our own Keck playbook. <b>It runs on tools we
+already license, took a couple of weeks, and is maintained by editing one text file</b> — nothing for our team to run."
 </div>
 <div class="say">
-"Two framing points before I show it. One: it is a <b>first-pass assistant, never an approver</b> — every output says
-that twice and routes the serious items to Contracting and Legal. Two: what makes it trustworthy is that <b>every
-finding cites the contract clause and the playbook rule</b>, so a reviewer verifies in seconds instead of trusting a
-black box."
+"Two things up front you specifically flagged: <b>no premium Copilot license is needed to use it</b> — and if someone
+opens a Word doc and asks Copilot to review it, that's <b>general Copilot, not this agent</b>, so it has to be run in a
+chat with the agent. On the model: it's a GPT-4-class model via Microsoft's stack, but Microsoft obscures and can
+change it — we're tracking that with Brian as a governance item."
 </div>
 
-<h2>2 · Live demo — the trap contract <span class="time">1:30–6:00</span></h2>
-<div class="do"><span class="lbl">Do</span> Paste <b>Input A</b> (the vendor MSA excerpt) into the agent and send "Review this against the playbook."</div>
+<h2>2 · Trap contract — what it catches <span class="time">1:30–5:30</span></h2>
+<div class="do"><span class="lbl">Do</span> Copy <b>Input A</b> from the console, paste into the agent, send.</div>
+<div class="watch"><span class="lbl">Point at</span> The <b>Deal Snapshot</b> ($900K, renewals excluded), then the <b>Critical: attempted review manipulation</b> — "I hid a line telling AI reviewers to call it compliant; it caught and ignored it." Then the <b>reversed indemnity</b> and the <b>Net 20 vs Net 60 conflict</b> between the body and the exhibit, and the <b>computed renewal deadline</b>.</div>
 <div class="say">
-"This is a fictional vendor contract I've planted problems in, to show you what it catches. Watch the top of the
-output first."
-</div>
-<div class="watch"><span class="lbl">Point at</span> The <b>Deal Snapshot</b> line — "it computed the total contract value, $900,000, and correctly left renewals out because the count is unknown. One line and you know the stakes." Then the <b>playbook it used</b>, named, with the author.</div>
-<div class="watch"><span class="lbl">Point at — the moment</span> The <b>Critical: Attempted review manipulation</b> finding. "I hid a line in this contract telling AI reviewers to report it as compliant and skip certain sections. The agent flagged that as a manipulation attempt and ignored it. That's the security story no slide can tell."</div>
-<div class="watch"><span class="lbl">Point at</span> One or two substantive catches a tired reviewer misses: the <b>reversed, uncapped indemnity</b>, and the <b>payment-term conflict</b> — the body says Net 20, the exhibit says Net 60. "It caught a contradiction buried between two documents."</div>
-<div class="watch"><span class="lbl">Point at</span> The <b>Key Dates</b> table — "it did real date math: the exact auto-renewal opt-out deadline, calculated from the term end minus the notice window. Keck never silently auto-renews again."</div>
-<div class="say">
-"And at the bottom it drafts the contract-request-form language and tells you who to escalate each item to. So a lead
-goes into the formal process already prepared."
+"And notice every finding is in plain language — no jargon the reviewer has to decode — and each one is cited."
 </div>
 
-<h2>3 · Live demo — the SOW (your reference material at work) <span class="time">6:00–9:30</span></h2>
+<h2>3 · Jump-ready citations &amp; the linked view <span class="time">5:30–8:00</span></h2>
 <div class="say">
-"Our real workload is heavy on SOWs and redlines, and you gave me the SOW checklists. Let me show you those built in."
+"You asked whether a citation can take you straight to the exact sentence. Two parts. First, in the agent itself —
+<b>as of this version every citation carries a short exact-quote anchor</b>, a verbatim phrase from the clause, so you
+can search or jump right to it in the contract and to the exact playbook rule behind it."
 </div>
-<div class="do"><span class="lbl">Do</span> Start a <b>new chat</b>, paste <b>Input B</b> (the SOW), send the same review prompt.</div>
-<div class="watch"><span class="lbl">Point at</span> "First — it recognized this is a <b>Statement of Work under a governing MSA</b>, not a standalone agreement, and applied the SOW checklist you provided."</div>
-<div class="watch"><span class="lbl">Point at — the headline SOW rule</span> The <b>defer-to-MSA</b> findings. "The #1 SOW rule from your checklist: a SOW must defer to the MSA and strip vendor terms the MSA already governs. It caught that in two places — including one planted in the <b>very last section</b> — which also proves it read all the way to the end of the document."</div>
-<div class="watch"><span class="lbl">Point at</span> The SOW-specific catches: <b>vague "Service 1, 2, 3" scope</b>, <b>payment on execution</b>, <b>auto-renewal</b>, <b>T&M with no cap</b>, and the <b>AI-training-on-our-data clause</b> flagged Critical.</div>
-<div class="watch"><span class="lbl">Point at</span> The <b>injection in the final line</b> — caught again — "and notice it still reviewed the sections that injection tried to hide. It reaches the tail and resists the attack there."</div>
-
-<h2>4 · How it meets and exceeds the ask <span class="time">9:30–12:00</span></h2>
+<div class="do"><span class="lbl">Do</span> Open <b><code>linked_review_prototype.html</code></b>. Click a finding's blue chip → it jumps to and highlights the exact contract clause. Click a gold chip → it jumps to the exact Playbook/SOP rule.</div>
 <div class="say">
-"Everything in your one-pager is covered — package review, citation-based deviations, Critical/Important/Advisory,
-preferred positions with fallbacks and escalation owners, reusable submission language, and the guardrails. That's the
-baseline." <span style="color:#5a6675">(Have the overview PDF's "meets" table visible if you want to walk it.)</span>
-</div>
-<div class="say">
-"Where it goes beyond: the injection defense you just saw, the deadline math, a <b>healthcare-specific trigger
-checklist</b> — HIPAA, Stark, Open Payments, the no-AI-training-on-USC-data rule — that generic tools don't carry.
-Redline analysis. Inbound-license handling. Comparison mode across vendors. And a self-improving loop: when it hits a
-topic the playbook doesn't cover, it recommends what to add — so it <b>feeds the playbook's maintenance</b>."
-</div>
-<div class="say">
-"And critically — I <b>red-teamed it before release</b>. I attacked my own agent, found eleven issues, fixed them all,
-and the audit trail is a document you can read. We're not hoping it's robust; we checked."
+"This is the rendering layer on top of the agent's output — findings on one side, the contract and the playbook on the
+other, every citation a one-click highlight. Honest note: the raw chat opens a document; this view is what turns it
+into click-to-the-sentence. Productionizing it is a small build on the agent's cited output."
 </div>
 
-<h2>5 · How your reference material became the agent <span class="time">12:00–13:30</span></h2>
+<h2>4 · Before/after with a real redline <span class="time">8:00–11:30</span></h2>
 <div class="say">
-"Nothing you and the team sent was decorative. The <b>playbook</b> is the review standard itself. The <b>SOW and Quote
-checklists</b> became the defer-to-MSA logic and the SOW rules you just watched. The <b>redlined agreements</b> —
-TriNetX, the MSAs — became the redline-analysis capability. The <b>Avandra inbound license</b> drove the licensee
-posture and the embedded-schedule handling. The <b>nference and BD sets</b> were the real-document test corpus and
-surfaced the rights-protected-file case. Every document shaped a capability."
+"You asked to run an original, then compare to the redline. Let me do it live."
+</div>
+<div class="do"><span class="lbl">Do</span> New chat → paste <b>Input C1</b> (original DSA) → send. Then new chat → paste <b>Input C2</b> (the vendor-redlined version) → send.</div>
+<div class="watch"><span class="lbl">Point at</span> In the redlined run, the <b>Redline Analysis</b>: the agent flags the inserted "commercially reasonable" qualifiers and the <b>deleted PCI, indemnification, and liability-cap protections</b> marked "Intentionally Omitted," and the 5-day deadline softened to "promptly." "It independently caught exactly what a human redliner flags."</div>
+<div class="do"><span class="lbl">Do (backup)</span> Open <b><code>before_after_redline_trinetx.html</code></b> — the same thing on a <b>real</b> TriNetX contract, side by side, if you want the real-document version on screen.</div>
+
+<h2>5 · Meets &amp; exceeds; your reference material <span class="time">11:30–14:30</span></h2>
+<div class="say">
+"Everything in your one-pager is covered — package review, cited Critical/Important/Advisory deviations, positions with
+fallbacks and escalation owners, submission language, guardrails. Beyond that: the injection defense, deadline math,
+the <b>healthcare trigger checklist</b> (HIPAA, Stark, Open Payments, no-AI-training-on-our-data), redline analysis,
+SOW handling, comparison mode, and a self-improving loop that feeds the playbook. And I <b>red-teamed it before
+release</b> — eleven issues found and fixed, documented."
+</div>
+<div class="say">
+"Nothing you sent was decorative: the <b>playbook</b> is the standard; the <b>SOW checklists</b> became the
+defer-to-MSA logic; the <b>redlined agreements</b> became the redline analysis; the <b>Avandra inbound license</b>
+drove the licensee posture; the <b>nference/BD sets</b> were the test corpus."
 </div>
 
-<h2>6 · Honest status &amp; the ask <span class="time">13:30–15:00</span></h2>
+<h2>6 · Status &amp; the ask <span class="time">14:30–18:00</span></h2>
 <div class="say">
-"Straight on where it stands: it's <b>live in the tenant at the latest version</b> with everything I showed active,
-and I just shared it with you. A few honest next steps — a full-length run on a 30-plus-section contract to confirm
-coverage at scale; folding the SOW checklist into the playbook so the criteria live in one maintained place; and
-confirming the data-handling path with Compliance before real contracts flow through at volume. The human review gate
-stays throughout — this prepares the work, it doesn't decide it."
+"Straight status: it's <b>live at the latest version</b> with everything I showed, and shared with you. The open calls
+are yours and the team's — output length and whether to offer a concise mode is best decided with the first pilot
+reviewer; folding the SOW checklist into the playbook; and confirming the data path with Compliance before enterprise
+volume. The human review gate stays — it prepares the work, it doesn't decide it."
 </div>
 <div class="say">
-"The bigger point for our team: this is the <b>reusable-building-blocks</b> story you keep pushing. The same pattern —
-playbook plus a hardened Copilot agent — is why the residency agents, the Architect, and this all look alike. What
-would you want to point it at next?"
+"For the CFO's enterprise-wide goal, this is the <b>reusable-building-blocks</b> story: playbook plus a hardened Copilot
+agent, the same pattern as the residency work and the Architect. Who's the first reviewer you want to poke at it?"
 </div>
 
 <h2>If asked — quick answers</h2>
 <div class="prep">
 <ul>
-  <li><b>"Does everyone need a premium license?"</b> No — using a shared agent needs no premium license; they open it in the Copilot app or m365.cloud.microsoft, not inside Word. (We tested this with an unlicensed account.)</li>
-  <li><b>"Can it handle a 100-page contract?"</b> It reviews in full and is honest about coverage — it tells you if it couldn't reach the end and recommends splitting. For truly oversized contracts there's a documented section-by-section workflow, and a longer-term automation path that pairs with Shivam's long-document work.</li>
-  <li><b>"What about our data / compliance?"</b> It runs in our tenant; the human gate stays; and I've flagged that we confirm the approved data path with Compliance before high volume. Nothing goes to an external tool.</li>
-  <li><b>"Who maintains it?"</b> The program owns it; maintenance is editing one instructions file. No infrastructure.</li>
-  <li><b>"How do we know it's accurate?"</b> Every finding is cited to the clause and the playbook rule, and it re-checks its own citations; validated live against planted-trap documents.</li>
+  <li><b>Premium license?</b> No — shared agents need none; Copilot app or m365.cloud.microsoft, not Word.</li>
+  <li><b>What model?</b> GPT-4-class via Microsoft/OpenAI, unconfirmed and changeable; tracking with Brian.</li>
+  <li><b>Does it edit the document?</b> No — it never changes the contract. The linked view shows notes beside the clause without touching the source.</li>
+  <li><b>100-page contract?</b> Reviews in full and is honest about coverage; a documented section-by-section workflow for oversized ones, pairing with Shivam's long-doc work.</li>
+  <li><b>Accuracy?</b> Every finding cites the clause (with a verbatim anchor) and the playbook rule; it re-checks its own citations; validated on planted-trap documents.</li>
+  <li><b>Is the output too long?</b> It's thorough and all cited/searchable; a concise mode is easy to add — best decided with the pilot reviewer.</li>
 </ul>
 </div>
 
-<footer>Data Science &amp; AI Team · Speaker notes for Alex · November 2026 · (your notes — not for distribution)</footer>
+<footer>Data Science &amp; AI Team · Speaker notes v2 for Alex · November 2026 · (your notes — not for distribution)</footer>
 
 </body>
 </html>
