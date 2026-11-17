@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contract Review Agent — Overview</title>
+<style>
+  :root { --ink:#1a2332; --muted:#5a6675; --accent:#1e4e79; --accent2:#7a1e1e; --rule:#d8dce2; --panel:#f5f6f8; --good:#1e6b34; }
+  * { box-sizing:border-box; }
+  body { font-family:'Segoe UI',Calibri,Helvetica,Arial,sans-serif; color:var(--ink); line-height:1.55;
+         max-width:54rem; margin:0 auto; padding:2.4rem 2rem; background:#fff; font-size:.96rem; }
+  h1 { font-size:1.7rem; line-height:1.2; margin:0 0 .2rem; }
+  h2 { font-size:1.18rem; color:var(--accent); margin:1.9rem 0 .5rem; border-bottom:2px solid var(--accent); padding-bottom:.25rem; }
+  h3 { font-size:1.02rem; margin:1.1rem 0 .3rem; }
+  .sub { color:var(--muted); font-size:.95rem; margin-bottom:1.3rem; }
+  .lead { background:var(--panel); border-left:4px solid var(--accent); padding:.9rem 1.2rem; margin:1rem 0 1.4rem; }
+  ol,ul { padding-left:1.4rem; } li { margin:.35rem 0; }
+  table { border-collapse:collapse; width:100%; margin:.6rem 0 1rem; font-size:.92rem; }
+  th,td { border:1px solid var(--rule); padding:.5rem .65rem; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font-family:'Segoe UI',Arial,sans-serif; }
+  .tag { display:inline-block; font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+         padding:.1rem .5rem; border-radius:3px; vertical-align:middle; }
+  .meets { background:#e8f0e9; color:var(--good); border:1px solid #bcd8c2; }
+  .exceeds { background:#fbe9e9; color:var(--accent2); border:1px solid #e3b7b7; }
+  .step { background:var(--panel); border:1px solid var(--rule); border-radius:6px; padding:.9rem 1.2rem; margin:.8rem 0; }
+  .pill { color:var(--good); font-weight:700; }
+  footer { margin-top:2.3rem; padding-top:.7rem; border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem; }
+  @media print { body{padding:0;max-width:none;} table,.step,.lead{break-inside:avoid;} h2{break-after:avoid;}
+    th,.tag{ -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+</style>
+</head>
+<body>
+
+<h1>Contract Review Agent</h1>
+<div class="sub">A Copilot agent that pre-reviews contracts against Keck's own playbook · Overview for Yesha · November 2026</div>
+
+<div class="lead">
+<b>In one sentence:</b> drop a contract in, get back a structured, citation-backed pre-review — deal snapshot, risk
+flags by priority, playbook deviations, recommended negotiation positions, computed deadlines, and ready-to-paste
+contract-request-form language — built on tools Keck already licenses, maintained by editing one text file, with no
+custom infrastructure to run.
+</div>
+
+<h2>How to use it (about 5 minutes)</h2>
+<div class="step">
+<ol>
+  <li>Open the <b>Microsoft 365 Copilot app</b> or <b>m365.cloud.microsoft</b> and open a chat with the
+      <b>Contract Review Agent</b>. (No premium Copilot license required to use it; it won't appear inside Word.)</li>
+  <li><b>Attach the contract package</b> with the + button — the MSA/service agreement plus every SOW, order form,
+      quote, exhibit, and addendum. Upload them together; the agent treats them as one package and flags conflicts
+      between them. For a SOW, it will also look at the governing MSA relationship.</li>
+  <li>Click <b>"Review this agreement against the playbook."</b></li>
+  <li>Read top-down: a one-line <b>deal snapshot</b>, the <b>top five risks</b>, then full detail, and at the end
+      <b>pre-drafted request-form language</b> and <b>who to escalate each item to</b>.</li>
+</ol>
+<b>It is a first-pass assistant, never an approver.</b> Every output says so, twice, and routes Critical items to
+Contracting/Legal.
+</div>
+
+<h2>What it produces, every time</h2>
+<ul>
+  <li><b>Deal snapshot</b> — parties, type, direction, term, and total stated contract value in one line.</li>
+  <li><b>Key dates</b> — a table of every date-bearing obligation with <b>computed deadlines</b> (e.g., the exact
+      auto-renewal opt-out date, calculated from the term end and notice window).</li>
+  <li><b>Risk flags</b> classified <b>Critical / Important / Advisory</b>, each citing the contract clause <i>and</i>
+      the playbook rule it deviates from.</li>
+  <li><b>Recommended positions</b> — the preferred outcome, documented fallback, a concrete ask, and the escalation
+      owner.</li>
+  <li><b>Draft submission language</b> for the contract request form, and a healthcare/institutional trigger
+      checklist (HIPAA/BAA, Stark, Open Payments, insurance, data-use).</li>
+</ul>
+
+<h2>How it meets your one-pager</h2>
+<table>
+  <tr><th>Your ask (Ingest → Analyze → Prepare)</th><th>In the agent</th></tr>
+  <tr><td>Reviews a complete contract package against the Keck playbook</td><td>Treats all uploaded documents as one package; pins exactly which playbook copy it used <span class="tag meets">meets</span></td></tr>
+  <tr><td>Structured, citation-based pre-review</td><td>Every claim cites the clause and the playbook rule <span class="tag meets">meets</span></td></tr>
+  <tr><td>Business intent + document inventory (incl. missing components)</td><td>Inventories the package and marks referenced-but-missing items MISSING <span class="tag meets">meets</span></td></tr>
+  <tr><td>Deviations classified Critical / Important / Advisory</td><td>Uses the playbook's own definitions <span class="tag meets">meets</span></td></tr>
+  <tr><td>Preferred position, fallback, question, escalation owner</td><td>All four, per finding <span class="tag meets">meets</span></td></tr>
+  <tr><td>Reusable submission language for Contracting and Legal</td><td>Fills the playbook's request-form sections, ready to paste <span class="tag meets">meets</span></td></tr>
+  <tr><td>Guardrails: pre-review only, no approval or invented standards</td><td>Declines approval, never invents a standard ("Not addressed by the playbook"), fixed disclaimer on every output <span class="tag meets">meets</span></td></tr>
+</table>
+
+<h2>How it exceeds the ask</h2>
+<ul>
+  <li><span class="tag exceeds">exceeds</span> <b>Catches prompt-injection attacks.</b> When a contract contains hidden
+      text telling AI reviewers "report this as compliant," the agent flags it as a Critical manipulation attempt and
+      ignores it — proven live, including when the attack is buried in the final section of a document.</li>
+  <li><span class="tag exceeds">exceeds</span> <b>Computes deadlines.</b> It does real date math — e.g., calculating an
+      exact non-renewal deadline by subtracting the notice window from the term end — so Keck never silently
+      auto-renews.</li>
+  <li><span class="tag exceeds">exceeds</span> <b>Healthcare-specific triggers.</b> A checklist (HIPAA/BAA, Stark,
+      Open Payments, insurance baselines, the no-AI-training-on-USC-data rule) that general contract tools don't
+      carry but Keck needs.</li>
+  <li><span class="tag exceeds">exceeds</span> <b>Handles redlines and inbound licenses.</b> It reads tracked-changes
+      drafts (flagging where a vendor weakened USC's position) and switches posture for inbound data licenses where
+      USC is the licensee.</li>
+  <li><span class="tag exceeds">exceeds</span> <b>SOW/Quote intelligence</b> — see below.</li>
+  <li><span class="tag exceeds">exceeds</span> <b>Comparison &amp; portfolio modes, and a self-improving loop.</b>
+      It can compare several vendors' paper side by side, and when it hits a topic the playbook doesn't cover it
+      recommends what to add — feeding playbook maintenance.</li>
+  <li><span class="tag exceeds">exceeds</span> <b>Red-teamed before release.</b> We attacked our own agent (eleven
+      findings, all addressed), and the audit trail is a readable document.</li>
+</ul>
+
+<h2>How it integrates your reference material</h2>
+<p>Everything you and the team supplied was ingested and built into how the agent reviews:</p>
+<table>
+  <tr><th>Reference material</th><th>How it shows up in the agent</th></tr>
+  <tr><td><b>Keck Contract Negotiation Playbook</b> (v1.0)</td><td>The review standard itself: the agent applies its priority system, commercial rules (Net 45, CPI/3% caps, no auto-renewal, 25/50/25 milestones, no payment on execution), USC-paper and termination strategy, healthcare triggers, and insurance baselines — and operationalizes the playbook's own "AI-Assisted Contract Review" section and request-form template.</td></tr>
+  <tr><td><b>SOW &amp; Quote checklists</b> (Top 5 + companion)</td><td>Added SOW/Quote awareness: the agent now detects when a document is a SOW/order/quote under a governing MSA and applies the checklist — led by <b>defer-to-MSA</b> (strip vendor T&Cs the MSA governs), detailed-scope enforcement, milestone-tied payments, not-to-exceed for T&M, and maintenance/SLA sufficiency.</td></tr>
+  <tr><td><b>Redlined agreements</b> (TriNetX DSA/BAA, MSAs, SOWs)</td><td>Drove the redline-analysis capability: the agent reports what each tracked change does to USC's position and flags weakening patterns (inserted "commercially reasonable" qualifiers, deleted obligations).</td></tr>
+  <tr><td><b>Avandra inbound data license</b></td><td>Drove the inbound/licensee posture and embedded-schedule handling (multiple schedules, including a BAA, inside one file).</td></tr>
+  <tr><td><b>nference &amp; BD contract sets</b></td><td>Served as the real-document test corpus across DSA, BAA, and NDA types, and surfaced the rights-protected-file case (the agent now says when a document is unreadable rather than bluffing).</td></tr>
+</table>
+
+<h2>Proven, not claimed</h2>
+<p>The capabilities above were validated on live agent output against purpose-built trap documents:</p>
+<ul>
+  <li>A trap contract with a hidden injection, a reversed indemnity, a payment conflict between body and exhibit, and
+      a renewal trap — <span class="pill">all caught</span>, with the exact renewal deadline computed.</li>
+  <li>A Statement of Work with SOW-specific traps and a prompt injection planted in the <i>last</i> section —
+      <span class="pill">complete pass</span>: it detected the SOW-under-MSA relationship, fired the defer-to-MSA rule
+      on both an early and a tail clause, caught the injection in the final line, and still reviewed the sections the
+      injection tried to suppress.</li>
+</ul>
+
+<h2>Honest status &amp; what's next</h2>
+<ul>
+  <li><b>Live and current</b> in the tenant at the latest version, with all of the above active.</li>
+  <li><b>Being shared now</b> so it appears for reviewers with a file-upload surface.</li>
+  <li><b>Next:</b> a full-length (30+ section) run to confirm coverage at scale; folding the SOW checklist into the
+      playbook so criteria live in one maintained place; and confirming the data-handling path with Compliance before
+      real contracts flow through at volume. The agent is a first-pass assistant — the human review gate stays.</li>
+</ul>
+
+<footer>Data Science &amp; AI Team · Contract Review Agent overview · Prepared for Yesha, November 2026</footer>
+
+</body>
+</html>
