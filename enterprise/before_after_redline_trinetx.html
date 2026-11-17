@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Before / After — Agent vs. Real Vendor Redline (TriNetX DSA)</title>
+<style>
+  :root { --ink:#1a2332; --muted:#5a6675; --accent:#1e4e79; --crit:#7a1e1e; --rule:#d8dce2; --panel:#f5f6f8;
+          --del:#fbe3e3; --delink:#8a1f1f; --ins:#e3eefb; --inslink:#1e4e79; --good:#1e6b34; }
+  * { box-sizing:border-box; }
+  body { font-family:'Segoe UI',Calibri,Helvetica,Arial,sans-serif; color:var(--ink); line-height:1.5;
+         max-width:58rem; margin:0 auto; padding:2rem; font-size:.94rem; }
+  h1 { font-size:1.5rem; margin:0 0 .15rem; }
+  .sub { color:var(--muted); font-size:.92rem; margin-bottom:1rem; }
+  .intro { background:var(--panel); border-left:4px solid var(--accent); padding:.8rem 1.1rem; margin:1rem 0 1.5rem; font-size:.92rem; }
+  .row { border:1px solid var(--rule); border-radius:8px; margin:1.1rem 0; overflow:hidden; }
+  .row .hd { background:var(--accent); color:#fff; padding:.45rem .8rem; font-weight:700; font-size:.95rem; }
+  .cells { display:flex; } .cell { flex:1; padding:.7rem .9rem; font-size:.88rem; }
+  .cell.b { border-right:1px solid var(--rule); }
+  .cell .lbl { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:.25rem; }
+  del { background:var(--del); color:var(--delink); text-decoration:line-through; }
+  ins { background:var(--ins); color:var(--inslink); text-decoration:none; }
+  .agent { background:#eef6f0; border-top:1px solid var(--rule); padding:.6rem .9rem; font-size:.88rem; }
+  .agent .lbl { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--good); }
+  .agent b { color:var(--crit); }
+  .verdict { background:#eef6f0; border:1px solid #bcd8c2; border-radius:8px; padding:1rem 1.2rem; margin:1.4rem 0; }
+  .verdict h2 { margin:.1rem 0 .5rem; font-size:1.1rem; color:var(--good); }
+  footer { margin-top:2rem; padding-top:.6rem; border-top:1px solid var(--rule); color:var(--muted); font-size:.83rem; }
+  @media (max-width:720px){ .cells{flex-direction:column;} .cell.b{border-right:none; border-bottom:1px solid var(--rule);} }
+  @media print { .row,.verdict,.intro{break-inside:avoid;} }
+</style>
+</head>
+<body>
+
+<h1>Before / After: Agent vs. a Real Vendor Redline</h1>
+<div class="sub">Example contract: the <b>TriNetX USC Health Data Security Addendum</b>, as the vendor redlined it (Nov 2026 draft) · the kind of real document we review</div>
+
+<div class="intro">
+<b>What this shows.</b> This is a real vendor redline of a USC security addendum. The left/right columns show the
+<b>original USC clause</b> versus <b>what the vendor changed</b> (<del>deletions</del> / <ins>insertions</ins>). The
+green box under each shows <b>what the agent flags about that change</b> — independently catching the same weakenings a
+human reviewer would. This is the "run the original, compare to the redline, see how well it matches" test Yesha asked
+for.
+</div>
+
+<div class="row">
+  <div class="hd">§1.5 / §1.8 / §2.2 — Security standard</div>
+  <div class="cells">
+    <div class="cell b"><div class="lbl">Original (USC)</div>Vendor shall implement technological, physical, administrative and procedural safeguards… consistent with Industry Standards (standards accepted as best practices across the industry).</div>
+    <div class="cell"><div class="lbl">Vendor redline</div>Vendor shall implement <ins>commercially reasonable</ins> safeguards… consistent with Industry Standards (<ins>commercially reasonable</ins> standards accepted as best practices).</div>
+  </div>
+  <div class="agent"><span class="lbl">Agent flags</span> <b>Weakening — qualifier insertion.</b> "commercially reasonable" was inserted before the security obligations in three places, lowering a firm standard to a negotiable one. Recommend: counter — restore the unqualified Industry-Standards obligation.</div>
+</div>
+
+<div class="row">
+  <div class="hd">§2.4 — Security Coordinator</div>
+  <div class="cells">
+    <div class="cell b"><div class="lbl">Original (USC)</div>Vendor <del>shall assign an individual</del> to serve as the Security Coordinator responsible for the obligations in this Addendum.</div>
+    <div class="cell"><div class="lbl">Vendor redline</div>Vendor <ins>has an internal security team ("Security Group")</ins> responsible for the obligations.</div>
+  </div>
+  <div class="agent"><span class="lbl">Agent flags</span> <b>Weakening — diluted accountability.</b> A named, accountable individual was replaced with a vague "internal security team," removing a single point of responsibility. Recommend: counter — restore a designated coordinator.</div>
+</div>
+
+<div class="row">
+  <div class="hd">§2.5 — PCI Compliance</div>
+  <div class="cells">
+    <div class="cell b"><div class="lbl">Original (USC)</div><del>If, in the course of its engagement, Vendor has access to or will process payment-card data, Vendor shall comply with PCI-DSS…</del></div>
+    <div class="cell"><div class="lbl">Vendor redline</div><ins>Intentionally Omitted.</ins></div>
+  </div>
+  <div class="agent"><span class="lbl">Agent flags</span> <b>Critical — deleted obligation.</b> The entire PCI-DSS compliance clause was removed ("Intentionally Omitted"). Absence of a required protection is itself a finding; escalate to Information Security. Confirm whether payment-card data is in scope before accepting.</div>
+</div>
+
+<div class="row">
+  <div class="hd">§2.8 — Indemnification</div>
+  <div class="cells">
+    <div class="cell b"><div class="lbl">Original (USC)</div><del>Without limiting any indemnity obligations under the Agreement, Vendor shall indemnify University for…</del></div>
+    <div class="cell"><div class="lbl">Vendor redline</div><ins>Intentionally Omitted.</ins></div>
+  </div>
+  <div class="agent"><span class="lbl">Agent flags</span> <b>Critical — deleted protection.</b> The security-addendum indemnity was removed. Escalate to Legal; confirm indemnity is preserved in the governing Agreement rather than silently dropped.</div>
+</div>
+
+<div class="row">
+  <div class="hd">§2.9 — Limitation of Liability</div>
+  <div class="cells">
+    <div class="cell b"><div class="lbl">Original (USC)</div><del>Notwithstanding any provisions of the Agreement to the contrary, in the event of a Security Incident…</del> (USC-protective carve-out)</div>
+    <div class="cell"><div class="lbl">Vendor redline</div><ins>Intentionally Omitted.</ins></div>
+  </div>
+  <div class="agent"><span class="lbl">Agent flags</span> <b>Critical — deleted protection.</b> The liability carve-out for security incidents was removed, exposing USC to the general liability cap for a breach. Escalate to Legal/Risk.</div>
+</div>
+
+<div class="row">
+  <div class="hd">§3.1 — Security Incident report deadline</div>
+  <div class="cells">
+    <div class="cell b"><div class="lbl">Original (USC)</div>Vendor shall provide University with a written incident report <del>within five (5) business days</del> after the initial notification.</div>
+    <div class="cell"><div class="lbl">Vendor redline</div>Vendor shall <ins>promptly</ins> provide University with a written incident report… business days after the initial notification.</div>
+  </div>
+  <div class="agent"><span class="lbl">Agent flags</span> <b>Weakening — concrete deadline softened.</b> A firm 5-business-day reporting deadline was replaced with the vague, unenforceable "promptly." Recommend: counter — restore a specific number of days.</div>
+</div>
+
+<div class="verdict">
+<h2>The match</h2>
+Across this real redline, the vendor used two weakening patterns the agent is specifically built to catch: <b>inserting
+"commercially reasonable" qualifiers</b> to soften firm obligations, and <b>deleting whole protections</b> (PCI,
+indemnification, liability carve-out) by marking them "Intentionally Omitted." The agent independently flags every one,
+labels the direction (weakens USC), ties each to the playbook, and recommends accept or counter — which is exactly the
+judgment a human redliner applies, delivered as a first pass in seconds. The human review gate stays; the agent makes
+the reviewer faster and harder to fool.
+</div>
+
+<footer>Data Science &amp; AI Team · Before/After redline comparison · TriNetX DSA example · November 2026 · AI pre-review draft, not a contract approval</footer>
+
+</body>
+</html>
