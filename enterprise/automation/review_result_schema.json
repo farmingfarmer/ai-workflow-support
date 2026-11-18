@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "purpose": "Shape the intake flow (Flow 1) and batch flow (Flow 2) write for each review, so output is machine-readable for the register and the scorer. The agent's human-readable review still lands as a .docx in Reviews/; this JSON is the structured sidecar.",
+    "boundary": "Store clause references and short anchors, not full contract text."
+  },
+  "review_result": {
+    "doc_id": "base filename",
+    "reviewed_at": "trigger Created timestamp (ISO)",
+    "classification": {"type": "MSA|SOW|DSA|BAA|NDA|License|Amendment", "domain": "string", "profile_id": "review_profiles.json id", "confidence": "high|medium|low"},
+    "deal_snapshot": {"parties": "string", "direction": "procurement|inbound|mixed", "term": "string", "stated_value": "string"},
+    "top_risks": [{"rank": 1, "issue": "short headline", "priority": "Critical|Important|Advisory", "clause": "string", "anchor": "3-8 word verbatim phrase", "why": "one line"}],
+    "findings": [{"id": "string", "component": "component_types.json id", "clause": "string", "anchor": "verbatim phrase", "direction": "weakens|strengthens|gap|flag", "playbook_rule": "named rule", "verdict": "deviation|compliant|gap", "owner_department": "exact group from escalation_departments.md"}],
+    "gaps": [{"required": "requirement id", "status": "absent-but-required", "clause_expected": "where it should be"}],
+    "coverage": {"span": "first section -> last section", "complete_pass": true}
+  }
+}

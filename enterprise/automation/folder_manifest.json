@@ -1,0 +1,23 @@
+{
+  "_meta": {
+    "purpose": "Declarative spec of the SharePoint 'Contract Review' library + folders for the intake and batch-P/R flows. Use to create the structure by hand, or feed a provisioning flow / PnP script in-tenant.",
+    "site": "<team site URL - fill in>",
+    "library": "Contract Review"
+  },
+  "folders": [
+    {"path": "Inbox", "purpose": "Reviewers drop a contract here; triggers Flow 1 (intake pre-review)."},
+    {"path": "Reviews", "purpose": "Agent review documents land here."},
+    {"path": "Reference", "purpose": "Parent for the P/R test corpus."},
+    {"path": "Reference/Originals", "purpose": "Reverted-to-original reference contracts; Flow 2 input."},
+    {"path": "Reference/Redlines", "purpose": "Matching human redlines; ground-truth source (paired by filename)."},
+    {"path": "Scorecards", "purpose": "Precision/recall scorecards (numbers + clause refs only; no verbatim text)."},
+    {"path": "Config", "purpose": "Optional reference copy of review_profiles.json and component_types.json."}
+  ],
+  "columns": [
+    {"name": "Vendor", "type": "text"},
+    {"name": "DocType", "type": "choice", "choices": ["MSA", "SOW", "DSA", "BAA", "NDA", "License", "Amendment"]},
+    {"name": "Status", "type": "choice", "choices": ["Received", "Reviewed", "Escalated"]},
+    {"name": "ReviewLink", "type": "hyperlink"}
+  ],
+  "pairing_convention": "A reference original and its redline share the same base filename (e.g. 'nference_dsa.docx' in Originals and Redlines). Flow 2 and score_redline.py pair by base name."
+}
