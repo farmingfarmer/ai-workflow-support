@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "purpose": "Scope the playbook per contract category so the agent reviews only relevant requirements (anti-hallucination, anti-verbosity).",
+    "usage": "Agent classifies the uploaded document (type + domain), selects the profile whose 'match' fits, and reviews ONLY the listed 'requirements'. Topics not in the profile are marked 'Not applicable to this contract type', never invented.",
+    "requirement_ids": "Reference rules in the Keck Contract Negotiation Playbook / SOW-Quote checklist. Keep IDs stable; map each to the playbook section when the playbook is finalized.",
+    "source": "Derived from the Keck playbook + SOW/Quote checklists + the Nov 17 Shivam/Yesha sync. Confirm requirement sets with Clint/Ellie."
+  },
+  "profiles": [
+    {
+      "id": "msa_saas",
+      "label": "MSA / SaaS master agreement",
+      "match": {"type": ["MSA", "SaaS master"], "domain": ["software", "saas"]},
+      "requirements": ["term", "renewal_no_autorenew", "price_increase_cap", "termination_convenience", "termination_cause_cure", "payment_timing", "data_rights_ip", "data_use_ai_training", "security_review", "uptime_sla", "limitation_of_liability", "indemnity_direction", "insurance", "governing_law", "incorporated_linked_terms"]
+    },
+    {
+      "id": "sow_under_msa",
+      "label": "SOW / order / quote under a governing MSA",
+      "match": {"type": ["SOW", "order", "quote"], "domain": ["any"]},
+      "requirements": ["defer_to_msa", "detailed_scope", "acceptance_criteria", "milestone_payments_no_execution", "not_to_exceed_tm", "term_3_5yr", "renewal_no_autorenew", "price_increase_cap", "maintenance_sla", "missing_components"]
+    },
+    {
+      "id": "data_research",
+      "label": "Data / research sharing or use (DSA emphasis)",
+      "match": {"type": ["DSA", "MSA", "inbound license"], "domain": ["data", "research"]},
+      "requirements": ["data_use_ai_training", "secondary_use_restriction", "baa_required_if_phi", "de_identification", "security_safeguards", "incident_response_timing", "pci_if_payment_data", "indemnity_direction", "limitation_of_liability", "data_rights_ip", "irb_human_subjects"]
+    },
+    {
+      "id": "clinical_professional_services",
+      "label": "Clinical / professional / staffing services",
+      "match": {"type": ["MSA", "SOW"], "domain": ["clinical", "professional_services", "hr_staffing"]},
+      "requirements": ["detailed_scope", "credentialing", "licensure", "insurance", "coi_physician_relationships", "payment_transparency_open_payments", "access_to_records", "termination_convenience", "indemnity_direction"]
+    },
+    {
+      "id": "it_infrastructure_goods",
+      "label": "IT infrastructure / equipment / goods",
+      "match": {"type": ["MSA", "order"], "domain": ["it_infrastructure", "equipment"]},
+      "requirements": ["detailed_scope", "acceptance_criteria", "warranty", "security_review", "sla", "maintenance_sla", "payment_timing", "limitation_of_liability", "insurance"]
+    },
+    {
+      "id": "baa",
+      "label": "Business Associate Agreement",
+      "match": {"type": ["BAA"], "domain": ["any"]},
+      "requirements": ["phi_permitted_uses", "safeguards", "subcontractor_flowdown", "breach_notification_timing", "return_or_destroy_phi", "audit_rights", "no_data_use_for_ai_training"]
+    },
+    {
+      "id": "nda",
+      "label": "NDA / confidentiality",
+      "match": {"type": ["NDA", "CDA"], "domain": ["any"]},
+      "requirements": ["definition_confidential_info", "term_of_confidentiality", "permitted_use", "return_destroy", "no_publicity", "carve_outs"]
+    },
+    {
+      "id": "inbound_license",
+      "label": "Inbound data/software license (USC is licensee)",
+      "match": {"type": ["inbound license"], "domain": ["any"]},
+      "requirements": ["license_scope_uses", "sublicensing", "provenance_compliance_warranties", "indemnity_direction_to_usc", "licensor_insurance", "publicity_restriction", "data_use_ai_training"]
+    },
+    {
+      "id": "broad_fallback",
+      "label": "Unclassified / low-confidence (review broadly, say so)",
+      "match": {"type": ["any"], "domain": ["any"]},
+      "requirements": ["term", "renewal_no_autorenew", "payment_timing", "termination", "data_rights_ip", "data_use_ai_training", "security_review", "limitation_of_liability", "indemnity_direction", "insurance", "governing_law", "missing_components"]
+    }
+  ]
+}

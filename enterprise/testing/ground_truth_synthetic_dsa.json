@@ -1,0 +1,9 @@
+[
+  {"id": "gt-1.5", "clause": "1.5", "direction": "weakens", "desc": "Inserted 'commercially reasonable' qualifier before safeguards definition."},
+  {"id": "gt-2.2", "clause": "2.2", "direction": "weakens", "desc": "Inserted 'commercially reasonable' qualifier before safeguards obligation."},
+  {"id": "gt-2.4", "clause": "2.4", "direction": "weakens", "desc": "Replaced named Security Coordinator with an unnamed internal 'Security Group' (removes accountable individual)."},
+  {"id": "gt-2.5", "clause": "2.5", "direction": "weakens", "desc": "Deleted PCI-DSS compliance obligation, marked 'Intentionally Omitted'."},
+  {"id": "gt-2.8", "clause": "2.8", "direction": "weakens", "desc": "Deleted indemnification for Security Incidents, marked 'Intentionally Omitted'."},
+  {"id": "gt-2.9", "clause": "2.9", "direction": "weakens", "desc": "Deleted liability-cap carve-out for Security Incidents, marked 'Intentionally Omitted'."},
+  {"id": "gt-3.1", "clause": "3.1", "direction": "weakens", "desc": "Softened the five-business-day incident-report deadline to 'promptly'."}
+]

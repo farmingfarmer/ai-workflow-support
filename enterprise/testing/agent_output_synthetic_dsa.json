@@ -1,0 +1,9 @@
+[
+  {"id": "ag-1", "clause": "1.5", "direction": "weakens", "verdict": "flag", "playbook_grounded": true, "note": "Flagged inserted 'commercially reasonable' as a weakening qualifier."},
+  {"id": "ag-2", "clause": "2.2", "direction": "weakens", "verdict": "flag", "playbook_grounded": true, "note": "Flagged inserted 'commercially reasonable' qualifier on safeguards."},
+  {"id": "ag-3", "clause": "2.5", "direction": "weakens", "verdict": "flag", "playbook_grounded": true, "note": "Flagged deleted PCI-DSS obligation ('Intentionally Omitted')."},
+  {"id": "ag-4", "clause": "2.8", "direction": "weakens", "verdict": "flag", "playbook_grounded": true, "note": "Flagged deleted indemnification."},
+  {"id": "ag-5", "clause": "2.9", "direction": "weakens", "verdict": "flag", "playbook_grounded": true, "note": "Flagged deleted liability-cap carve-out."},
+  {"id": "ag-6", "clause": "3.1", "direction": "weakens", "verdict": "flag", "playbook_grounded": true, "note": "Flagged deadline softened to 'promptly'."},
+  {"id": "ag-7", "clause": "incident-report-content", "direction": "gap", "verdict": "flag", "playbook_grounded": true, "note": "EXCEED: noted the addendum no longer specifies required incident-report content/timeline anywhere -- a gap the redline did not address."}
+]

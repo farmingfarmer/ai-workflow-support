@@ -1,0 +1,16 @@
+{
+  "label": "synthetic_dsa",
+  "recall": 0.857,
+  "precision": 1.0,
+  "f1": 0.923,
+  "expected": 7,
+  "caught": 6,
+  "agent_total": 7,
+  "missed": [
+    "gt-2.4"
+  ],
+  "exceed": [
+    "ag-7"
+  ],
+  "false_positives": []
+}
