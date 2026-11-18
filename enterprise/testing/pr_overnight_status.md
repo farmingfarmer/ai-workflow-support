@@ -45,6 +45,13 @@ Better still for a topic-rich result: pick 2–3 **DSA/data-sharing** redlines (
 liability/PCI and "commercially reasonable" insertions) — those will exercise the topic scorer the way the
 synthetic DSA did.
 
+## Ready for the morning (did this after hitting the blockers)
+Re-sampled toward the topic-rich **data-sharing/DSA** contracts and extracted their originals:
+`pr_work\orig_d1.txt … orig_d4.txt` (+ `manifest_data.csv`). **Use these, not orig_1..7**, for the first
+meaningful P/R — they carry the indemnity/liability/data-use/PCI changes the topic scorer is built to catch.
+Per doc: review `orig_d<n>.txt` → `review_d<n>.txt`; redline-analyze the matching redline → `redline_d<n>.txt`;
+then `score_topics.ps1` (point it at the d-files or just run it — it scans redline_*/review_* pairs).
+
 ## What I did NOT do (and won't fake)
 I did not produce a real-data precision/recall number, because doing it autonomously would have required either
 scoring against unreliable ground truth or reading real contract text off the screen. A fabricated 0.8-something
