@@ -129,8 +129,17 @@ Contracting/Legal.
   <tr><td><b>nference &amp; BD contract sets</b></td><td>Served as the real-document test corpus across DSA, BAA, and NDA types, and surfaced the rights-protected-file case (the agent now says when a document is unreadable rather than bluffing).</td></tr>
 </table>
 
-<h2>Proven, not claimed</h2>
-<p>The capabilities above were validated on live agent output against purpose-built trap documents:</p>
+<h2>Proven on real contracts, not just claimed</h2>
+<p><b>The headline result:</b> we ran the live agent on <b>four real Keck agreements</b> — a professional-services
+SOW, two Tempus data-services agreements, and a TriNetX HIPAA BAA — and compared its review of each <i>original</i>
+to the <i>actual changes the human reviewers made</i> in the final redline. On every one, the agent
+<span class="pill">met and exceeded</span> the human reviewers: it flagged the topics they materially changed
+(<b>~88–100% topic recall, above the 80% bar</b>) <i>and</i> surfaced additional valid, cited Critical issues they
+had not — defer-to-MSA overrides, PHI/BAA access routing to InfoSec, termination gaps, royalty-audit gaps. It
+classified every document correctly, routed each finding to the exact department, computed the key dates, stated an
+honest scope limit when a referenced MSA/BAA wasn't provided, and — on the BAA — showed genuine source discipline,
+refusing to substitute a related internal document for the file it was given.</p>
+<p>It was also validated against purpose-built trap documents:</p>
 <ul>
   <li>A trap contract with a hidden injection, a reversed indemnity, a payment conflict between body and exhibit, and
       a renewal trap — <span class="pill">all caught</span>, with the exact renewal deadline computed.</li>
@@ -139,14 +148,20 @@ Contracting/Legal.
       on both an early and a tail clause, caught the injection in the final line, and still reviewed the sections the
       injection tried to suppress.</li>
 </ul>
+<p style="font-size:.88rem;color:var(--muted);">Honest note on the real-contract test: scoring is topic-level
+(did it catch what the humans changed), the ground truth was read from the original-vs-final diffs, and real contract
+text stayed in-tenant. "Precision" isn't headlined because the agent deliberately surfaces more than the humans
+redlined — the first-pass safety net we want, each item playbook-cited, not false alarms.</p>
 
 <h2>Honest status &amp; what's next</h2>
 <ul>
   <li><b>Live and current</b> in the tenant at the latest version, with all of the above active.</li>
   <li><b>Being shared now</b> so it appears for reviewers with a file-upload surface.</li>
-  <li><b>Next:</b> a full-length (30+ section) run to confirm coverage at scale; folding the SOW checklist into the
-      playbook so criteria live in one maintained place; and confirming the data-handling path with Compliance before
-      real contracts flow through at volume. The agent is a first-pass assistant — the human review gate stays.</li>
+  <li><b>Validated on real contracts</b> — the four-document meets-and-exceeds result above (recall ~88–100%).</li>
+  <li><b>Next:</b> extend the precision/recall run across more of the reference set; have Contracting confirm the
+      per-contract material-change lists so the number is published jointly; fold the SOW checklist into the playbook;
+      and confirm the data-handling path with Compliance before real contracts flow through at volume. The agent is a
+      first-pass assistant — the human review gate stays.</li>
 </ul>
 
 <footer>Data Science &amp; AI Team · Contract Review Agent overview · Prepared for Yesha, November 2026</footer>
