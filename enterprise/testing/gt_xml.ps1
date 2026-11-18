@@ -47,10 +47,9 @@ foreach ($row in $manifest) {
   foreach ($p in $paras) {
     if ($p -match '<w:ins ' -or $p -match '<w:del ') {
       $nchg++
-      foreach ($m in [regex]::Matches($p, '<w:(?:t|delText)[^>]*>([^<]*)</w:(?:t|delText)>')) {
-        [void]$changedText.Append($m.Groups[1].Value); [void]$changedText.Append(' ')
-      }
-      [void]$changedText.Append("`n")
+      # strip ALL tags from the changed paragraph, keep the raw text (robust across run structure)
+      $ptext = [regex]::Replace($p, '<[^>]+>', ' ')
+      [void]$changedText.Append($ptext); [void]$changedText.Append("`n")
     }
   }
   $hay = $changedText.ToString().ToLower()
