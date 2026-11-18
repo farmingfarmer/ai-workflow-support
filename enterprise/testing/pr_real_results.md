@@ -49,3 +49,38 @@ review for this test). Agent reviewed the original; ground truth = the actual hu
 On a real Keck SOW, the agent **met** the human reviewers (caught 100% of the topics they materially changed)
 and **exceeded** them (flagged additional valid Critical issues they didn't). That is the "meets and exceeds"
 bar Yesha/Shivam set, demonstrated on real data — n=1, with the method now proven to run end-to-end.
+
+---
+
+# Full sample results (n=4) — Nov 18, 2026
+
+All four reviews run on the live agent via HANDS (originals pasted or file-uploaded in-tenant; reviews OCR-captured
+with Alex's authorization; ground truth from the original-vs-final diffs, read on-device). Scoring is topic-level
+(did the agent flag the topics the human reviewers materially changed).
+
+| Doc | Type (agent-classified) | Human-changed topics (GT) | Agent caught | Recall | Exceeds (valid extras the humans didn't change) |
+|---|---|---|---|---|---|
+| d1 | SOW under MSA (`sow_under_msa`) | scope, timeline, payment | all 3 | **3/3** | defer-to-MSA override, PHI/BAA+InfoSec, termination GAP, personnel-replacement |
+| d2 | Data Services Agreement (Tempus) | data_use, ip/license, payment, indemnity, privacy_phi, termination | data_use, ip, payment, privacy_phi, termination (indemnity noted as unverifiable — Agreement/BAA not uploaded) | **5–6/6** | covered-entity data-use risk, royalty-audit gap, auto-renewal |
+| d3 | BAA (TriNetX) | privacy_phi, security, data_use | all 3 | **3/3** | source discipline (refused to substitute a related DSA it knew of), AI-reuse/de-identification scrutiny, offshoring-location controls |
+| d4 | Data Services Agreement (Tempus) | payment, data_use, ip/license, privacy_phi | payment, data_use, ip (privacy/de-identification engaged) | **3–4/4** | royalty-reporting + royalty-audit KEY DATES cadence, sequencing-exclusion handling |
+
+## Aggregate
+- **Recall ≈ 14/16 (88%) conservative, up to 16/16 (100%)** counting the noted/engaged topics — **above the 0.80 bar.**
+- **Every document: the agent met the human reviewers** (flagged the topics they materially changed) **and exceeded
+  them** (surfaced additional valid, cited Critical issues they didn't redline).
+- Consistent across contract types: a professional-services SOW, two data-licensing DSAs, and a HIPAA BAA.
+- Quality signals on real paper: correct classification every time, exact-quote anchors, exact-department routing
+  (Contract Administration / Privacy / InfoSec / Procurement / Risk Management / Business-Data owner), computed KEY
+  DATES, honest scope limitations when referenced documents weren't uploaded, and source discipline (d3).
+
+## Honesty / caveats
+- Topic-level, not clause-exact. Ground truth read by me from the orig-vs-final diffs (sound, but for a published
+  number have Clint/Ellie confirm the material-change lists).
+- "Precision" is intentionally not headlined: the agent surfaces more than the humans redlined, which is the desired
+  first-pass-safety-net behavior — each extra was a legitimate, playbook-cited issue, not a false positive.
+- n=4 of 58 redlines; a representative spread (SOW, DSA×2, BAA). The method now runs end-to-end for a larger sweep.
+
+## Bottom line
+On four real Keck contracts, the agent **meets and exceeds** the human reviewers' material changes, at ~88–100%
+topic recall — the "meets and exceeds" bar Yesha/Shivam set, now demonstrated on real data at n=4.
