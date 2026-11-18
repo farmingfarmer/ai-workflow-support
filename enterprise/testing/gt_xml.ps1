@@ -10,10 +10,13 @@
 #>
 param(
   [string]$RefDir  = "C:\Users\NE1002766\dev\contract_agent\reference",
-  [string]$WorkDir = "C:\Users\NE1002766\dev\contract_agent\pr_work"
+  [string]$WorkDir = "C:\Users\NE1002766\dev\contract_agent\pr_work",
+  [string]$Manifest = "sample_manifest.csv",
+  [string]$SummaryName = "gt_summary.txt",
+  [string]$Prefix = "gt_"
 )
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-$manifest = Import-Csv (Join-Path $WorkDir 'sample_manifest.csv')
+$manifest = Import-Csv (Join-Path $WorkDir $Manifest)
 $allFiles = Get-ChildItem $RefDir -Recurse -File | Where-Object { $_.Extension -eq '.docx' }
 
 $TOPICS = [ordered]@{
@@ -55,8 +58,8 @@ foreach ($row in $manifest) {
   $hay = $changedText.ToString().ToLower()
   $topics=@(); foreach($k in $TOPICS.Keys){ if($hay -match $TOPICS[$k]){$topics+=$k} }
   ([pscustomobject]@{ idx=[int]$row.idx; topics=$topics; changed_paras=$nchg }) |
-    ConvertTo-Json -Compress | Out-File (Join-Path $WorkDir ("gt_{0}.json" -f $row.idx)) -Encoding UTF8
+    ConvertTo-Json -Compress | Out-File (Join-Path $WorkDir ($Prefix+$row.idx+".json")) -Encoding UTF8
   $summary += 'i'+$row.idx+'-'+$topics.Count+'t/'+$nchg+'p'
 }
-($summary -join '_') | Out-File (Join-Path $WorkDir 'gt_summary.txt') -Encoding ascii
+($summary -join '_') | Out-File (Join-Path $WorkDir $SummaryName) -Encoding ascii
 "GTXML_DONE " + ($summary -join ' ')
