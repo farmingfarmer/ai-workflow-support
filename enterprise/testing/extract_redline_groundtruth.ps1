@@ -41,8 +41,8 @@ function Get-Changes($path) {
   [pscustomobject]@{ ins = $ins; del = $del; com = $com }
 }
 
-$files = Get-ChildItem $RefDir -Recurse -File -Include *.docx |
-         Where-Object { $_.Name -match 'redline|red line|markup|tracked|comment' }
+# Process ALL .docx; the actual tracked-change count (not the filename) decides which are redlines.
+$files = Get-ChildItem $RefDir -Recurse -File | Where-Object { $_.Extension -eq '.docx' }
 
 $rows = @(); $i = 0
 foreach ($f in $files) {
@@ -61,4 +61,4 @@ $withChg = $rows | Where-Object { $_.has_changes -eq 1 }
 $tc = ($rows | Measure-Object tracked_changes -Sum).Sum
 $sorted = ($withChg | Sort-Object tracked_changes | Select-Object -ExpandProperty tracked_changes)
 $median = if ($sorted.Count) { $sorted[[math]::Floor($sorted.Count/2)] } else { 0 }
-"REDLINE_DOCS=$($rows.Count) WITH_TRACKED_CHANGES=$($withChg.Count) TOTAL_CHANGES=$tc MEDIAN_PER_DOC=$median MAX=$(($rows | Measure-Object tracked_changes -Maximum).Maximum) CSV=$OutCsv"
+"DOCX=$($rows.Count) WITH_TRACKED_CHANGES=$($withChg.Count) TOTAL_CHANGES=$tc MEDIAN_PER_DOC=$median MAX=$(($rows | Measure-Object tracked_changes -Maximum).Maximum) CSV=$OutCsv"
