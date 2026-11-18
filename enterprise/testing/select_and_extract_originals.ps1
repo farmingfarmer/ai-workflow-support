@@ -60,10 +60,10 @@ foreach ($s in $sel) {
     $doc = $word.Documents.Open($s.full, $false, $true)   # confirmConversions=false, readOnly=true
     try { $doc.Revisions.RejectAll() } catch { while ($doc.Revisions.Count -gt 0) { $doc.Revisions.Item(1).Reject() } }
     $out = Join-Path $WorkDir ("orig_{0}.txt" -f $s.idx)
-    $doc.SaveAs([ref]$out, [ref]2)   # 2 = wdFormatText
+    ($doc.Content.Text) | Out-File -FilePath $out -Encoding UTF8   # robust: read text directly, no SaveAs
     $doc.Close($false)
     $ok++
-  } catch { }
+  } catch { $_.Exception.Message | Out-File -Append (Join-Path $WorkDir 'extract_errors.txt') }
 }
 $word.Quit() | Out-Null
 
