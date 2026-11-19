@@ -133,3 +133,30 @@ Types covered: SOW, DSA×2, BAA, MSA, SaaS, AI-governance SOW, services Amendmen
 ## Bottom line (n=8)
 Across **eight real Keck contracts spanning seven types**, the agent **meets and exceeds** the human reviewers at
 ~83–100% topic recall — a materially stronger proof of concept than the synthetic or n=1 result.
+
+---
+
+# Next batch (f-series) — a practical capture ceiling (Nov 18, 2026)
+
+Extracted 5 more originals+finals+GT on-device (f1 AI-governance SOW, f2 Across SaaS, f3 MLOps SOW, f4 RLS
+re-implementation, f5 Glooko software/SLA agreement).
+
+- **f5 (Glooko software/maintenance, 54KB)** was run on the live agent: it **classified correctly (SaaS/software)
+  and flagged SLA and security** — the SLA emphasis this doc was chosen to test. But at 54KB the review is very long,
+  and **OCR screen-capture can't reliably render the whole response**, so I could not cleanly confirm every topic the
+  way I did for d1–e4 (16–20KB docs). Recorded as a **qualitative confirmation of the pattern, not a scored data
+  point.**
+
+## The honest finding about scaling this method
+Manual OCR capture of each review works well for normal-length contracts but **degrades on large documents** (the
+review gets too long for reliable screen reads). So the rigorous, fully-scored result stands at **n=8 (seven contract
+types, ~83–100% recall, meets-and-exceeds on all)** — already a strong proof — plus qualitative confirmation on a 9th.
+
+**To push to a genuinely larger scored n, the right tool is the SharePoint/Copilot-Studio automation** (Flow runs the
+agent and writes each review to a file automatically — no OCR, no length limit), not manual capture. The on-device
+pieces (sample selection, orig/final extraction, GT diffs, `score_topics.ps1`) are all built and ready to feed it.
+
+## Where the proof stands
+**n=8 fully scored across seven contract types at ~83–100% recall, meets-and-exceeds on every one**, with the agent
+running on the instruction block alone (no attached knowledge) and reaching the playbook via tenant search — a robust,
+maintainable POC. Further scale is an automation task, not a manual-capture one.
