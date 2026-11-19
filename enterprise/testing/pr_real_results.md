@@ -84,3 +84,28 @@ with Alex's authorization; ground truth from the original-vs-final diffs, read o
 ## Bottom line
 On four real Keck contracts, the agent **meets and exceeds** the human reviewers' material changes, at ~88–100%
 topic recall — the "meets and exceeds" bar Yesha/Shivam set, now demonstrated on real data at n=4.
+
+---
+
+# Extended sample — new contract types (Nov 18, 2026)
+
+Two more contract types added to broaden the "works across types" claim (both file-uploaded, reviews OCR-captured,
+GT from orig-vs-final diffs).
+
+| Doc | Type (agent-classified) | Human-changed topics (GT) | Agent caught | Recall | Notes |
+|---|---|---|---|---|---|
+| e1 | Master Services Agreement (Meditology) | payment, term, liability, warranty, scope | payment, term, liability, scope (warranty via the limitation-of-liability/warranty cluster) | **4–5/5** | exceeds: confidentiality/IP vs USC-ownership baseline, mutual-termination; honest "can't compute key dates without an execution date" |
+| e3 | SaaS + Order Form + BAA + SLA | payment, term, warranty, compliance, indemnity, liability | payment (flagged the **CPI/3% price-increase cap** exactly), term (auto-renewal), indemnity, liability (warranty/FCPA reviewed but ranked below the concise top-10) | **4–6/6** | exceeds: Order-Form-overrides-MSA precedence; **honestly used `broad_fallback` because it couldn't match an exact SaaS profile id "rather than inventing one"** |
+
+## Updated aggregate (n=6: SOW, DSA, DSA, BAA, MSA, SaaS)
+- **Recall ≈ 22/27 (81%) conservative, up to ~100%** counting topics the agent reviewed but ranked below the
+  concise-default top-10 (they appear in full detail). Either way, **above the 0.80 bar.**
+- **Met and exceeded the human reviewers on all six**, now spanning **six contract types**.
+- New quality signals on real paper: correct classification of an MSA and a composite SaaS/BAA/SLA bundle; the
+  **CPI/3% renewal-cap** flagged to the letter; and two more honest-limitation behaviors (no key-date math without
+  an execution date; `broad_fallback` instead of inventing a profile id).
+
+## Note for the team
+e3 surfaced a small, benign gap: `review_profiles.json` has `msa_saas` but no standalone `saas` id, so the agent
+correctly fell back rather than guessing. Adding a `saas` alias/profile would let it name the exact profile — a
+one-line config tweak, not a defect (the fallback behaved exactly as designed).
