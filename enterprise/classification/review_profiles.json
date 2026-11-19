@@ -13,6 +13,12 @@
       "requirements": ["term", "renewal_no_autorenew", "price_increase_cap", "termination_convenience", "termination_cause_cure", "payment_timing", "data_rights_ip", "data_use_ai_training", "security_review", "uptime_sla", "limitation_of_liability", "indemnity_direction", "insurance", "governing_law", "incorporated_linked_terms"]
     },
     {
+      "id": "saas",
+      "label": "SaaS / software subscription (USC as subscriber/licensee; often with an Order Form, BAA, and SLA)",
+      "match": {"type": ["SaaS", "subscription", "software agreement", "software license", "license"], "domain": ["software", "saas", "ehr", "it_infrastructure"]},
+      "requirements": ["term", "renewal_no_autorenew", "price_increase_cap", "payment_timing", "not_to_exceed_tm", "uptime_sla", "maintenance_sla", "data_rights_ip", "data_use_ai_training", "secondary_use_restriction", "baa_required_if_phi", "security_review", "security_safeguards", "warranty", "indemnity_direction", "limitation_of_liability", "insurance", "termination_convenience", "termination_cause_cure", "incorporated_linked_terms", "governing_law"]
+    },
+    {
       "id": "sow_under_msa",
       "label": "SOW / order / quote under a governing MSA",
       "match": {"type": ["SOW", "order", "quote"], "domain": ["any"]},
