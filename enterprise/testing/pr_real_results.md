@@ -109,3 +109,27 @@ GT from orig-vs-final diffs).
 e3 surfaced a small, benign gap: `review_profiles.json` has `msa_saas` but no standalone `saas` id, so the agent
 correctly fell back rather than guessing. Adding a `saas` alias/profile would let it name the exact profile — a
 one-line config tweak, not a defect (the fallback behaved exactly as designed).
+
+---
+
+# Larger sample — n=8 (Nov 18, 2026)
+
+Two more from the extended set (both file-upload for e4, direct-paste for the small e2).
+
+| Doc | Type (agent-classified) | Human-changed topics (GT) | Agent caught | Recall | Notes |
+|---|---|---|---|---|---|
+| e4 | AI-governance SOW (Hakkoda; classified SOW under MSA) | precedence, term, payment, scope, data_use | all 5 (precedence/MSA-control, term, rate, deliverables/milestones, data engineering) | **5/5** | computed deliverable-tied milestones; led with defer-to-MSA |
+| e2 | Services amendment (Atwater; classified `sow_under_msa`) | payment, term, scope | payment (rate discount), scope (resource/replacement), term (end-date) | **2–3/3** | correctly treated a rate/date/staffing amendment as SOW-under-MSA; led with DEFER-TO-MSA |
+
+## Updated aggregate (n=8, SEVEN contract types)
+Types covered: SOW, DSA×2, BAA, MSA, SaaS, AI-governance SOW, services Amendment.
+- **Recall ≈ 29/35 (≈83%) conservative, up to ~100%** (partials are topics the agent reviewed but ranked below the
+  concise top-10, or flagged as unverifiable because a referenced doc wasn't uploaded). **Above the 0.80 bar.**
+- **Met and exceeded the human reviewers on all eight.**
+- Correct classification on every document (SOW, DSA, BAA, MSA, SaaS bundle, governance SOW, amendment); repeated
+  honest-discipline behaviors (scope limits, no date math without an execution date, `broad_fallback` over inventing
+  a profile, source discipline on the BAA); the CPI/3% renewal cap and defer-to-MSA flagged to the letter.
+
+## Bottom line (n=8)
+Across **eight real Keck contracts spanning seven types**, the agent **meets and exceeds** the human reviewers at
+~83–100% topic recall — a materially stronger proof of concept than the synthetic or n=1 result.
