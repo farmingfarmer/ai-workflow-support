@@ -216,3 +216,22 @@ serves as the parity cross-check for the harness.
 one command runs `-From 1 -To 56` and `aggregate_pr.ps1` prints the corpus recall. Everything stays in-tenant;
 only the scorecard numbers leave. Scoring is a keyword proxy - confirm change-lists with Contracting before any
 published figure.
+
+---
+
+# Automated run via the LIVE agent (Nov 20, 2026) - n=15 @ 98.4%
+
+No Azure OpenAI endpoint was available, so we ran the batch through the **live Contract Review Agent v1 POC in
+Copilot** (in-tenant), driven via HANDS: `stage.ps1` loads each original to the clipboard, paste+send in the agent,
+Ctrl+A/Ctrl+C captures the whole page, `capscore.ps1` slices the review and scores it against `gtdiff_aNN.txt`.
+
+**Scorecard: scored=15, recall=98.4% (61/62 topics), 15/15 cleared the 80% bar, 14/15 full coverage.**
+Docs: a08, a09, a13, a27, a32, a36, a37, a38, a39, a40, a41, a42, a44, a45, a51 (SOWs, a terms-of-use addendum,
+amendments, a license, etc.). The one non-perfect doc (a51) was 4/5. This is the automated keyword scorer - a
+reproducible proxy consistent with the hand-verified subset; confirm change-lists with Contracting before publishing.
+
+**Capture ceiling found:** after ~15-20 consecutive chats the whole-page clipboard capture degrades (grabs
+accumulated/empty page content), so two docs (a52, a54) were excluded and a49/a50 failed. A page reload mid-run made
+it worse. Continuing past ~15 reliably needs a **fresh agent chat/tab** (reset the session), and the remaining docs
+are mostly larger (>16KB) so they need the **file-upload** path rather than paste. The stakeholder deck
+(`stakeholder_presentation.html`) and speaker notes were updated to the n=15 @ 98% number.
