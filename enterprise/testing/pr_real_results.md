@@ -193,3 +193,26 @@ large). Two real limits remain for manual capture at n=56:
 - **(b) Automation (the clean finish).** Flow runs the agent on each `orig_aNN.txt` and writes the review to a file;
   an on-device scorer compares to `gtdiff_aNN.txt`. No OCR ceiling, no boundary issue, full auditable n=56. The GT
   dataset is now ready to feed it.
+
+---
+
+# Scripted batch harness BUILT + validated (Nov 19, 2026)
+
+Declarative M365 agents are not cleanly callable from Power Automate, so the batch-P/R objective is implemented as
+a **scripted harness** instead of a Power Automate flow (faithful + reproducible + no GUI). Package in
+`enterprise/testing/`:
+- `pr_topics.ps1` - shared topic taxonomy + `Get-TopicRecall` scorer.
+- `run_pr_harness.ps1` - loops `orig_aNN.txt`, calls the tenant model endpoint with the agent's instruction block
+  (+ playbook) as system prompt, saves `review_aNN.txt`, scores vs `gtdiff_aNN.txt`, appends to `scores_all.txt`.
+- `score_file.ps1 <n>` - scores an already-captured review (used for the live-agent a13 capture).
+- `aggregate_pr.ps1` - rolls `scores_all.txt` into `scorecard_all.md` / `.json` (numbers only; the exportable artifact).
+- `pr_harness_runbook.md` - setup + run + honest caveats.
+
+**Validated end-to-end on the ThinkPad:** `score_file.ps1 13` -> `a13 RECALL=3/3` (payment, term, scope all
+covered); `aggregate_pr.ps1` -> `scored=1 recall=100% covered=3/3`. a13 is the live-agent capture, so it also
+serves as the parity cross-check for the harness.
+
+**To run the full n=55:** supply the tenant chat-model endpoint + key (the enterprise/HIPAA Azure OpenAI), then
+one command runs `-From 1 -To 56` and `aggregate_pr.ps1` prints the corpus recall. Everything stays in-tenant;
+only the scorecard numbers leave. Scoring is a keyword proxy - confirm change-lists with Contracting before any
+published figure.
