@@ -1,0 +1,233 @@
+<title>Speaker Notes, Contract Agent Stakeholder Briefing</title>
+<style>
+  :root{
+    --navy:#1b3a5b; --ink:#1b2430; --ink-soft:#44515f; --faint:#6a7684;
+    --paper:#f7f6f3; --card:#ffffff; --rule:#e3dfd7;
+    --gold:#9a6a16; --gold-bg:#faf2df;
+    --say:#13324e; --say-bg:#eef3f8; --say-rule:#2f6aa3;
+    --ask:#5a3a86; --ask-bg:#f1edf8;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:var(--sans); color:var(--ink); background:var(--paper); line-height:1.55;
+    max-width:50rem; margin:0 auto; padding:2rem 1.3rem 5rem; font-size:16px;}
+  header.top{border-bottom:3px solid var(--navy); padding-bottom:1rem; margin-bottom:1.5rem;}
+  .kick{text-transform:uppercase; letter-spacing:.14em; font-size:.7rem; font-weight:800; color:var(--gold); margin-bottom:.4rem;}
+  h1{font-size:1.7rem; line-height:1.15; margin:0 0 .3rem;}
+  .sub{color:var(--ink-soft); font-size:.95rem;}
+  .how{background:var(--gold-bg); border:1px solid #ecdcb4; border-radius:10px; padding:.8rem 1rem; margin:1.1rem 0 0; font-size:.9rem; color:#5f4a1c;}
+  .how b{color:#3f3212;}
+
+  .slide{border:1px solid var(--rule); border-radius:14px; background:var(--card); padding:1.2rem 1.3rem;
+    margin:1.3rem 0; box-shadow:0 1px 2px rgba(27,36,48,.04),0 6px 18px rgba(27,36,48,.04);}
+  .slide > .hd{display:flex; align-items:baseline; gap:.7rem; margin-bottom:.3rem; flex-wrap:wrap;}
+  .slide .no{background:var(--navy); color:#fff; font-weight:800; font-size:.8rem; border-radius:7px; padding:.15rem .5rem; font-variant-numeric:tabular-nums;}
+  .slide .ti{font-weight:800; font-size:1.12rem; letter-spacing:-.01em;}
+  .slide .onscreen{font-size:.8rem; color:var(--faint); margin-bottom:.7rem;}
+
+  .say{border-left:4px solid var(--say-rule); background:var(--say-bg); border-radius:0 8px 8px 0;
+    padding:.75rem 1rem; margin:.5rem 0; color:var(--say); font-size:1.04rem; line-height:1.6;}
+  .say .lbl{display:block; text-transform:uppercase; letter-spacing:.09em; font-size:.66rem; font-weight:800; color:var(--say-rule); margin-bottom:.35rem;}
+  .say em{font-style:italic;}
+  .say .analogy{display:block; margin-top:.55rem; font-family:var(--serif); font-style:italic; color:#2a4258; font-size:1rem;}
+
+  .ask{background:var(--ask-bg); border:1px solid #d8cdea; border-radius:9px; padding:.7rem .95rem; margin:.7rem 0 0; font-size:.92rem;}
+  .ask .lbl{text-transform:uppercase; letter-spacing:.08em; font-size:.64rem; font-weight:800; color:var(--ask); display:block; margin-bottom:.4rem;}
+  .ask p{margin:.3rem 0;} .ask .q{font-weight:700; color:var(--ink);} .ask .a{color:var(--ink-soft);}
+
+  .cue{font-size:.82rem; color:var(--gold); font-weight:700; margin-top:.5rem;}
+  h2.qa{font-size:1.25rem; margin:2.2rem 0 .3rem; padding-top:1rem; border-top:2px solid var(--rule);}
+  footer{margin-top:2rem; padding-top:.8rem; border-top:1px solid var(--rule); color:var(--faint); font-size:.8rem;}
+  @media print{ body{max-width:none;} .slide{break-inside:avoid;} }
+</style>
+
+<header class="top">
+  <div class="kick">Speaker script · for Alexander · read from this, don't read the slides</div>
+  <h1>Contract Review Agent, Stakeholder Briefing</h1>
+  <div class="sub">13 slides · about 12 to 15 minutes · the <b>SAY</b> blocks are yours to read nearly verbatim; the <b>IF ASKED</b> blocks pre-answer the likely questions.</div>
+  <div class="how"><b>How to run it:</b> open <code>stakeholder_presentation.html</code> full-screen, keep this file on a second screen or printed. Advance the deck with the arrow keys or spacebar. Numbers here match the slide numbers.</div>
+</header>
+
+<!-- 1 -->
+<div class="slide">
+  <div class="hd"><span class="no">01</span><span class="ti">Title</span></div>
+  <div class="onscreen">On screen: "The Contract Review Agent" title.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "Thanks everyone. In the next twelve minutes I want to show you something we built to solve a very concrete problem, and more importantly, I want to show you the evidence that it actually works. This is the Contract Review Agent. It gives every contract a thorough first-pass review against our own Keck playbook, it runs on tools we already own, and we've tested it on our real agreements. Let me start with why it exists."
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="slide">
+  <div class="hd"><span class="no">02</span><span class="ti">The problem</span></div>
+  <div class="onscreen">On screen: "The contract team was cut to one."</div>
+  <div class="say"><span class="lbl">Say</span>
+    "After the restructuring, our contract office went down to essentially one person. But the contracts didn't stop coming. So now department leads, people who are brilliant at their jobs but who don't normally read legal agreements, are the ones who have to pre-review a contract before it moves. That's slow, it's inconsistent from person to person, and it's risky. One missed clause can cost real money or open a compliance gap.
+    <span class="analogy">It's a bit like losing the goalkeeper and asking the forwards to also guard the net. They'll do their best, but that's not the position they trained for.</span>
+    What this agent does is give every one of those leads an expert first reader, from day one, at no extra license cost."
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="slide">
+  <div class="hd"><span class="no">03</span><span class="ti">What it is</span></div>
+  <div class="onscreen">On screen: four cards, on tools we own · one file to maintain · cites everything · prepares not decides.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "Here's what it is in one breath: a tireless first-pass reviewer that reads the contract, flags the risks, and shows its work. Four things I want you to take away. One, it runs inside Microsoft Copilot, which we already pay for, and you don't need a premium license to use it. Two, its entire brain is a single text file that we edit, so there's no new system for anyone to build or babysit. Three, every single thing it says is cited, to the exact spot in the contract and the exact rule in our playbook. And four, and this one is important, it prepares the work but a human always decides. It never signs anything."
+  </div>
+  <div class="ask"><span class="lbl">If asked, does it need a special license?</span>
+    <p class="q">"Does everyone need an expensive Copilot license for this?"</p>
+    <p class="a">"No. A shared agent like this needs no premium license to use. People open it in the Copilot app or the browser, not inside Word."</p>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="slide">
+  <div class="hd"><span class="no">04</span><span class="ti">What it does</span></div>
+  <div class="onscreen">On screen: six capability cards.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "A little more on what it actually does. It gives you a short plain-language summary and a ranked list of the risks and the missing protections, no jargon to decode. It recognizes the type of contract, so it reviews a HIPAA agreement differently from a software subscription, and only checks what's relevant. On request it will propose the actual edit for a problem clause. It automatically flags our healthcare triggers like HIPAA and Open Payments, and the big one for us, any language that would let a vendor use our data to train their AI. It even computes renewal and notice dates so nothing auto-renews on us by surprise.
+    <span class="analogy">And one I love: if someone hides a line in the document telling an AI reviewer to call it 'compliant,' it catches that and reports it, the way a good auditor notices someone slipped an extra line into the ledger.</span>"
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="slide">
+  <div class="hd"><span class="no">05</span><span class="ti">The trust question</span></div>
+  <div class="onscreen">On screen: "That's a nice demo. But does it catch what our experts catch?"</div>
+  <div class="say"><span class="lbl">Say</span>
+    "Now, at this point in any AI demo, there's a fair question everyone in this room should be asking. That's a nice demo, but does it actually catch what our experienced people catch? A tool that looks impressive and quietly misses things is worse than no tool at all. So we didn't stop at a demo. We tested it against our own real, already-negotiated contracts, and we measured it. Let me show you exactly how."
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="slide">
+  <div class="hd"><span class="no">06</span><span class="ti">How we tested it</span></div>
+  <div class="onscreen">On screen: three-step flow, original → agent review → compare to experts.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "We wanted a fair, honest test, not a staged one. So we used real contracts where we already know the right answer. For each one we had two versions: the original the vendor sent us, and the final version after our own experts marked it up. The difference between those two is the answer key, it's the list of things our people decided were worth changing.
+    <span class="analogy">It's an open-book exam where we already have the teacher's marked copy. We hand the agent only the blank original, never the answer key, and then we check its work against what our experts actually changed.</span>
+    And we didn't do this once. We did it across seven different kinds of contract, so it's not one lucky example."
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="slide">
+  <div class="hd"><span class="no">07</span><span class="ti">What the score means</span></div>
+  <div class="onscreen">On screen: "Catch rate" explained; smoke-detector analogy.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "One number to understand, and I'll keep it in plain English. We call it the catch rate. Out of everything our experts flagged as worth changing, how much did the agent also catch? High catch rate means it rarely misses a real problem, which is exactly what you want from a first reader.
+    <span class="analogy">Think of a smoke detector. The number that matters is how reliably it goes off when there's an actual fire. Missing a fire is the expensive failure. An occasional extra beep that you check and wave off costs you a few seconds.</span>
+    So we deliberately tuned it to raise more concerns rather than fewer, a wide safety net, and every extra one we checked turned out to be a real, cited issue, not noise."
+  </div>
+  <div class="ask"><span class="lbl">If asked, about false alarms</span>
+    <p class="q">"Doesn't flagging extra things waste our reviewers' time?"</p>
+    <p class="a">"Each extra is cited and takes seconds to check, and it's usually a real issue our humans simply didn't prioritize. For a first-pass safety net, I'd much rather it over-flag than hide something. A reviewer can always dismiss; they can't catch what they never saw."</p>
+  </div>
+</div>
+
+<!-- 8 -->
+<div class="slide">
+  <div class="hd"><span class="no">08</span><span class="ti">The results</span></div>
+  <div class="onscreen">On screen: gauge 83–100%, 8/8 met-and-exceeded, 7 contract types.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "Here are the results, and these are on our real contracts. The catch rate came in between roughly 83 and 100 percent, comfortably above the 80 percent bar we set with the team. On every single contract we tested, eight of them, across seven different types, the agent didn't just meet our human reviewers, it met them and then flagged additional valid issues they hadn't. Services agreements, data agreements, a HIPAA agreement, a master services agreement, a software subscription, an AI-governance statement of work, and an amendment. Every one cleared the bar."
+  </div>
+  <div class="ask"><span class="lbl">If asked, about the range and the sample size</span>
+    <p class="q">"Why a range, and why only eight?"</p>
+    <p class="a">"The range is strict versus generous counting of the lower-ranked items; even the strict end clears 80 percent. On eight: that's eight contracts scored rigorously, by hand, against the real answer key. We chose a trustworthy number over a rushed big one, and, as the next slide shows, we've now built the answer key for the whole library so we can scale it cleanly. I'd also want our Contracting colleagues to co-sign the change lists before we publish an official figure."</p>
+  </div>
+</div>
+
+<!-- 9 -->
+<div class="slide">
+  <div class="hd"><span class="no">09</span><span class="ti">Met and exceeded</span></div>
+  <div class="onscreen">On screen: three real catches beyond the humans.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "Let me make 'exceeded' concrete, because these are real examples from the test. On one statement of work, it flagged language that quietly overrode the governing master agreement, and it named the right department to escalate to. On another, it noticed the work would touch protected health information and routed a security review, even though the contract never said so in plain terms. And my favorite sign of maturity: it knows its limits. On a HIPAA agreement it refused to borrow from a related document it hadn't been handed, and on another it declined to calculate deadlines because there was no signature date. It would rather tell you what it can't see than guess. That honesty is exactly what you want in a reviewer."
+  </div>
+</div>
+
+<!-- 10 -->
+<div class="slide">
+  <div class="hd"><span class="no">10</span><span class="ti">Scaling the proof</span></div>
+  <div class="onscreen">On screen: 55 of 56 answer keys built · automated scoring · stays in-tenant.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "So where do we go from eight. We've now built the answer key for essentially our entire redline library, 55 of 56 contracts, and we've built an automated harness that runs the agent's exact logic over all of them and scores each one with no manual effort. Crucially, all of this happens inside Keck's own Microsoft environment. The contracts never leave; only the final numbers do. So the honest status is: the rigorous, fully-scored proof stands at eight contracts today, and the full-library number is a short automated run away."
+  </div>
+  <div class="ask"><span class="lbl">If asked, about data security</span>
+    <p class="q">"Where does our contract data go? Does the vendor's AI learn from it?"</p>
+    <p class="a">"It stays inside our Microsoft tenant, under our existing agreements. Our standing rule, which the agent enforces, is that no vendor may use our data to train their AI. For the testing, everything runs in-tenant and only the score numbers ever leave."</p>
+  </div>
+</div>
+
+<!-- 11 -->
+<div class="slide">
+  <div class="hd"><span class="no">11</span><span class="ti">The guardrail</span></div>
+  <div class="onscreen">On screen: what it does ✓ / what it never does ✕.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "I want to be very clear about the guardrail, because it's deliberate. It reads the contract, proposes edits marked as draft, cites everything, and routes issues to the right people. What it never does: approve or sign a contract, give legal advice, change the document itself, or invent a standard we don't actually have. 'Propose, don't decide' is a governance choice we made on purpose. The human review gate stays exactly where it is.
+    <span class="analogy">Think of it as a very well-prepared junior analyst who hands you a marked-up draft. You still make every call. They just make sure nothing reaches your desk unexamined.</span>"
+  </div>
+  <div class="ask"><span class="lbl">If asked, does this replace people?</span>
+    <p class="q">"Are we replacing the contract team or our lawyers with this?"</p>
+    <p class="a">"No. It does the first pass so our people spend their judgment where it matters, on the decisions, not on reading every line cold. It prepares; humans decide. It makes the remaining team and the department leads faster and more consistent, not redundant."</p>
+  </div>
+</div>
+
+<!-- 12 -->
+<div class="slide">
+  <div class="hd"><span class="no">12</span><span class="ti">What it means · next steps</span></div>
+  <div class="onscreen">On screen: the headline line plus three next steps.</div>
+  <div class="say"><span class="lbl">Say</span>
+    "So to bring it together: on real Keck contracts, across seven types, the agent catches what our experts catch and more, it cites everything, and it's honest about what it can't see. Three next steps. One, we confirm the numbers jointly with Contracting and then publish the catch-rate figure. Two, we run the full library through the automated harness for the complete number. Three, we put it in front of a first pilot reviewer and gather real feedback. And the bigger picture: this is a reusable pattern, a playbook plus a hardened Copilot agent, that we can point at the next enterprise problem."
+  </div>
+  <div class="ask"><span class="lbl">If asked, cost and timeline</span>
+    <p class="q">"What did this cost and how long did it take?"</p>
+    <p class="a">"It took a couple of weeks, it runs on tools we already license, and it's maintained by editing one text file. There's no new platform cost and nothing for our team to operate."</p>
+  </div>
+  <div class="ask"><span class="lbl">If asked, when can we use it?</span>
+    <p class="q">"When can my team start using it?"</p>
+    <p class="a">"It's live now. The next step is a short pilot with a first reviewer so we tune it to how people actually work before we open it up more widely. I'd welcome a volunteer from this room."</p>
+  </div>
+</div>
+
+<!-- 13 -->
+<div class="slide">
+  <div class="hd"><span class="no">13</span><span class="ti">Close</span></div>
+  <div class="onscreen">On screen: "Built on what we own. Proven on what we sign."</div>
+  <div class="say"><span class="lbl">Say</span>
+    "Built on what we own, and proven on what we sign. Thank you. I'm happy to take any questions."
+  </div>
+</div>
+
+<h2 class="qa">Catch-all Q&amp;A, likely questions not tied to one slide</h2>
+<div class="slide">
+  <div class="ask"><span class="lbl">Accuracy / hallucination</span>
+    <p class="q">"How do we know it isn't just making things up?"</p>
+    <p class="a">"Every finding quotes the exact clause and the exact playbook rule behind it, and it re-checks its own citations and drops anything it can't support. We also hardened it against manipulation, we ran eleven adversarial tests before release and fixed every issue. And the whole point of today is that we measured it against real answers, not vibes."</p>
+  </div>
+  <div class="ask"><span class="lbl">Very long contracts</span>
+    <p class="q">"What about a hundred-page agreement?"</p>
+    <p class="a">"It reviews in full and is honest about coverage. For the really large ones we have a documented section-by-section workflow so nothing gets skimmed."</p>
+  </div>
+  <div class="ask"><span class="lbl">Does it edit our Word document?</span>
+    <p class="q">"Does it change the actual contract file?"</p>
+    <p class="a">"No. It proposes edits as a suggested insert, delete, or replace per clause, all marked draft and routed to Legal. It never touches the source document and never approves it."</p>
+  </div>
+  <div class="ask"><span class="lbl">Contract types we didn't test</span>
+    <p class="q">"What happens with a contract type you haven't tried?"</p>
+    <p class="a">"It recognizes the type first. If it isn't confident, it says so and reviews broadly against our general rules rather than pretending. It would rather admit uncertainty than invent an answer, which we saw it do repeatedly in testing."</p>
+  </div>
+  <div class="ask"><span class="lbl">What AI model is behind it?</span>
+    <p class="q">"Which AI is this, and can it change under us?"</p>
+    <p class="a">"It's a current GPT-4-class model delivered through Microsoft's enterprise stack. Microsoft can update the underlying model, so we track that as a governance item, but our instructions and our playbook, the part that makes it a Keck reviewer, are ours and don't change without us."</p>
+  </div>
+  <div class="ask"><span class="lbl">Who owns and maintains it?</span>
+    <p class="q">"If you get hit by a bus, who runs this?"</p>
+    <p class="a">"There's nothing to 'run.' It's one text file in a shared Microsoft agent. Any trained member of the team can update it, and the program owns it, not a single person or a custom piece of software."</p>
+  </div>
+</div>
+
+<footer>Speaker notes · Contract Review Agent stakeholder briefing · prepared for Alexander · November 2026. Pair with <code>stakeholder_presentation.html</code>.</footer>

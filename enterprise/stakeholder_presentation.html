@@ -1,0 +1,364 @@
+<title>Keck Contract Review Agent, Stakeholder Briefing</title>
+<style>
+  :root{
+    --navy:#1b3a5b; --navy-deep:#132b44; --ink:#1b2430; --ink-soft:#4a5765;
+    --paper:#f7f5f1; --card:#ffffff; --rule:#e2ded6;
+    --gold:#c0882c; --gold-soft:#f3e7cf;
+    --green:#2e7d4f; --green-soft:#e2f0e7;
+    --red:#9a3024;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans); color:var(--ink); background:var(--paper);
+    scroll-snap-type:y mandatory; overflow-x:hidden; -webkit-font-smoothing:antialiased;}
+  .nums{font-variant-numeric:tabular-nums;}
+
+  /* progress + counter */
+  #bar{position:fixed; top:0; left:0; height:4px; background:var(--gold); width:0; z-index:50; transition:width .2s ease;}
+  #counter{position:fixed; bottom:1.1rem; right:1.3rem; z-index:50; font-size:.8rem; font-weight:700;
+    color:var(--ink-soft); background:rgba(255,255,255,.75); padding:.25rem .6rem; border-radius:999px; letter-spacing:.03em;}
+  .slide.dark ~ #counter{color:#fff;}
+  #hint{position:fixed; bottom:1.1rem; left:1.3rem; z-index:50; font-size:.74rem; color:var(--ink-soft); opacity:.65;}
+
+  section.slide{min-height:100vh; width:100%; scroll-snap-align:start; display:flex; flex-direction:column;
+    justify-content:center; padding:clamp(2rem,6vw,6rem) clamp(1.5rem,8vw,9rem); position:relative;}
+  .wrap{width:100%; max-width:62rem; margin:0 auto;}
+
+  .kicker{display:inline-block; text-transform:uppercase; letter-spacing:.18em; font-size:.72rem; font-weight:800;
+    color:var(--gold); margin-bottom:1.1rem;}
+  .slide.dark .kicker{color:#e7c073;}
+  h1{font-size:clamp(2.4rem,6vw,4.4rem); line-height:1.04; letter-spacing:-.02em; font-weight:800; text-wrap:balance;}
+  h2{font-size:clamp(1.7rem,4vw,2.9rem); line-height:1.08; letter-spacing:-.015em; font-weight:800; text-wrap:balance; margin-bottom:1.1rem;}
+  p.lead{font-size:clamp(1.1rem,2.1vw,1.5rem); line-height:1.5; color:var(--ink-soft); max-width:42rem;}
+  .slide.dark{background:var(--navy); color:#f4f7fb;}
+  .slide.dark h1,.slide.dark h2{color:#fff;}
+  .slide.dark p.lead{color:#c7d6e6;}
+  .serif{font-family:var(--serif);}
+
+  /* title slide */
+  .title-meta{margin-top:2rem; display:flex; flex-wrap:wrap; gap:.5rem 1.6rem; font-size:.92rem; color:#b7c7da;}
+  .title-meta b{color:#fff; font-weight:600;}
+  .scanline{position:absolute; inset:0; opacity:.06; pointer-events:none;
+    background:repeating-linear-gradient(90deg,#fff 0 1px,transparent 1px 44px);}
+
+  /* attribute cards */
+  .grid{display:grid; gap:1rem; margin-top:1.8rem;}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .card{background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:1.3rem 1.3rem;
+    box-shadow:0 1px 2px rgba(27,36,48,.05),0 8px 24px rgba(27,36,48,.05);}
+  .card .ic{font-size:1.5rem; margin-bottom:.5rem;}
+  .card h3{font-size:1.05rem; margin-bottom:.35rem; letter-spacing:-.01em;}
+  .card p{font-size:.92rem; color:var(--ink-soft); line-height:1.45;}
+
+  /* big stats */
+  .statrow{display:flex; flex-wrap:wrap; gap:clamp(1.5rem,5vw,4rem); margin-top:1.5rem; align-items:flex-end;}
+  .bigstat .n{font-size:clamp(3.2rem,9vw,6rem); font-weight:800; line-height:.9; letter-spacing:-.03em;}
+  .bigstat .l{font-size:.95rem; color:#c7d6e6; margin-top:.7rem; max-width:15rem;}
+  .slide.dark .bigstat .n{color:#fff;} .gold{color:var(--gold);} .slide.dark .gold{color:#e7c073;}
+  .greenc{color:var(--green);} .slide.dark .greenc{color:#79d29b;}
+
+  /* gauge */
+  .gauge-wrap{display:flex; align-items:center; gap:2.2rem; flex-wrap:wrap; margin-top:1.2rem;}
+  .gauge{position:relative; width:230px; height:230px; flex:none;}
+  .gauge svg{transform:rotate(-90deg);}
+  .gauge .mid{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .gauge .mid .v{font-size:2.2rem; font-weight:800; letter-spacing:-.02em; color:#fff;}
+  .gauge .mid .k{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:#9fb3c9;}
+
+  /* flow steps */
+  .flow{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; gap:.7rem; margin-top:1.8rem;}
+  .step{background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:1.2rem; text-align:center;
+    box-shadow:0 6px 18px rgba(27,36,48,.05);}
+  .step .num{width:2rem; height:2rem; border-radius:50%; background:var(--navy); color:#fff; font-weight:800;
+    display:flex; align-items:center; justify-content:center; margin:0 auto .6rem; font-size:.9rem;}
+  .step h3{font-size:1rem; margin-bottom:.3rem;} .step p{font-size:.86rem; color:var(--ink-soft); line-height:1.4;}
+  .arrow{display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:var(--gold); font-weight:800;}
+
+  /* type chips */
+  .chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.6rem;}
+  .chip{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); color:#eaf1f8;
+    padding:.5rem .95rem; border-radius:999px; font-size:.95rem; font-weight:600;}
+
+  /* vs comparison */
+  .vs{display:grid; grid-template-columns:1fr auto 1fr; gap:1.2rem; align-items:center; margin-top:1.6rem;}
+  .vs .box{background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:1.4rem; text-align:center; box-shadow:0 6px 18px rgba(27,36,48,.05);}
+  .vs .box .big{font-size:1.5rem; font-weight:800; margin-bottom:.3rem;}
+  .vs .eq{font-size:1.6rem; font-weight:800; color:var(--gold); text-align:center;}
+
+  /* catch list */
+  .catch{display:flex; flex-direction:column; gap:.8rem; margin-top:1.5rem;}
+  .catch .row{display:flex; gap:1rem; align-items:flex-start; background:var(--card); border:1px solid var(--rule);
+    border-left:5px solid var(--green); border-radius:12px; padding:1rem 1.2rem; box-shadow:0 4px 14px rgba(27,36,48,.04);}
+  .catch .row .t{font-weight:700; color:var(--ink);} .catch .row p{font-size:.92rem; color:var(--ink-soft); margin-top:.15rem;}
+  .catch .mk{font-size:1.3rem; color:var(--green); flex:none;}
+
+  /* guardrail */
+  .guard{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.6rem;}
+  .guard .does{background:var(--green-soft); border:1px solid #bfe0cc; border-radius:14px; padding:1.3rem;}
+  .guard .not{background:#f6e7e4; border:1px solid #e4c4bd; border-radius:14px; padding:1.3rem;}
+  .guard h3{font-size:1rem; margin-bottom:.6rem; display:flex; align-items:center; gap:.4rem;}
+  .guard ul{list-style:none;} .guard li{font-size:.95rem; margin:.35rem 0; padding-left:1.3rem; position:relative; color:var(--ink);}
+  .guard .does li::before{content:"✓"; position:absolute; left:0; color:var(--green); font-weight:800;}
+  .guard .not li::before{content:"✕"; position:absolute; left:0; color:var(--red); font-weight:800;}
+
+  .pull{font-family:var(--serif); font-size:clamp(1.4rem,3.2vw,2.2rem); line-height:1.35; font-style:italic;
+    max-width:40rem; text-wrap:balance;}
+  .next{display:flex; flex-direction:column; gap:.7rem; margin-top:1.5rem;}
+  .next .n{display:flex; gap:.9rem; align-items:baseline; font-size:1.08rem;}
+  .next .n b{color:var(--gold); font-weight:800; font-variant-numeric:tabular-nums;}
+
+  .footnote{margin-top:1.6rem; font-size:.8rem; color:var(--ink-soft); opacity:.8; max-width:40rem;}
+  .slide.dark .footnote{color:#9fb3c9;}
+
+  @media (max-width:760px){
+    .g4,.g3{grid-template-columns:1fr 1fr;} .g2{grid-template-columns:1fr;}
+    .flow{grid-template-columns:1fr;} .flow .arrow{transform:rotate(90deg);}
+    .vs{grid-template-columns:1fr;} .vs .eq{transform:rotate(90deg);}
+    .guard{grid-template-columns:1fr;}
+  }
+  @media print{ body{scroll-snap-type:none;} section.slide{page-break-after:always; min-height:auto;} #bar,#counter,#hint{display:none;} }
+</style>
+
+<div id="bar"></div>
+<div id="counter">01</div>
+<div id="hint">↓ / → to advance</div>
+
+<!-- 1 TITLE -->
+<section class="slide dark">
+  <div class="scanline"></div>
+  <div class="wrap">
+    <span class="kicker">Enterprise Data Science &amp; AI · Keck Medicine of USC</span>
+    <h1>The Contract Review Agent</h1>
+    <p class="lead">An AI assistant that gives every contract a thorough first-pass review against Keck's own playbook, built on tools we already own, and proven on our real agreements.</p>
+    <div class="title-meta">
+      <span><b>Stakeholder briefing</b></span>
+      <span>Prepared by Alexander Marunycz</span>
+      <span>November 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="slide">
+  <div class="wrap">
+    <span class="kicker">Why we built it</span>
+    <h2>The contract team was cut to one. The review work didn't go away.</h2>
+    <p class="lead">After the restructuring, department leads, people who don't normally read legal agreements, are now the ones who have to pre-review contracts before they move forward. That is slow, inconsistent, and risky. A missed clause can cost real money or create a compliance gap.</p>
+    <p class="lead" style="margin-top:1rem;"><strong>The agent gives every one of those leads an expert first reader</strong>, on day one, at no extra license cost.</p>
+  </div>
+</section>
+
+<!-- 3 WHAT IT IS -->
+<section class="slide">
+  <div class="wrap">
+    <span class="kicker">What it is, in one breath</span>
+    <h2>A tireless first-pass reviewer that reads the contract, flags the risks, and shows its work.</h2>
+    <div class="grid g4">
+      <div class="card"><div class="ic">🏛️</div><h3>On tools we own</h3><p>Runs inside Microsoft Copilot. No new system to buy, and no premium license needed to use it.</p></div>
+      <div class="card"><div class="ic">📄</div><h3>One file to maintain</h3><p>Its entire brain is one text file we edit. Nothing custom for our team to host or run.</p></div>
+      <div class="card"><div class="ic">🔎</div><h3>Cites everything</h3><p>Every point quotes the exact spot in the contract and the exact rule in the Keck playbook.</p></div>
+      <div class="card"><div class="ic">🙋</div><h3>Prepares, never decides</h3><p>It proposes; a human still reviews and signs. It never approves a contract or gives legal advice.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 WHAT IT DOES -->
+<section class="slide">
+  <div class="wrap">
+    <span class="kicker">What it does</span>
+    <h2>It reads like your most careful colleague, and a few things they'd miss.</h2>
+    <div class="grid g3">
+      <div class="card"><h3>Plain-language findings</h3><p>A short deal summary and a ranked list of risks and missing protections, no jargon to decode.</p></div>
+      <div class="card"><h3>Knows the contract type</h3><p>It recognizes whether it's an SOW, a data agreement, a HIPAA BAA, a software subscription, and reviews only what's relevant.</p></div>
+      <div class="card"><h3>Proposes the redline</h3><p>On request it suggests the actual edit for each problem clause, marked draft, routed to Legal.</p></div>
+      <div class="card"><h3>Healthcare triggers</h3><p>Flags HIPAA, Stark, Open Payments, and "no using our data to train AI" automatically.</p></div>
+      <div class="card"><h3>Computes the deadlines</h3><p>Works out renewal and notice dates so nothing auto-renews by surprise.</p></div>
+      <div class="card"><h3>Catches manipulation</h3><p>If a document hides an instruction telling the AI to call it "compliant," it catches and reports it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 CAN WE TRUST IT -->
+<section class="slide dark">
+  <div class="wrap">
+    <span class="kicker">The only question that matters</span>
+    <h2 class="serif" style="font-style:italic; font-weight:400;">"That's a nice demo. But does it actually catch what our experts catch?"</h2>
+    <p class="lead">So we didn't just demo it. We tested it against our own real, already-negotiated contracts, and measured it.</p>
+  </div>
+</section>
+
+<!-- 6 HOW WE TESTED -->
+<section class="slide">
+  <div class="wrap">
+    <span class="kicker">How we tested it, the honest way</span>
+    <h2>We used contracts where we already know the right answer.</h2>
+    <p class="lead">For each real contract we had two versions: the <strong>original</strong> the vendor sent, and the <strong>final</strong> after our human experts marked it up. The differences between them are the answer key.</p>
+    <div class="flow">
+      <div class="step"><div class="num">1</div><h3>Hand it the original</h3><p>The agent sees only the vendor's first draft, never the answer key.</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="num">2</div><h3>It writes its review</h3><p>Risks, missing protections, each one cited.</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="num">3</div><h3>Compare to the experts</h3><p>Did it flag what our humans changed? And what else did it catch?</p></div>
+    </div>
+    <p class="footnote">We repeated this across real agreements spanning seven different contract types, not one lucky example.</p>
+  </div>
+</section>
+
+<!-- 7 WHAT RECALL MEANS -->
+<section class="slide">
+  <div class="wrap">
+    <span class="kicker">The score, in plain English</span>
+    <h2>"Catch rate": of everything the experts flagged, how much did the agent also catch?</h2>
+    <p class="lead serif" style="font-style:italic;">Think of it like a smoke detector. The number that matters is how often it goes off when there's a real fire. Missing a fire is the expensive failure; an occasional extra beep you can check and wave off costs you seconds.</p>
+    <p class="lead" style="margin-top:1rem;">So we tuned for, and measure first, the <strong>catch rate</strong>. The agent deliberately raises <em>more</em> than the humans changed, a wide safety net, and every extra we checked was a real, cited issue, not noise.</p>
+  </div>
+</section>
+
+<!-- 8 RESULTS -->
+<section class="slide dark">
+  <div class="wrap">
+    <span class="kicker">The results, on real Keck contracts</span>
+    <div class="gauge-wrap">
+      <div class="gauge">
+        <svg width="230" height="230" viewBox="0 0 230 230">
+          <circle cx="115" cy="115" r="100" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="18"/>
+          <circle id="arc" cx="115" cy="115" r="100" fill="none" stroke="#79d29b" stroke-width="18" stroke-linecap="round"
+                  stroke-dasharray="628" stroke-dashoffset="628"/>
+        </svg>
+        <div class="mid"><div class="v">83–100%</div><div class="k">catch rate</div></div>
+      </div>
+      <div class="statrow" style="margin-top:0;">
+        <div class="bigstat"><div class="n greenc">8/8</div><div class="l">met <em>and</em> exceeded our human reviewers, on every contract</div></div>
+        <div class="bigstat"><div class="n gold">7</div><div class="l">contract types, above our 80% target on all of them</div></div>
+      </div>
+    </div>
+    <div class="chips">
+      <span class="chip">Statement of Work</span>
+      <span class="chip">Data Services ×2</span>
+      <span class="chip">HIPAA BAA</span>
+      <span class="chip">Master Services Agreement</span>
+      <span class="chip">Software subscription</span>
+      <span class="chip">AI-governance SOW</span>
+      <span class="chip">Amendment</span>
+    </div>
+    <p class="footnote">Catch rate (recall) = the share of issues our experts changed that the agent independently flagged from the original alone. Range reflects strict vs. generous counting of lower-ranked items; every contract cleared 80%.</p>
+  </div>
+</section>
+
+<!-- 9 MET AND EXCEEDED -->
+<section class="slide">
+  <div class="wrap">
+    <span class="kicker">It matched the experts, and went further</span>
+    <h2>On every contract, it also caught valid issues the humans didn't.</h2>
+    <div class="catch">
+      <div class="row"><span class="mk">✓</span><div><span class="t">A hidden override.</span><p>On a Statement of Work it flagged language that quietly overrode the governing master agreement, and named the department to escalate to.</p></div></div>
+      <div class="row"><span class="mk">✓</span><div><span class="t">Foreseeable HIPAA exposure.</span><p>It noticed the work would touch protected health information and routed a security review, even though the contract never said so outright.</p></div></div>
+      <div class="row"><span class="mk">✓</span><div><span class="t">It knows its limits.</span><p>On a HIPAA agreement it <em>refused</em> to borrow from a related document it wasn't handed. On another it declined to compute dates with no signature date. It flagged a price-increase cap to the exact percentage.</p></div></div>
+    </div>
+    <p class="footnote">This is what you want from a first reader: a wide, honest safety net that errs toward raising a concern, never toward hiding one, and admits what it can't see.</p>
+  </div>
+</section>
+
+<!-- 10 SCALING -->
+<section class="slide">
+  <div class="wrap">
+    <span class="kicker">From proof to scale</span>
+    <h2>We've now built the answer key for our entire redline library.</h2>
+    <div class="grid g3">
+      <div class="card"><div class="ic">📚</div><h3>55 of 56 contracts</h3><p>Every scoreable redline in the reference library now has its before/after answer key prepared.</p></div>
+      <div class="card"><div class="ic">⚙️</div><h3>Automated scoring</h3><p>A harness runs the agent's exact logic over the whole set and scores each one, no manual effort.</p></div>
+      <div class="card"><div class="ic">🔒</div><h3>Stays in-tenant</h3><p>Every contract stays inside Keck's Microsoft environment. Only the final numbers ever leave.</p></div>
+    </div>
+    <p class="lead" style="margin-top:1.5rem;">The rigorous, fully-scored proof stands at <strong>8 contracts today</strong>; the full-library number is a short automated run away.</p>
+  </div>
+</section>
+
+<!-- 11 GUARDRAIL -->
+<section class="slide">
+  <div class="wrap">
+    <span class="kicker">The guardrail, by design</span>
+    <h2>It prepares the work. A human still decides it.</h2>
+    <div class="guard">
+      <div class="does"><h3>✓ What it does</h3><ul>
+        <li>Reads the full contract and flags risks</li>
+        <li>Proposes concrete edits, marked "draft"</li>
+        <li>Cites every finding to clause and playbook</li>
+        <li>Routes issues to the right department</li>
+      </ul></div>
+      <div class="not"><h3>✕ What it never does</h3><ul>
+        <li>Approve or sign a contract</li>
+        <li>Give legal advice</li>
+        <li>Change the document itself</li>
+        <li>Invent a standard we don't have</li>
+      </ul></div>
+    </div>
+    <p class="footnote">"Propose, don't decide" is a deliberate governance choice, not a technical limit. The human review gate stays.</p>
+  </div>
+</section>
+
+<!-- 12 WHAT IT MEANS / NEXT -->
+<section class="slide dark">
+  <div class="wrap">
+    <span class="kicker">What this means · what's next</span>
+    <p class="pull">On real Keck contracts, across seven types, the agent catches what our experts catch, and more, cites everything, and is honest about what it can't see.</p>
+    <div class="next">
+      <div class="n"><b>1</b><span>Confirm the numbers jointly with Contracting, then publish the catch-rate figure.</span></div>
+      <div class="n"><b>2</b><span>Run the full library through the automated harness for the complete number.</span></div>
+      <div class="n"><b>3</b><span>Put it in front of a first pilot reviewer and gather everyday feedback.</span></div>
+    </div>
+    <p class="footnote">Same reusable building blocks, a playbook plus a hardened Copilot agent, that we can point at the next enterprise problem.</p>
+  </div>
+</section>
+
+<!-- 13 CLOSE -->
+<section class="slide dark">
+  <div class="scanline"></div>
+  <div class="wrap" style="text-align:center;">
+    <span class="kicker" style="display:block;">Keck Contract Review Agent</span>
+    <h1 style="font-size:clamp(2rem,5vw,3.4rem);">Built on what we own.<br>Proven on what we sign.</h1>
+    <p class="lead" style="margin:1.4rem auto 0;">Thank you. Questions welcome.</p>
+  </div>
+</section>
+
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('section.slide'));
+  var bar = document.getElementById('bar'), counter = document.getElementById('counter');
+  var hint = document.getElementById('hint');
+  function pad(n){ return (n<10?'0':'')+n; }
+  function current(){
+    var i = 0, mid = window.innerHeight/2;
+    slides.forEach(function(s,idx){ var r = s.getBoundingClientRect(); if(r.top <= mid) i = idx; });
+    return i;
+  }
+  function update(){
+    var i = current();
+    counter.textContent = pad(i+1) + ' / ' + pad(slides.length);
+    bar.style.width = ((i)/(slides.length-1)*100) + '%';
+    counter.style.color = slides[i].classList.contains('dark') ? '#fff' : '';
+    hint.style.opacity = i === 0 ? '.65' : '0';
+  }
+  function go(dir){
+    var i = current() + dir;
+    i = Math.max(0, Math.min(slides.length-1, i));
+    slides[i].scrollIntoView({behavior:'smooth'});
+  }
+  document.addEventListener('keydown', function(e){
+    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key) > -1){ e.preventDefault(); go(1); }
+    else if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key) > -1){ e.preventDefault(); go(-1); }
+    else if(e.key === 'Home'){ e.preventDefault(); slides[0].scrollIntoView({behavior:'smooth'}); }
+    else if(e.key === 'End'){ e.preventDefault(); slides[slides.length-1].scrollIntoView({behavior:'smooth'}); }
+  });
+  window.addEventListener('scroll', function(){ window.requestAnimationFrame(update); }, {passive:true});
+  // animate the gauge arc when the results slide is near
+  var arc = document.getElementById('arc');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting && arc){ arc.style.transition='stroke-dashoffset 1.4s ease'; arc.style.strokeDashoffset = (628*(1-0.92)) + ''; } });
+  }, {threshold:.4});
+  var results = document.querySelectorAll('.gauge svg');
+  if(results.length){ io.observe(results[0]); }
+  update();
+</script>
