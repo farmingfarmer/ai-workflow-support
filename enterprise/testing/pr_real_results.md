@@ -160,3 +160,36 @@ pieces (sample selection, orig/final extraction, GT diffs, `score_topics.ps1`) a
 **n=8 fully scored across seven contract types at ~83–100% recall, meets-and-exceeds on every one**, with the agent
 running on the instruction block alone (no attached knowledge) and reaching the playbook via tenant search — a robust,
 maintainable POC. Further scale is an automation task, not a manual-capture one.
+
+---
+
+# Full-corpus ground truth — all scoreable redlines extracted (Nov 19, 2026)
+
+Yesha asked for P/R on all 50+ real documents. Step one (the reliable, on-device half) is DONE.
+
+- Reference corpus: **74 .docx**; **56 are scoreable** (tracked_changes ≥ 5), i.e. they carry a real human
+  redline that gives a before/after answer key.
+- Ran `enterprise/testing/extract_all_gt.ps1` on-device (single Word COM pass, background): for every scoreable doc,
+  reject-all-changes → `orig_aNN.txt`, accept-all-changes → `final_aNN.txt`, paragraph diff → `gtdiff_aNN.txt`
+  (the ground-truth answer key). Canonical **a01–a56** series, sorted by filename, plus `manifest_all.csv`.
+- **Result: 55 of 56 extracted** (a06 errored in Word COM — one doc to retry). This is the complete ground-truth
+  dataset needed to score the full corpus. No OCR involved; fully reliable.
+
+## The honest wall on finishing the SCORED half via manual HANDS capture
+The blocker is NOT the file-upload "+" button (Alex enlarged it; paste works for the many small docs, upload for the
+large). Two real limits remain for manual capture at n=56:
+1. **Window reachability.** The on-device extraction requires cmd terminals; once several are open, blind alt-tab /
+   minimize over PiKVM cycles among them and the Edge agent window does not reliably surface. Fixed if the Edge agent
+   window is raised/foregrounded (as Alex has done before), or stray terminals are closed.
+2. **OCR fidelity + data boundary (the deeper one).** Scoring a doc means reading the agent's FULL review and the
+   human-change list, then judging topic overlap. Short ASCII outputs OCR cleanly (counts came back perfect); long
+   legal prose and long filenames do NOT (the manifest came back as mojibake). And the review text cannot leave the
+   tenant to be scored here (the data-boundary rule from the Bing incident). So long reviews must be written to files
+   and scored on-tenant — which is exactly what the SharePoint/Copilot-Studio Flow does.
+
+## Two paths to the full scored n=56
+- **(a) Manual, short docs first.** With the Edge window raised, grind the SMALLER redlines (where the review is short
+  enough for reliable OCR capture), growing the scored n doc by doc beyond the current 8. Partial but immediate.
+- **(b) Automation (the clean finish).** Flow runs the agent on each `orig_aNN.txt` and writes the review to a file;
+  an on-device scorer compares to `gtdiff_aNN.txt`. No OCR ceiling, no boundary issue, full auditable n=56. The GT
+  dataset is now ready to feed it.
