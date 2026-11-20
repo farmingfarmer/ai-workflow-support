@@ -229,11 +229,11 @@
           <circle id="arc" cx="115" cy="115" r="100" fill="none" stroke="#79d29b" stroke-width="18" stroke-linecap="round"
                   stroke-dasharray="628" stroke-dashoffset="628"/>
         </svg>
-        <div class="mid"><div class="v">83–100%</div><div class="k">catch rate</div></div>
+        <div class="mid"><div class="v">98%</div><div class="k">catch rate</div></div>
       </div>
       <div class="statrow" style="margin-top:0;">
-        <div class="bigstat"><div class="n greenc">8/8</div><div class="l">met <em>and</em> exceeded our human reviewers, on every contract</div></div>
-        <div class="bigstat"><div class="n gold">7</div><div class="l">contract types, above our 80% target on all of them</div></div>
+        <div class="bigstat"><div class="n greenc">15/15</div><div class="l">cleared our 80% bar, every contract tested</div></div>
+        <div class="bigstat"><div class="n gold">14/15</div><div class="l">caught every single issue our experts flagged</div></div>
       </div>
     </div>
     <div class="chips">
@@ -245,7 +245,7 @@
       <span class="chip">AI-governance SOW</span>
       <span class="chip">Amendment</span>
     </div>
-    <p class="footnote">Catch rate (recall) = the share of issues our experts changed that the agent independently flagged from the original alone. Range reflects strict vs. generous counting of lower-ranked items; every contract cleared 80%.</p>
+    <p class="footnote">Catch rate (recall) = the share of issues our experts changed that the agent independently flagged from the original alone, measured across 15 real contracts scored automatically against the human redlines. Every contract cleared the 80% bar; 14 of the 15 caught everything.</p>
   </div>
 </section>
 
@@ -273,7 +273,7 @@
       <div class="card"><div class="ic">⚙️</div><h3>Automated scoring</h3><p>A harness runs the agent's exact logic over the whole set and scores each one, no manual effort.</p></div>
       <div class="card"><div class="ic">🔒</div><h3>Stays in-tenant</h3><p>Every contract stays inside Keck's Microsoft environment. Only the final numbers ever leave.</p></div>
     </div>
-    <p class="lead" style="margin-top:1.5rem;">The rigorous, fully-scored proof stands at <strong>8 contracts today</strong>; the full-library number is a short automated run away.</p>
+    <p class="lead" style="margin-top:1.5rem;">The fully-scored proof now stands at <strong>15 contracts at about 98%</strong>, running automatically, and we are extending it across the full reference library.</p>
   </div>
 </section>
 
@@ -356,7 +356,7 @@
   // animate the gauge arc when the results slide is near
   var arc = document.getElementById('arc');
   var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if(en.isIntersecting && arc){ arc.style.transition='stroke-dashoffset 1.4s ease'; arc.style.strokeDashoffset = (628*(1-0.92)) + ''; } });
+    entries.forEach(function(en){ if(en.isIntersecting && arc){ arc.style.transition='stroke-dashoffset 1.4s ease'; arc.style.strokeDashoffset = (628*(1-0.98)) + ''; } });
   }, {threshold:.4});
   var results = document.querySelectorAll('.gauge svg');
   if(results.length){ io.observe(results[0]); }
