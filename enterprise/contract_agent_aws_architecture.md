@@ -78,6 +78,54 @@ A deterministic, logged pipeline rather than one opaque call. Each stage is insp
 
 ---
 
+## Model strategy: open vs. closed, and the fine-tune play
+
+**Principle: model-agnostic + tiered + eval-decided.** Build behind one API so models are swappable, route by task
+complexity to control cost, and let the Agent Evaluation Framework pick winners by the number, not by vibes.
+Bedrock runs every model below in-account, HIPAA-eligible under the BAA, with no training on our inputs, so the
+choice is about capability and cost, not compliance.
+
+**"Reliability" cuts two ways.** Open-weight models win decisively on reliability-as-*control/consistency*: we own
+the exact weights, so the model never changes under us (the opposite of the Copilot problem, and a direct hit on
+Yesha's consistency driver). But reliability-as-*accuracy* on the hardest 10-20% (the "commercially reasonable"
+trap, effect-of-termination tricks, and above all NOT hallucinating a number) is a verify-it claim, not a
+trust-it claim - frontier closed models still tend to lead there. So we prove it on-task with the eval framework
+rather than assuming parity.
+
+**The fine-tune play - our unfair advantage.** We already have the human **redlines** (gold answers), the
+**precision/recall harness**, and **16 scored contracts**. That is a training *and* evaluation dataset most teams
+lack. A mid-size open model fine-tuned on our contracts/playbook/past reviews can match or beat a bigger general
+model *on our distribution*, at a fraction of the cost - giving us consistency + cost savings + task-specialized
+accuracy at once. This is the strongest open-source argument for us specifically.
+
+### Decision table (tier x model x cost x when to use)
+
+| Tier / role | Candidate models | Rel. cost | When to use |
+|---|---|---|---|
+| **Triage / classify** (contract type, thin-quote defer-to-MSA) | Claude Haiku 4.5; Amazon Nova Micro/Lite; small fine-tuned Llama/Qwen | Lowest | High volume, low-judgment steps; cheap and fast gatekeeping |
+| **Standard review** (the bulk of contracts) | Fine-tuned open model (Llama 4 / Mistral Large / Qwen) OR Claude Sonnet 5 / Nova Pro | Low-Med | Where cost and volume dominate; the first place to deploy a fine-tuned open model and let eval prove it clears the bar |
+| **Hard / high-value / redline-heavy** | Claude Opus 5 (or Sonnet 5) | Highest | The complex 10-20% where a miss is expensive; keep a frontier model here until a fine-tuned open model proves it can take it |
+| **LLM judge** (for the eval gate) | A DIFFERENT family than the reviewer (Nova or Llama if reviewer is Claude; 2-3 votes on red lines) | Low | Scoring outputs without self-grading bias |
+| **Embeddings / RAG grounding** | Amazon Titan Embeddings or Cohere Embed; Cohere Command R+ for citation-heavy grounding | Lowest | The playbook knowledge base and "cite the exact rule" step |
+
+### Open-source: honest wins and caveats
+- **Wins:** perfect version-pinning (never drifts); lower cost at volume (compute, not frontier margins);
+  fine-tunable on our gold data; full data sovereignty (weights + data in-account, no external API); no
+  deprecation or lock-in.
+- **Caveats:** verify accuracy on the hard tier before trusting it; watch hallucination/citation discipline
+  (mitigated by RAG + Bedrock Guardrails + the eval gate, but test it since it is our red line); more engineering
+  (fine-tuning, serving, maintenance). Bedrock serverless open-weight removes the GPU-babysitting; SageMaker/EKS
+  self-hosting gives maximum control but we own uptime and scaling.
+
+### Recommended path
+Start hybrid: a frontier model (Claude Sonnet 5 default, Opus 5 for hard ones) to establish the quality bar and
+de-risk, while in parallel **fine-tuning a mid-size open model on our gold data** and running the bake-off through
+the eval framework. Promote the open model into the standard-review tier the moment it clears the P/R + rubric bar
+at a better cost, and keep pushing it up the tiers. Pin all versions for consistency; swap only when the number
+improves. The eval framework is the referee for the whole thing.
+
+---
+
 ## Migration path (low-risk, reuses everything)
 1. **Copilot POC (done)** - validated the logic and the number (16 real contracts, ~98% recall, v1.12). This
    de-risks the AWS build: we already know the behavior we are reproducing.
