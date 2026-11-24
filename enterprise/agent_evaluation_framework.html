@@ -1,0 +1,254 @@
+<title>Agent Evaluation Framework</title>
+<style>
+  :root{
+    --ink:#1a2230; --ink-soft:#44515f; --faint:#6a7684;
+    --paper:#f6f7f9; --card:#ffffff; --rule:#e2e5ea; --rule-soft:#eef0f3;
+    --navy:#1e3a5f; --navy-soft:#e8eef4;
+    --gold:#b4821f; --gold-soft:#f6ecd4;
+    --good:#1f7a4d; --good-soft:#e3f1e9; --good-rule:#bfe0cd;
+    --info:#2f6aa3; --info-soft:#e6eef6; --info-rule:#c3d8ea;
+    --never:#b03322; --never-soft:#f8e8e5; --never-rule:#e8c3bc;
+    --shadow:0 1px 2px rgba(26,34,48,.05), 0 6px 20px rgba(26,34,48,.06);
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ink:#e8edf3; --ink-soft:#aeb9c6; --faint:#7f8d9c;
+      --paper:#0e1319; --card:#161d26; --rule:#28333f; --rule-soft:#1d2630;
+      --navy:#7aa7d4; --navy-soft:#19283a;
+      --gold:#d9ac54; --gold-soft:#2a2213;
+      --good:#5cc088; --good-soft:#15251b; --good-rule:#26432f;
+      --info:#6ea7db; --info-soft:#162638; --info-rule:#294058;
+      --never:#e08575; --never-soft:#2a1714; --never-rule:#48241d;
+      --shadow:0 1px 2px rgba(0,0,0,.35), 0 8px 24px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="light"]{ --ink:#1a2230; --ink-soft:#44515f; --faint:#6a7684; --paper:#f6f7f9; --card:#ffffff; --rule:#e2e5ea; --rule-soft:#eef0f3; --navy:#1e3a5f; --navy-soft:#e8eef4; --gold:#b4821f; --gold-soft:#f6ecd4; --good:#1f7a4d; --good-soft:#e3f1e9; --good-rule:#bfe0cd; --info:#2f6aa3; --info-soft:#e6eef6; --info-rule:#c3d8ea; --never:#b03322; --never-soft:#f8e8e5; --never-rule:#e8c3bc; --shadow:0 1px 2px rgba(26,34,48,.05),0 6px 20px rgba(26,34,48,.06); }
+  :root[data-theme="dark"]{ --ink:#e8edf3; --ink-soft:#aeb9c6; --faint:#7f8d9c; --paper:#0e1319; --card:#161d26; --rule:#28333f; --rule-soft:#1d2630; --navy:#7aa7d4; --navy-soft:#19283a; --gold:#d9ac54; --gold-soft:#2a2213; --good:#5cc088; --good-soft:#15251b; --good-rule:#26432f; --info:#6ea7db; --info-soft:#162638; --info-rule:#294058; --never:#e08575; --never-soft:#2a1714; --never-rule:#48241d; --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3); }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:var(--sans); color:var(--ink); background:var(--paper); line-height:1.55; -webkit-font-smoothing:antialiased; padding:2.4rem 1.3rem 4rem;}
+  .wrap{max-width:60rem; margin:0 auto;}
+  .nums{font-variant-numeric:tabular-nums;}
+
+  header.top{border-bottom:3px solid var(--navy); padding-bottom:1.3rem; margin-bottom:2rem;}
+  .eyebrow{text-transform:uppercase; letter-spacing:.15em; font-size:.68rem; font-weight:800; color:var(--gold); margin-bottom:.5rem;}
+  h1{font-size:clamp(2rem,5vw,2.9rem); line-height:1.08; letter-spacing:-.02em; text-wrap:balance;}
+  .dek{font-family:var(--serif); font-size:clamp(1.05rem,2vw,1.3rem); color:var(--ink-soft); margin-top:.7rem; max-width:44rem; line-height:1.5;}
+  .badges{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.1rem;}
+  .badge{font-size:.72rem; font-weight:700; letter-spacing:.03em; padding:.25rem .6rem; border-radius:999px; background:var(--navy-soft); color:var(--navy); border:1px solid var(--rule);}
+
+  section{margin:2.6rem 0;}
+  h2{font-size:1.35rem; letter-spacing:-.01em; margin-bottom:.3rem; display:flex; align-items:baseline; gap:.6rem;}
+  h2 .k{color:var(--gold); font-weight:800; font-variant-numeric:tabular-nums; font-size:1rem;}
+  .sub{color:var(--ink-soft); font-size:.98rem; max-width:46rem; margin-bottom:1.1rem;}
+  p{margin:.5rem 0;}
+
+  /* problem callout */
+  .problem{background:var(--card); border:1px solid var(--rule); border-left:4px solid var(--gold); border-radius:12px; padding:1.1rem 1.3rem; box-shadow:var(--shadow);}
+  .problem b{color:var(--ink);}
+
+  /* two signals */
+  .signals{display:grid; grid-template-columns:1fr auto 1fr; gap:1rem; align-items:stretch; margin-top:1.2rem;}
+  .sig{background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:1.3rem; box-shadow:var(--shadow);}
+  .sig .tag{display:inline-block; font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:#fff; background:var(--navy); padding:.2rem .55rem; border-radius:6px; margin-bottom:.6rem;}
+  .sig h3{font-size:1.08rem; margin-bottom:.35rem;}
+  .sig p{font-size:.92rem; color:var(--ink-soft);}
+  .sig .ex{margin-top:.7rem; font-size:.86rem; background:var(--navy-soft); border-radius:8px; padding:.6rem .75rem; color:var(--ink);}
+  .amp{display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:2rem; font-weight:700; color:var(--gold);}
+
+  /* rubric tiers */
+  .tiers{display:flex; flex-direction:column; gap:.7rem; margin-top:1.2rem;}
+  .tier{display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:center; border-radius:12px; padding:1rem 1.2rem; border:1px solid;}
+  .tier.must{background:var(--good-soft); border-color:var(--good-rule);}
+  .tier.nice{background:var(--info-soft); border-color:var(--info-rule);}
+  .tier.never{background:var(--never-soft); border-color:var(--never-rule);}
+  .tier .mk{width:2.4rem; height:2.4rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; font-weight:800; color:#fff;}
+  .tier.must .mk{background:var(--good);} .tier.nice .mk{background:var(--info);} .tier.never .mk{background:var(--never);}
+  .tier h3{font-size:1.02rem; margin-bottom:.1rem;}
+  .tier.must h3{color:var(--good);} .tier.nice h3{color:var(--info);} .tier.never h3{color:var(--never);}
+  .tier p{font-size:.9rem; color:var(--ink-soft); margin:0;}
+  .tier .lab{font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; opacity:.8;}
+
+  /* benchmarks */
+  .bench{display:grid; grid-template-columns:repeat(5,1fr); gap:.8rem; margin-top:1.2rem;}
+  .bm{background:var(--card); border:1px solid var(--rule); border-top:3px solid var(--navy); border-radius:12px; padding:1rem .9rem; box-shadow:var(--shadow);}
+  .bm.gate{border-top-color:var(--never);}
+  .bm .n{font-size:.72rem; font-weight:800; color:var(--faint); font-variant-numeric:tabular-nums;}
+  .bm h3{font-size:.98rem; margin:.3rem 0 .35rem; letter-spacing:-.01em;}
+  .bm p{font-size:.82rem; color:var(--ink-soft); line-height:1.4; margin:0;}
+  .bm .tgt{display:inline-block; margin-top:.55rem; font-size:.74rem; font-weight:700; color:var(--navy); background:var(--navy-soft); padding:.15rem .45rem; border-radius:5px;}
+  .bm.gate .tgt{color:var(--never); background:var(--never-soft);}
+
+  /* process */
+  .proc{display:flex; flex-direction:column; gap:.5rem; margin-top:1.1rem;}
+  .step{display:grid; grid-template-columns:auto 1fr; gap:.9rem; align-items:baseline;}
+  .step .num{width:1.7rem; height:1.7rem; border-radius:50%; background:var(--navy); color:#fff; font-weight:800; font-size:.82rem; display:flex; align-items:center; justify-content:center; flex:none;}
+  .step p{margin:0; font-size:.95rem;} .step b{color:var(--ink);}
+
+  /* eval vs obs */
+  .vs2{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.1rem;}
+  .vs2 .box{background:var(--card); border:1px solid var(--rule); border-radius:12px; padding:1.1rem 1.2rem; box-shadow:var(--shadow);}
+  .vs2 .box h3{font-size:1rem; margin-bottom:.3rem;} .vs2 .box .q{font-size:.8rem; color:var(--faint); font-style:italic; margin-bottom:.4rem;}
+  .vs2 .box p{font-size:.9rem; color:var(--ink-soft); margin:0;}
+
+  .proof{background:var(--navy); color:#eaf1f8; border-radius:14px; padding:1.4rem 1.5rem; margin-top:1.2rem;}
+  .proof .eyebrow{color:#e0c178;}
+  .proof p{font-size:1rem; color:#dbe6f1;}
+  .proof b{color:#fff;}
+
+  footer{margin-top:2.6rem; padding-top:1rem; border-top:1px solid var(--rule); color:var(--faint); font-size:.8rem;}
+
+  /* decision table + highlight */
+  .dwrap{overflow-x:auto; margin-top:1.2rem;}
+  .dtable{width:100%; border-collapse:collapse; min-width:40rem; font-size:.86rem; background:var(--card); border:1px solid var(--rule); border-radius:12px; overflow:hidden; box-shadow:var(--shadow);}
+  .dtable thead th{background:var(--navy); color:#fff; text-align:left; padding:.6rem .8rem; font-size:.7rem; text-transform:uppercase; letter-spacing:.04em; font-weight:700;}
+  .dtable td{padding:.65rem .8rem; border-top:1px solid var(--rule-soft); vertical-align:top; color:var(--ink-soft);}
+  .dtable td:first-child{font-weight:700; color:var(--ink); white-space:nowrap;}
+  .dtable .cost{font-weight:700; color:var(--navy); white-space:nowrap;}
+  .highlight{background:var(--gold-soft); border:1px solid var(--rule); border-left:4px solid var(--gold); border-radius:12px; padding:1.1rem 1.3rem; margin-top:1.1rem;}
+  .highlight h3{color:var(--gold); font-size:1rem; margin-bottom:.3rem;} .highlight p{font-size:.92rem; color:var(--ink-soft); margin:0;} .highlight b{color:var(--ink);}
+
+  @media (max-width:720px){
+    .signals{grid-template-columns:1fr;} .amp{transform:rotate(90deg); padding:.2rem 0;}
+    .bench{grid-template-columns:1fr 1fr;} .tier{grid-template-columns:1fr;} .tier .mk{display:none;}
+    .vs2{grid-template-columns:1fr;}
+  }
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Data Science &amp; AI · Framework for discussion</div>
+  <h1>How do we know an AI agent is any good?</h1>
+  <p class="dek">A repeatable way to put a concrete confidence number on the agents we build, instead of "someone liked it." Generalized from what we proved on the Contract Review Agent.</p>
+  <div class="badges">
+    <span class="badge">v0, for the group</span>
+    <span class="badge">3-5 starter benchmarks</span>
+    <span class="badge">Not pushing to prod</span>
+  </div>
+</header>
+
+<section>
+  <div class="problem">
+    <p>We have a mature way to evaluate our <b>predictive models</b> and our <b>summaries</b>. For these Copilot/GPT <b>agents</b>, we have nothing. Today it's "it's good because a user liked it", too many opinions to steer by, and not the level of confidence leadership needs to back a tool across the organization. This framework fixes that: a measured, repeatable score anyone can read.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">01</span> The core idea: two scoring signals, used together</h2>
+  <p class="sub">The Contract agent was an <em>anomaly</em> in a useful way, we had the human redline as a perfect "best end-state" to compare against. Most agents won't. So we use two signals, and apply whichever we have (ideally both).</p>
+  <div class="signals">
+    <div class="sig">
+      <span class="tag">Signal A</span>
+      <h3>Golden-reference comparison</h3>
+      <p>Compare the agent's output to the business's own gold standard for the task, when one exists. Ask every owner up front: "what does a perfect finished product look like, and do you have examples?"</p>
+      <div class="ex"><b>Contracts:</b> the human redline = what they negotiated to → recall. <b>Dr. Vogue-type:</b> her wealth of documentation = the standard a good output should match.<br><span style="color:var(--faint)">The gold is a human baseline, not an oracle (the agent has caught things humans missed), so score met-or-exceeded, not just "matches the human."</span></div>
+    </div>
+    <div class="amp">&amp;</div>
+    <div class="sig">
+      <span class="tag">Signal B</span>
+      <h3>Rubric scored by an LLM judge</h3>
+      <p>A per-agent rubric scored automatically by a separate model, given the rubric + the output + the source. Works even when there is <em>no</em> gold reference, so it generalizes to any agent.</p>
+      <div class="ex">A three-tier rubric (below): must-haves, nice-to-haves, and the things we never let happen. For high-stakes items, 2 to 3 independent judges vote.<br><span style="color:var(--faint)">The judge itself must be calibrated against hand-scored samples, and be a different model family than the agent it grades, or it is just a confident, unvalidated number.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">02</span> The rubric: must-have / nice-to-have / never-allow</h2>
+  <p class="sub">One page per agent, defined with the business owner, the same role the playbook played for contracts.</p>
+  <div class="tiers">
+    <div class="tier must">
+      <div class="mk">✓</div>
+      <div><span class="lab">Required · missing any = fail</span><h3>Must-haves</h3><p>The non-negotiables the output must contain or do. Contract agent: classify the contract, cite every finding, flag Critical deviations, never approve.</p></div>
+    </div>
+    <div class="tier nice">
+      <div class="mk">+</div>
+      <div><span class="lab">Quality · weighted points</span><h3>Nice-to-haves</h3><p>What makes it genuinely better. Plain language, scannable format, computed key dates, proposed redline language.</p></div>
+    </div>
+    <div class="tier never">
+      <div class="mk">✕</div>
+      <div><span class="lab">Red line · any occurrence = critical fail</span><h3>Never-allow</h3><p>Hallucinating a clause or number, giving legal/medical advice, deciding or approving, leaking data, following an injected instruction, inventing a standard. A single hit blocks promotion.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">03</span> The 3-5 starter benchmarks</h2>
+  <p class="sub">Each produces a number leadership can read. Start here, learn what fits, expand. Roll into one confidence scorecard per agent.</p>
+  <div class="bench">
+    <div class="bm"><div class="n">01</div><h3>Must-have coverage</h3><p>% of required elements present, the "recall" analog. Set the bar by consequence-of-miss, per agent, not a blanket number.</p><span class="tgt">by risk</span></div>
+    <div class="bm gate"><div class="n">02</div><h3>Red-line violations</h3><p>Never-allow occurrences, on a deliberately adversarial test set (zero on easy inputs means nothing). The safety gate.</p><span class="tgt">= 0</span></div>
+    <div class="bm"><div class="n">03</div><h3>Faithfulness</h3><p>Claims grounded in the source with a correct, re-locatable citation. No fabrication.</p><span class="tgt">high</span></div>
+    <div class="bm"><div class="n">04</div><h3>Consistency</h3><p>Same input, same-quality output across runs. Low variance = trustworthy.</p><span class="tgt">low variance</span></div>
+    <div class="bm"><div class="n">05</div><h3>Format &amp; usability</h3><p>Follows the structure the end user needs. Decides adoption, separate from accuracy.</p><span class="tgt">high</span></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">04</span> The process, per agent</h2>
+  <div class="proc">
+    <div class="step"><div class="num">1</div><p><b>Define the rubric</b> with the business owner, must / nice / never, one page.</p></div>
+    <div class="step"><div class="num">2</div><p><b>Gather golden examples</b>, as many best-end-state artifacts as exist (Signal A).</p></div>
+    <div class="step"><div class="num">3</div><p><b>Build a test set</b> of real inputs, synthetic-trap items first, then real.</p></div>
+    <div class="step"><div class="num">4</div><p><b>Run the agent, capture outputs.</b></p></div>
+    <div class="step"><div class="num">5</div><p><b>Score both signals</b>, golden comparison where available, LLM-judge vs rubric always.</p></div>
+    <div class="step"><div class="num">6</div><p><b>Aggregate into the confidence scorecard</b> (the benchmarks above).</p></div>
+    <div class="step"><div class="num">7</div><p><b>Review with the group, iterate the rubric,</b> re-score. The rubric and test set are living.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">05</span> Evaluation is not observability</h2>
+  <p class="sub">We already built the observability layer well. Evaluation stacks on top of it. Both are needed; leadership wants the evaluation number.</p>
+  <div class="vs2">
+    <div class="box"><h3>Observability</h3><div class="q">Is it running?</div><p>Traces, inputs/outputs, latency, cost, failures. Shows <em>what is happening</em>, the raw material and how we debug regressions.</p></div>
+    <div class="box"><h3>Evaluation <span style="color:var(--gold)">(this)</span></h3><div class="q">Can we trust it?</div><p>The benchmarks above, over a dated test set. Shows <em>how good it is</em>, the confidence number for leadership.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="proof">
+    <div class="eyebrow">Why this is credible now</div>
+    <p>The Contract Review Agent is the working instance: Signal A gave us <b>~98% catch rate across 16 real contracts</b> (golden reference = the redlines), and the red-team pass was Signal B's never-allow checks (injection, reversed indemnity, invented standards). Said honestly: that 98% is from an automated scorer not yet human-validated, so treat it as <b>directionally strong, pending a Contracting co-sign</b>, not a certified figure. Making that last validation step routine for every agent is the whole point of the framework.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">06</span> First move for the group</h2>
+  <p class="sub" style="max-width:48rem;">Pick <b>one non-contract agent</b> to pilot the process on, a Dr. Vogue-style one is ideal because it already has golden-reference material. Draft its one-page must/nice/never rubric together, and produce its first confidence scorecard. That gives leadership a concrete, repeatable confidence number and a template every future agent inherits.</p>
+</section>
+
+<section>
+  <h2><span class="k">07</span> The framework in action: which model for the custom build?</h2>
+  <p class="sub">When we re-platform the contract agent off Copilot onto AWS, the biggest lever is the model. The framework answers "which one" with a number, not a vibe. Open-weight models bring real reliability and cost wins, so it is worth being precise about what "reliability" means.</p>
+  <div class="vs2">
+    <div class="box"><h3>Reliability = control</h3><div class="q">Open-weight wins here</div><p>We own the exact weights, so the model never changes under us. Perfect version-pinning, no deprecation, full data sovereignty, and lower cost at volume. A direct hit on the consistency and control we are leaving Copilot to get.</p></div>
+    <div class="box"><h3>Reliability = accuracy</h3><div class="q">Verify, do not assume</div><p>On the hardest 10 to 20 percent (the subtle traps, and above all never hallucinating a number) frontier models still tend to lead. So we prove any model on-task with the benchmarks above before we trust it.</p></div>
+  </div>
+  <div class="highlight">
+    <h3>Our unfair advantage: the fine-tune play</h3>
+    <p>We already have the human <b>redlines</b>, the <b>precision/recall harness</b>, and <b>16 scored contracts</b>. Be precise: that is a strong <b>evaluation</b> set and good few-shot material today, <b>not</b> a fine-tuning corpus (that needs hundreds to thousands of labeled examples, and building it is its own project). The payoff is real once it exists: a fine-tuned open model matching a bigger one <b>on our own contracts</b>, at a fraction of the cost. We grow that corpus from the human-in-the-loop reviews over time.</p>
+  </div>
+  <div class="dwrap">
+  <table class="dtable">
+    <thead><tr><th>Tier / role</th><th>Model options</th><th>Cost</th><th>When to use</th></tr></thead>
+    <tbody>
+      <tr><td>Triage / classify</td><td>Haiku-class; Amazon Nova Micro; small fine-tuned open model</td><td class="cost">Lowest</td><td>High-volume, low-judgment gatekeeping</td></tr>
+      <tr><td>Standard review</td><td>Fine-tuned open model (Llama / Mistral / Qwen) or Sonnet-class / Nova Pro</td><td class="cost">Low to Med</td><td>The bulk of contracts; first place to deploy a fine-tuned open model and let eval prove it</td></tr>
+      <tr><td>Hard / high-value</td><td>Frontier model (Opus-class)</td><td class="cost">Highest</td><td>The complex 10 to 20 percent where a miss is expensive, until an open model proves it can take it</td></tr>
+      <tr><td>The LLM judge</td><td>A different family than the reviewer, 2 to 3 votes</td><td class="cost">Low</td><td>Scoring outputs without self-grading bias</td></tr>
+      <tr><td>Embeddings / RAG</td><td>Titan or Cohere Embed; Command R+ for citations</td><td class="cost">Lowest</td><td>The playbook knowledge base and the grounding step</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="sub" style="margin-top:1rem;">Start hybrid: a frontier model sets the quality bar while a fine-tuned open model is benched in parallel. Promote the open model up the tiers the moment it clears the benchmarks at a better cost. <b>The framework is the referee.</b></p>
+</section>
+
+<footer>
+  Data Science &amp; AI · Agent Evaluation Framework v0 · for group review, November 2026. A starting point to bring to the group, get feedback, and iterate, not a finished standard.
+</footer>
+
+</div>
