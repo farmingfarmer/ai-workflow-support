@@ -20,6 +20,12 @@ to the effective date. Vendors frequently grant convenience termination freely w
 make-whole payment language that negates it, so the easy "yes" on convenience is the tell to go read the payment
 effect. **Always pair the two:** a convenience right plus a full-term payment obligation equals no real exit.
 
+*Scope note (so the agent does not over-flag):* the target is the **full-term / make-whole trap**, not every
+post-termination cost. Some charges can be legitimate on a convenience exit (non-cancellable third-party
+commitments, work genuinely in progress, documented wind-down). The agent should flag acceleration of *future/unused*
+fees as Critical, while treating narrowly-scoped, documented actual costs as a point to review rather than an
+automatic red flag. Essie/Contracting to set exactly where that line sits.
+
 ## Suggested full clause language (draft for Essie/Contracting to refine)
 
 > **Effect of Termination.** Upon termination of this Agreement or any Order for convenience or without cause by

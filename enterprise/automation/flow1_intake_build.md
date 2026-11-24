@@ -16,15 +16,23 @@ Flow needs its own model call. Two options:
 
 - **(A) AI Builder "Create text with GPT" prompt action — recommended for the POC.** Self-contained, built into
   Power Automate, no separate endpoint. The review logic travels in the prompt (`flow1_review_prompt.txt`), which
-  embeds the key playbook rules (including the new v1.12 effect-of-termination check). This is a faithful **proxy**
-  of the agent, not the exact declarative-agent surface — good enough for intake, and consistent with how the
-  precision/recall harness already scores. Needs AI Builder to be available in the environment.
+  embeds the key playbook rules (including the new v1.12 effect-of-termination check). Needs AI Builder available.
 - **(B) Copilot Studio agent — for full fidelity later.** Re-create the Contract Review Agent as a Copilot Studio
   agent (same instructions + the playbook as knowledge). A Copilot Studio agent IS flow-callable and can search the
   playbook, so the Flow's review equals the production agent's. More setup; do this when the POC graduates.
 
 Build with **(A)** now. If AI Builder isn't enabled, request it, or substitute an HTTP action to the tenant Azure
 OpenAI endpoint (same body as `run_pr_harness.ps1`).
+
+> **Two caveats to say out loud about option (A), because they matter for production:**
+> 1. **It is a *proxy*, so the 98% does not transfer to it.** Option (A) is an AI Builder GPT call, **not** the
+>    validated v1.12 declarative agent reviewers see in Copilot. Before anyone trusts the Flow's output in
+>    production, **re-score it through the evaluation framework** (`../agent_evaluation_framework.md`) and confirm it
+>    clears the bar on its own. Do not assume parity with the Copilot agent.
+> 2. **The embedded playbook rules go stale.** The live agent reaches the *full* playbook via tenant search and
+>    picks up changes automatically; this prompt carries a hand-written *summary* of the rules, so when the playbook
+>    changes, someone has to update the prompt. That reintroduces a maintenance/drift risk. Option (B) or the AWS
+>    build (which reads the rule base live) is how that goes away.
 
 ---
 
@@ -46,20 +54,26 @@ Name it **"Contract Intake Pre-Review"**.
 - (This fires per file dropped in Inbox.)
 
 ### Step 1 — Get the contract text
-A contract is usually a .docx or .pdf; the GPT action needs **text**. Cleanest native path:
+A contract is usually a .docx or .pdf; the GPT action needs **text**. Pick the extraction path by file *type* — do
+not OCR a clean digital file, you lose clause structure for no reason:
 1. **SharePoint — Get file content** (Identifier = trigger `Identifier`).
-2. If files arrive as **.docx**: **OneDrive for Business — Convert file** (or **SharePoint — Convert file**) to
-   **PDF**, then **AI Builder — "Recognize text in an image or PDF document"** to get text.
-   If files arrive as **.pdf**: skip the convert, go straight to AI Builder recognize-text.
-   (Simplest POC rule: ask reviewers to drop a **PDF**. One fewer step, and most contracts are shared as PDF.)
-   Store the recognized text in a variable **`contractText`**.
-   - *Alternative for clean .docx text:* a premium connector like Encodian "Get Text from Document" if licensed.
+2. **For clean digital .docx/.pdf (the common case):** extract text directly, which keeps clause structure and
+   numbering. Best native option is a text-extraction connector (e.g. **Encodian / Plumsail "Get Text from
+   Document"**, premium) or a small Azure Function doing python-docx/pdfplumber. OCR is the *wrong* tool here.
+3. **Only for scanned/image PDFs:** **AI Builder — "Recognize text in an image or PDF document"** (OCR). Note OCR
+   flattens structure and cannot see tracked changes, so it is a fallback, not the default.
+   Store the result in a variable **`contractText`**. (For the quickest demo, dropping a text-based PDF and using a
+   direct-extract connector is the least-moving-parts path; avoid the Convert-to-PDF-then-OCR chain.)
 
 ### Step 2 — Run the review (AI Builder)
 - Action: **AI Builder — "Create text with GPT"** (a.k.a. "Create text with the GPT prompt").
 - **Instructions / Prompt:** paste the full contents of **`flow1_review_prompt.txt`**, then append the dynamic
   content **`contractText`** at the end (the prompt ends with "CONTRACT TEXT TO REVIEW:").
 - Keep temperature low if exposed. Output is the review text -> reference it as **`Outputs -> Text`**.
+- **Before go-live, verify the hardcoded thresholds in that prompt** (Net 45, CPI/3% cap, insurance baselines,
+  etc.) against the *authoritative* Keck playbook - they were transcribed from the agent's instruction block and
+  must match the source of truth. These values will also drift as the playbook changes, which is a maintenance cost
+  of the embedded-summary approach (see the caveats above).
 
 ### Step 3 — Write the review into Reviews/
 - Action: **SharePoint — Create file**.

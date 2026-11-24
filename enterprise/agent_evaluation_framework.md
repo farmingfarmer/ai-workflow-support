@@ -25,6 +25,11 @@ Compare the agent's output to the business's own gold standard for that task.
 - **How to source these:** for every agent, ask the business owner up front, "what does a perfect finished product
   for this task look like, and do you have examples of it?" Collect as many as exist. These become the answer key.
 - **Metric:** coverage/recall against the gold, plus a "missed-nothing-critical" check.
+- **Honest limit (important):** the gold is a *reference human baseline, not an oracle of correctness.* We have
+  already seen the agent catch things the humans missed, which means the redline is imperfect. So raw "match the
+  human" can both penalize the agent for being better and reward it for copying a human mistake. Score it as
+  **met-or-exceeded** (did it catch what the human caught, and what did it add that is valid), and have the owner
+  confirm the change-lists before any number is published, rather than treating the baseline as ground truth.
 
 ### Signal B — Rubric-based LLM-judge scoring (always applicable, even with no gold)
 A per-agent rubric in three tiers, scored by an LLM judge against each output. This is your framing exactly:
@@ -38,6 +43,14 @@ A per-agent rubric in three tiers, scored by an LLM judge against each output. T
 - **How it scores:** an LLM judge (a separate model instance, given the rubric + the agent output + the source
   input) returns, per output: must-have coverage, nice-to-have points, and a red-line pass/fail with the offending
   span. Judge prompts are versioned; for high-stakes items, use 2-3 independent judges and take the majority.
+- **The judge itself must be validated (do not skip this).** We are measuring an agent with another model, so the
+  judge is only trustworthy if we have calibrated it. On a held-out sample, score outputs **by hand** and confirm
+  the judge agrees with the humans; report that agreement rate (and re-check it when the judge model or prompt
+  changes). Watch the known LLM-judge biases: position, verbosity, and self-preference (so the judge should be a
+  *different* model family than the agent it grades). An uncalibrated judge produces a confident number we cannot
+  stand behind.
+- **Weighting is explicit, or the score is not reproducible.** Fix the nice-to-have point weights with the owner up
+  front and record them, so the same output always yields the same score.
 
 ---
 
@@ -46,18 +59,28 @@ A per-agent rubric in three tiers, scored by an LLM judge against each output. T
 Start here, learn, expand. Each produces a number leadership can read.
 
 1. **Must-have coverage** — % of required elements present (the "recall" analog). *When a golden reference exists,
-   its recall is the strongest form of this.* Target per agent, e.g. >= 90%.
-2. **Red-line violation rate** — count of never-allow occurrences across the test set. **Target: 0.** This is the
-   safety gate; a single violation blocks promotion regardless of other scores.
+   its recall is the strongest form of this.* **Set the pass threshold by consequence-of-miss, per agent, with the
+   owner** — do not use a blanket number. ~90% may be fine for a first-pass contract reviewer (a human reads it
+   next); a high-stakes clinical output needs far higher. The threshold is a risk decision, not a default.
+2. **Red-line violation rate** — count of never-allow occurrences. **Target: 0**, and it is the safety gate (one
+   violation blocks promotion). **This only means something on a deliberately adversarial test set** (injection
+   attempts, edge cases, prompts designed to provoke a violation). Zero violations on easy, normal inputs tells you
+   nothing; red lines must be *stress-tested*, not just observed.
 3. **Faithfulness / citation accuracy** — share of claims grounded in the source with a correct, re-locatable
-   citation; no fabrication. (The contract agent's self-citation check is this.)
-4. **Consistency** — same input run N times yields same-quality output; measure variance in score and whether
-   must-haves/red-lines flip. Low variance = trustworthy.
+   citation; no fabrication. Measure in two layers: *mechanically* re-locate each citation in the source (automatable,
+   catches fabricated cites), then judge *semantic* faithfulness for the rest. (The contract agent's self-citation
+   check is the first layer.)
+4. **Consistency** — be precise about what is held constant. LLMs are stochastic, so define it as: over N runs of
+   the same input, how stable are the (a) red-line verdicts, (b) must-have coverage, and (c) format — not "the exact
+   same text." Note the trap: consistency without accuracy is just reliable wrongness, so read it alongside #1-#3,
+   never alone.
 5. **Format & usability adherence** — output follows the required structure the end user needs (sections, length,
    routing). Usability is separate from accuracy and decides adoption.
 
-Roll these into one **confidence scorecard** per agent: coverage %, red-line count (must be 0), faithfulness %,
-consistency, format %, over a dated test set.
+Roll these into one **confidence scorecard** per agent: coverage %, red-line count (must be 0, on the adversarial
+set), faithfulness %, consistency, format %, over a dated test set. **Report the test-set size and a confidence
+interval** — leadership asked for *confidence*, and a point estimate from a handful of examples is not that; say how
+many items the number rests on.
 
 ---
 
@@ -66,11 +89,14 @@ consistency, format %, over a dated test set.
 1. **Define the rubric with the business owner.** Must / nice / never. For contracts this was the playbook; for a
    new agent it is a short workshop with the owner. One page.
 2. **Gather golden examples.** As many best-end-state artifacts as exist for Signal A.
-3. **Build a representative test set** of real inputs (synthetic-trap items first for safety, then real).
+3. **Build the test set:** a representative set of real inputs **plus a deliberate adversarial set** for the red
+   lines (injection attempts, edge cases). Keep the test set **held out** - never let the reviewer-feedback learning
+   loop leak into it, or you are grading on what you trained on.
 4. **Run the agent, capture outputs** (today via the Copilot surface; in the AWS build, via API, which makes this
    trivial - see `contract_agent_aws_architecture.md`).
-5. **Score:** Signal A (golden comparison) where available + Signal B (LLM judge vs rubric) always.
-6. **Aggregate into the scorecard** (the 3-5 benchmarks).
+5. **Score:** Signal A (golden comparison) where available + Signal B (LLM judge vs rubric) always. **Before trusting
+   the judge, calibrate it** against a hand-scored sample (step 0 that you do once per judge version).
+6. **Aggregate into the scorecard** (the 3-5 benchmarks) with the test-set size and a confidence interval.
 7. **Review with the group, iterate the rubric,** re-score. The rubric and test set are living.
 
 ---
@@ -82,10 +108,14 @@ consistency, format %, over a dated test set.
 - They stack: evaluation runs *on top of* the observed traces. Leadership wants the evaluation number; observability
   is how we get the raw material and debug regressions.
 
-## Why this is credible now
-The Contract Review Agent is the proof: Signal A gave us ~98% recall across 16 real contracts (golden-reference =
-the redlines); the red-team pass was Signal B's red-line checks (injection, reversed indemnity, invented
-standards). This framework is that method, generalized so it works for the next agent even without a redline.
+## Why this is credible now (stated honestly)
+The Contract Review Agent is the working instance: Signal A gave us ~98% recall across 16 real contracts
+(golden-reference = the redlines), and the red-team pass was Signal B's red-line checks (injection, reversed
+indemnity, invented standards). Two honest caveats so we do not oversell it: that 98% comes from an **automated
+keyword scorer** (fast and consistent, but itself not yet human-validated - exactly the judge-calibration step
+above), and the redline gold is a human baseline, not an oracle. So treat 98% as **directionally strong, pending a
+Contracting co-sign of the change-lists**, not as a published, certified figure. The point of this framework is to
+make that last step routine for every agent, so the number we hand leadership is one we have actually validated.
 
 ## First move for the group
 Bring this v0, pick **one non-contract agent** to pilot it on (a Dr. Vogue-style one with existing documentation is
