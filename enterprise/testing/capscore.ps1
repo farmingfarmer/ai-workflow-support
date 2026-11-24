@@ -12,7 +12,8 @@ if (-not $a) { Write-Output "NOCLIP a$nn"; exit }
 $revCount = ([regex]::Matches($a, 'Reasoned for')).Count
 $s = $a.LastIndexOf('PRE-REVIEW')
 $e = if ($s -ge 0) { $a.IndexOf('generated content may', $s) } else { -1 }
-if ($s -ge 0 -and $e -gt $s) { $r = $a.Substring($s, $e - $s) }
+# use the footer as endpoint only if it's far enough to bracket a real review; else take to end
+if ($s -ge 0 -and $e -gt ($s + 3000)) { $r = $a.Substring($s, $e - $s) }
 elseif ($s -ge 0) { $r = $a.Substring($s) } else { $r = $a }
 $r | Out-File "$wd\review_a$nn.txt" -Encoding UTF8
 $gtPath = "$wd\gtdiff_a$nn.txt"
