@@ -4,10 +4,20 @@
   folder_manifest.json. One command instead of clicking through the SharePoint UI.
 
   Prereqs (run in-tenant on the ThinkPad):
-    Install-Module PnP.PowerShell -Scope CurrentUser        # once
+    # The module. MIND THE POWERSHELL VERSION: this ThinkPad runs Windows PowerShell 5.1 (no PS7),
+    # and modern PnP.PowerShell (2.x) requires PS7.2+. So install the last PS5.1-compatible version:
+    Install-Module PnP.PowerShell -RequiredVersion 1.12.0 -Scope CurrentUser   # DONE on the ThinkPad Nov 25 2026
+    # (If PS7 gets installed later, you can move to the current 2.x PnP instead.)
   Run:
     ./provision_sharepoint.ps1 -SiteUrl "https://<tenant>.sharepoint.com/sites/<yoursite>"
   It will open an interactive sign-in. Idempotent -- safe to re-run.
+
+  AUTH NOTE: Connect-PnPOnline -Interactive uses the multi-tenant "PnP Management Shell" app by default.
+  Many tenants DISABLE that app or require admin consent, in which case -Interactive fails. If so, either
+  (a) have an admin consent the PnP Management Shell app (Register-PnPManagementShellAccess), (b) pass a
+  -ClientId of a registered Entra app, or (c) skip PnP entirely and create the library + folders + columns
+  by hand in the SharePoint UI (see folder_manifest.json for the exact structure). Provisioning is a one-time,
+  5-minute step either way; the real build is Flow 1.
 #>
 param(
   [Parameter(Mandatory=$true)][string]$SiteUrl,
